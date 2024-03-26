@@ -16,7 +16,7 @@ testimonialSlider();
 */
 
 function coursePreviewVideo(){
-    console.log('hello');
+    // console.log('hello');
     const coursePreviewModal = document.querySelector(".js-course-preview-modal");
     if(coursePreviewModal){
         coursePreviewModal.addEventListener("shown.bs.modal", function(){
