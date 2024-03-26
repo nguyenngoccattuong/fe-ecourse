@@ -220,6 +220,11 @@ select.form-control:focus option {
   background-color: var(--select-box-bg-color);
 }
 
+textarea.form-control {
+  height: 120px;
+  resize: none;
+}
+
 /*13: =video modal */
 .video-modal .btn-close {
   height: 35px;
@@ -965,4 +970,25 @@ select.form-control:focus option {
   left: 0;
   top: 9px;
   border-radius: 50%;
+}
+
+/* 27: =contact section */
+.contact-item {
+  position: relative;
+  padding-left: 55px;
+  margin-bottom: 40px;
+}
+
+.contact-item .icon-box {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background-color: var(--main-color);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
 }
