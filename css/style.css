@@ -826,7 +826,7 @@ textarea.form-control {
 
 /*  course curriculum*/
 .box .accordion-item {
-  border: none;
+  /* border: none; */
   background-color: inherit;
   color: inherit;
 }
@@ -1102,7 +1102,7 @@ textarea.form-control {
   height: 40px;
   width: 40px;
   background-color: var(--main-color);
-  color: var(--white);
+  /* color: var(--white); */
   display: flex;
   align-items: center;
   justify-content: center;
