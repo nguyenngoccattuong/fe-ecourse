@@ -418,6 +418,10 @@ textarea.form-control {
 .header {
   border-bottom: 1px solid var(--boder-color-2);
 }
+.header .row {
+  align-items: center;
+}
+
 .header-logo a {
   font-size: 26px;
   text-transform: uppercase;
@@ -821,6 +825,12 @@ textarea.form-control {
 }
 
 /*  course curriculum*/
+.box .accordion-item {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+}
+
 .course-curriculum .accordion-button {
   border-color: var(--border-color-1);
   background-color: transparent;
