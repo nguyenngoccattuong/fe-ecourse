@@ -97,7 +97,7 @@ function themeLightDark(){
     });
 
     function themeMode(){
-        if(localStorage.getItem("theme-dark") == "false"){
+        if(localStorage.getItem("theme-dark") === "false"){
             document.body.classList.remove("t-dark");
         }
         else{
@@ -132,7 +132,7 @@ function themeGlassEffect(){
     });
 
     function glass(){
-        if(localStorage.getItem("glass-effect") == "true"){
+        if(localStorage.getItem("glass-effect") === "true"){
             glassStyle.removeAttribute("disabled");
         }
         else{
@@ -144,7 +144,7 @@ function themeGlassEffect(){
         glass();
     }
     
-    if(!glassStyle.hasAttribute("disable")){
+    if(!glassStyle.hasAttribute("disabled")){
         glassEffectCheckbox.checked = true;
     }
 }
