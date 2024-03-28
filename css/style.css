@@ -1110,3 +1110,70 @@ textarea.form-control {
   left: 0;
   top: 0;
 }
+
+/* Blog */
+
+.blog-item{
+  margin-bottom: 30px;
+  position: relative;
+  border: 1px solid #ececec;
+  margin: 20px;
+}
+
+.blog-item .img-box img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.blog-item .link {
+  color: var(--black-70);
+  display: inline-block;
+}
+
+.blog-item .blog-title {
+  text-transform: capitalize;
+  padding: 0 30px;
+  transform: color 0.3s ease;
+}
+
+.blog-item .blog-time {
+  text-transform: capitalize;
+  margin-top: 15px;
+  padding: 0 30px;
+  margin-bottom: 0;
+  color: var(--main-color);
+  font-weight: 400;
+  transform: color 0.3s ease;
+}
+
+.blog-item .instructor {
+  text-transform: capitalize;
+  padding: 0 30px;
+  margin: 0 0 12px;
+}
+
+.blog-item .instructor img {
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.blog-item .blog-description{
+  padding: 0 30px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blog-item .readmore{
+  text-transform: capitalize;
+  padding: 0 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.blog-item:hover .readmore{
+  color: var(--main-color);
+}
