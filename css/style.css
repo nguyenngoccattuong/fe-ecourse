@@ -1,6 +1,35 @@
 /* ------------------- 
  table of contents
 ------------------- */
+/* ------------------------------------------------------------------------------------------------ */
+/* 01. =google fonts */
+/* 02. = variables */
+/* 03: =overrides variables for - theme dark */
+/* 04: =base */
+/* 05: =box */
+/* 06: =custom bootstrap classes */
+/* 07: =animation keyframes */
+/* 08: =section - padding , title */
+/* 09: =button */
+
+/* 11: =circular img */
+/* 12: =forms */
+/* 13: =video modal */
+/* 14: =pagination */
+/* 15: =breadcrumb*/
+/* 16: =tabs */
+
+/* 18: =style switcher */
+/* 19: =header */
+/* 20. =footer */
+/* 21: banner section */
+/* 22. =fun facts section */
+/* 23. =courses section */
+/* 24. =testimonials section */
+/*25:  =bai section*/
+/* 26: =course details section */
+/* 27: =contact section */
+/* ------------------------------------------------------------------------------------------------ */
 
 /* 01. google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -130,6 +159,7 @@ h3 {
   font-size: 35px;
   color: var(--black-90);
 }
+
 /* 09: button */
 .btn-theme {
   background-color: var(--main-color);
@@ -1109,4 +1139,71 @@ textarea.form-control {
   border-radius: 50%;
   left: 0;
   top: 0;
+}
+
+/* Blog */
+
+.blog-item {
+  margin-bottom: 30px;
+  position: relative;
+  border: 1px solid #ececec;
+  margin: 20px;
+}
+
+.blog-item .img-box img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.blog-item .link {
+  color: var(--black-70);
+  display: inline-block;
+}
+
+.blog-title {
+  text-transform: capitalize;
+  padding: 0 30px;
+  transform: color 0.3s ease;
+}
+
+.blog-time {
+  text-transform: capitalize;
+  margin-top: 15px;
+  padding: 0 30px;
+  margin-bottom: 0;
+  color: var(--main-color);
+  font-weight: 400;
+  transform: color 0.3s ease;
+}
+
+.instructor {
+  text-transform: capitalize;
+  padding: 0 30px;
+  margin: 0 0 12px;
+}
+
+.instructor img {
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.blog-description {
+  padding: 0 30px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.readmore {
+  text-transform: capitalize;
+  padding: 0 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.readmore:hover {
+  color: var(--main-color);
 }
