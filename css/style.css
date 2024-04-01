@@ -1,6 +1,35 @@
 /* ------------------- 
  table of contents
 ------------------- */
+/* ------------------------------------------------------------------------------------------------ */
+/* 01. =google fonts */
+/* 02. = variables */
+/* 03: =overrides variables for - theme dark */
+/* 04: =base */
+/* 05: =box */
+/* 06: =custom bootstrap classes */
+/* 07: =animation keyframes */
+/* 08: =section - padding , title */
+/* 09: =button */
+
+/* 11: =circular img */
+/* 12: =forms */
+/* 13: =video modal */
+/* 14: =pagination */
+/* 15: =breadcrumb*/
+/* 16: =tabs */
+
+/* 18: =style switcher */
+/* 19: =header */
+/* 20. =footer */
+/* 21: banner section */
+/* 22. =fun facts section */
+/* 23. =courses section */
+/* 24. =testimonials section */
+/*25:  =bai section*/
+/* 26: =course details section */
+/* 27: =contact section */
+/* ------------------------------------------------------------------------------------------------ */
 
 /* 01. google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -130,6 +159,7 @@ h3 {
   font-size: 35px;
   color: var(--black-90);
 }
+
 /* 09: button */
 .btn-theme {
   background-color: var(--main-color);
@@ -1113,7 +1143,7 @@ textarea.form-control {
 
 /* Blog */
 
-.blog-item{
+.blog-item {
   margin-bottom: 30px;
   position: relative;
   border: 1px solid #ececec;
@@ -1130,13 +1160,13 @@ textarea.form-control {
   display: inline-block;
 }
 
-.blog-item .blog-title {
+.blog-title {
   text-transform: capitalize;
   padding: 0 30px;
   transform: color 0.3s ease;
 }
 
-.blog-item .blog-time {
+.blog-time {
   text-transform: capitalize;
   margin-top: 15px;
   padding: 0 30px;
@@ -1146,19 +1176,19 @@ textarea.form-control {
   transform: color 0.3s ease;
 }
 
-.blog-item .instructor {
+.instructor {
   text-transform: capitalize;
   padding: 0 30px;
   margin: 0 0 12px;
 }
 
-.blog-item .instructor img {
+.instructor img {
   width: 30px;
   border-radius: 50%;
   margin-right: 5px;
 }
 
-.blog-item .blog-description{
+.blog-description {
   padding: 0 30px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1167,13 +1197,13 @@ textarea.form-control {
   text-overflow: ellipsis;
 }
 
-.blog-item .readmore{
+.readmore {
   text-transform: capitalize;
   padding: 0 30px;
   font-weight: 700;
   margin-bottom: 30px;
 }
 
-.blog-item:hover .readmore{
+.readmore:hover {
   color: var(--main-color);
 }
