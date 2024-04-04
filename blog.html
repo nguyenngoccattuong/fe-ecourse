@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" class="js-color-style" href="css/colors/color-1.css">
     <link rel="stylesheet" class="js-glass-style" href="css/glass.css" disabled>
 </head>
@@ -21,18 +22,22 @@
         <header class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-lg-6 col-sm-12">
                         <div class="header-main d-flex justify-content-between align-items-center">
                             <div class="header-logo">
                                 <a href="index.html"><span>E
                                     </span>Course</a>
                             </div>
-                            <button type="button" class="header-hamburger-btn js-header-menu-toggler"></button>
-                            <span></span>
+                            <button type="button"
+                                class="header-hamburger-btn js-header-menu-toggler"><span></span></button>
+                            <div class="header-backdrop js-header-backdrop"></div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-6 col-sm-12">
+                        <!-- <label for="menu_mobile" id="label_menu_mobile"> <i class="fas fa-bars"></i> </label>
+                                <input type="checkbox" id="menu_mobile"> -->
                         <nav class="header-menu js-header-menu">
+
                             <button type="button" class="header-close-btn js-header-menu-toggler">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -510,7 +515,7 @@
                     <div class="col-lg-4">
                         <!-- course sidebar start -->
                         <div class="form-group box">
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="text" class="form-control" placeholder="Search">
                         </div>
                         <div class="course-sidebar box">
                             <h3>Topics</h3>

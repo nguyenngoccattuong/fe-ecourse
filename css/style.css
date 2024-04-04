@@ -31,6 +31,11 @@
 /* 27: =contact section */
 /* ------------------------------------------------------------------------------------------------ */
 
+/* #menu_mobile,
+#label_menu_mobile {
+  display: none;
+} */
+
 /* 01. google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
@@ -487,6 +492,7 @@ textarea.form-control {
   font-size: 13px;
   margin-left: 3px;
   pointer-events: none;
+  transition: transform 0.3s ease;
 }
 
 .header .sub-menu {
@@ -921,6 +927,10 @@ textarea.form-control {
   padding: 0 50px 0 20px;
 }
 
+.course-curriculum ul li:not(:last-child) {
+  margin-bottom: 30px;
+}
+
 .course-curriculum ul li span {
   position: absolute;
   font-size: 14px;
@@ -1178,7 +1188,7 @@ textarea.form-control {
 
 .instructor {
   text-transform: capitalize;
-  padding: 0 30px;
+  /* padding: 0 30px; */
   margin: 0 0 12px;
 }
 

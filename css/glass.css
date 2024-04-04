@@ -83,6 +83,7 @@ body::before {
 .box {
   border: 1px solid var(--border-color-2);
 }
+.header-backdrop,
 .modal,
 .header .sub-menu,
 .box,
@@ -93,6 +94,9 @@ body::before {
 
 .modal-backdrop {
   background-color: var(--white);
+}
+.header-backdrop.active {
+  opacity: 1;
 }
 
 /* glass dark */
@@ -114,4 +118,43 @@ body.t-dark::before {
   background-color: var(--BLACK);
   opacity: 0.2;
   z-index: -1;
+}
+
+/* Responsive */
+@media (max-width: 1199px) {
+  body {
+    padding: 40px 30px;
+  }
+  html::before {
+    left: -35px;
+    top: 10%;
+  }
+  html::after {
+    right: -60px;
+    bottom: 10%;
+  }
+}
+
+@media (max-width: 991px) {
+  .header-menu {
+    -webkit-backdrop-filter: var(--backdrop-filter-blur);
+    backdrop-filter: var(--backdrop-filter-blur);
+  }
+  .header .sub-menu {
+    border: 0;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    padding: 35px 15px;
+  }
+  html::before {
+    left: -50px;
+  }
+  html::after {
+    right: -75px;
+  }
 }
