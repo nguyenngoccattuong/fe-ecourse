@@ -1,3 +1,12 @@
+
+window.addEventListener("load", () => {
+    // page loader
+    document.querySelector(".js-page-loader").classList.add("fade-out");
+    setTimeout(() => {
+        document.querySelector(".js-page-loader").style.display = "none";
+    }, 600);
+});
+
 // testimonial slider
 function testimonialSlider() {
     const carouselOne = document.getElementById('carouselOne');
