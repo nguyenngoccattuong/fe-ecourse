@@ -1,0 +1,26 @@
+.horizontal-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.horizontal-list li {
+  margin-bottom: 10px; /* Điều chỉnh khoảng cách giữa các mục */
+}
+
+.horizontal-list li .pagination-item-name {
+  border: 1px solid #ccc;
+  padding: 2px 20px 2px 20px;
+  margin: 5px;
+}
+
+.horizontal-list li:active {
+  background-color: var(--main-color);
+  color: var(--WHITE);
+}
+
+.horizontal-list li .pagination-item-name:hover {
+  background-color: var(--main-color);
+  color: var(--WHITE);
+}
