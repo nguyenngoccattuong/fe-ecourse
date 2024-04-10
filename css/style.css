@@ -26,9 +26,11 @@
 /* 22. =fun facts section */
 /* 23. =courses section */
 /* 24. =testimonials section */
-/*25:  =bai section*/
+/* 25:  =bai section*/
 /* 26: =course details section */
 /* 27: =contact section */
+/* 28: =Blog */
+/* 29: =rating */
 /* ------------------------------------------------------------------------------------------------ */
 
 /* #menu_mobile,
@@ -1302,7 +1304,7 @@ textarea.form-control {
   top: 0;
 }
 
-/* Blog */
+/*28: =Blog */
 
 .blog-item {
   margin-bottom: 30px;
@@ -1367,4 +1369,110 @@ textarea.form-control {
 
 .readmore:hover {
   color: var(--main-color);
+}
+
+/* 29: =rating */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.wrapper {
+  background-color: var(--white);
+  padding: 2rem;
+  /* max-width: 576px; */
+  width: 100%;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow);
+  /* justify-content: center;
+  align-items: center; */
+  text-align: center;
+}
+
+.wrapper h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.rating {
+  /* display: flex; */
+  justify-self: center;
+  align-items: center;
+  grid-gap: 0.5rem;
+  font-size: 2rem;
+  color: var(--orange);
+  margin-bottom: 2rem;
+}
+
+.rating .star {
+  cursor: pointer;
+}
+
+.rating .star.active {
+  opacity: 0;
+  animation: animate 0.5s calc(var(--i) * 0.1s) ease-in-out forwards;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.rating .star:hover {
+  transform: scale(1.1);
+}
+
+textarea {
+  /* width: 100%; */
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  resize: none;
+  margin-bottom: 0.5rem;
+}
+
+.btn-group {
+  /* display: flex; */
+  grid-gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-group .btn {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.btn-group .btn.submit {
+  background-color: #4383ff;
+  color: var(--white);
+}
+.btn-group .btn.submit:hover {
+  background-color: #3278ff;
+}
+.btn-group .btn.cancel {
+  background-color: var(--white);
+  color: #4383ff;
+}
+.btn-group .btn.cancel:hover {
+  background-color: #f5f5f5;
 }
