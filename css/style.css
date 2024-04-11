@@ -1501,5 +1501,5 @@ textarea {
 }
 
 .exam-choice.active {
-  color: var(--main-color); /* Change this to your desired color */
+  background-color: var(--main-color);
 }

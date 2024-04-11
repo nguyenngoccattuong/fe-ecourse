@@ -99,7 +99,7 @@
                     <p>00:41:43</p>
                 </div>
                 <div class="col-md-6">
-                  <button type="button" class="btn btn-theme">Nộp bài</button>
+                  <button id="finish" type="button" class="btn btn-theme">Nộp bài</button>
               </div>
               </div>
             </div>
@@ -108,85 +108,134 @@
     <!--  course details section start -->
     <section class="course-details section-padding">
       <div class="container">
-          <div class="row">
-              <div class="col-lg-8">
-                  <!-- quiz start -->
-                  <div class="course-header box">
-                      <h5 class="text-capitalize">1. Phương pháp lập trình module</h5>
-                      <div class="text-center">
-                          <img class="m-4" src="img/courses/item.jpg" alt="" width="450">
-                      </div>
-                      <div class="row">
-                          <div class="col-md-6">
-                              <p>A. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                              <p>C. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                          </div>
-                          <div class="col-md-6">
-                              <p>B. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                              <p>D. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                          </div>
-                      </div>
-  
-                      <div class="container">
-                          <div class="row pt-4">
-                              <p class="col-auto">Đáp án của bạn:</p>
-                              <div class="col-auto">
-                                  <div class="form-check">
-                                      <input type="radio" class="form-check-input" id="radio1" name="optradio"
-                                          value="1" checked>A
-                                      <label class="form-check-label" for="radio1"></label>
-                                  </div>
-                              </div>
-                              <div class="col-auto">
-                                  <div class="form-check">
-                                      <input type="radio" class="form-check-input" id="radio2" name="optradio"
-                                          value="2">B
-                                      <label class="form-check-label" for="radio2"></label>
-                                  </div>
-                              </div>
-                              <div class="col-auto">
-                                  <div class="form-check">
-                                      <input type="radio" class="form-check-input" id="radio3" name="optradio"
-                                          value="3">C
-                                      <label class="form-check-label" for="radio3"></label>
-                                  </div>
-                              </div>
-                              <div class="col-auto">
-                                  <div class="form-check">
-                                      <input type="radio" class="form-check-input" id="radio4" name="optradio"
-                                          value="4">D
-                                      <label class="form-check-label" for="radio4"></label>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-  
-                  </div>
-                  <!-- quiz end -->
-  
-                  <!-- Add other quizzes here -->
-  
+        <div class="row">
+          <div class="col-lg-8">
+            <!-- quiz start -->
+            <div class="course-header box">
+              <h5 class="text-capitalize">1. Phương pháp lập trình module</h5>
+              <div class="text-center">
+                  <img class="m-4" src="img/courses/item.jpg" alt="" width="450">
               </div>
-  
-  
-              <div class="col-lg-4">
-                  <!-- course sidebar start -->
-                  <div class="course-sidebar box">
-                      <ul class="row">
-                          <li class="col-md-2 col-lg-2 exam-choice" id="question_number_1">1</li>
-                          <li class="col-md-2 col-lg-2 exam-choice" id="question_number_2">2</li>
-                          <li class="col-md-2 col-lg-2 exam-choice" id="question_number_3">3</li>
-                          <li class="col-md-2 col-lg-2 exam-choice" id="question_number_4">4</li>
-                          <li class="col-md-2 col-lg-2 exam-choice" id="question_number_5">5</li>
-                      </ul>
+              <div class="row">
+                  <div class="col-md-6">
+                      <p>A. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                      <p>C. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                   </div>
-                  <!-- course sidebar end -->
+                  <div class="col-md-6">
+                      <p>B. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                      <p>D. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  </div>
               </div>
+
+              <form class="exam_page" id="1">
+                <div class="container">
+                  <div class="row pt-4">
+                      <p class="col-auto">Đáp án của bạn:</p>
+                      <div class="col-auto">
+                          <div class="form-check">
+                              <input type="radio" class="form-check-input" id="radio1" name="answer"
+                                  value="1" checked>A
+                              <label class="form-check-label" for="radio1"></label>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class="form-check">
+                              <input type="radio" class="form-check-input" id="radio2" name="answer"
+                                  value="2">B
+                              <label class="form-check-label" for="radio2"></label>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class="form-check">
+                              <input type="radio" class="form-check-input" id="radio3" name="answer"
+                                  value="3">C
+                              <label class="form-check-label" for="radio3"></label>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class="form-check">
+                              <input type="radio" class="form-check-input" id="radio4" name="answer"
+                                  value="4">D
+                              <label class="form-check-label" for="radio4"></label>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </form>
           </div>
+          <!-- quiz end -->
+          <!-- quiz start -->
+          <div class="course-header box">
+            <h5 class="text-capitalize">1. Phương pháp lập trình module</h5>
+            <div class="text-center">
+                <img class="m-4" src="img/courses/item.jpg" alt="" width="450">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>A. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p>C. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div class="col-md-6">
+                    <p>B. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p>D. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+            </div>
+
+            <form class="exam_page" id="2">
+              <div class="container">
+                <div class="row pt-4">
+                    <p class="col-auto">Đáp án của bạn:</p>
+                    <div class="col-auto">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1" name="answer"
+                                value="1" checked>A
+                            <label class="form-check-label" for="radio1"></label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio2" name="answer"
+                                value="2">B
+                            <label class="form-check-label" for="radio2"></label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio3" name="answer"
+                                value="3">C
+                            <label class="form-check-label" for="radio3"></label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio4" name="answer"
+                                value="4">D
+                            <label class="form-check-label" for="radio4"></label>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        <!-- quiz end -->
+          </div>
+          <div class="col-lg-4">
+              <!-- course sidebar start -->
+              <div class="course-sidebar box">
+                  <ul class="row">
+                      <li class="col-md-2 col-lg-2 exam-choice" id="choice_1">1</li>
+                      <li class="col-md-2 col-lg-2 exam-choice" id="choice_2">2</li>
+                      <li class="col-md-2 col-lg-2 exam-choice" id="choice_3">3</li>
+                      <li class="col-md-2 col-lg-2 exam-choice" id="choice_4">4</li>
+                      <li class="col-md-2 col-lg-2 exam-choice" id="choice_5">5</li>
+                  </ul>
+              </div>
+              <!-- course sidebar end -->
+          </div>
+      </div>
       </div>
   </section>
     <!--  course details section end -->
-
     <!-- footer start -->
     <footer class="footer">
         <div class="footer-top">
@@ -249,7 +298,6 @@
         </div>
     </footer>
     <!-- footer end -->
-
     </div>
     <!-- main wrapper end-->
     <!-- course preview modal start -->
@@ -271,7 +319,6 @@
         </div>
     </div>
     <!-- course preview modal end -->
-
     <!-- style switcher start -->
     <div class="style-switcher js-style-switcher">
         <div class="style-switcher-toggler js-style-switcher-toggler">
@@ -308,43 +355,36 @@
 
 
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
     <script>
-      // Get all radio buttons
-      var radioButtons = document.querySelectorAll('input[type="radio"]');
-      var examChoices = document.querySelectorAll('.exam-choice');
-  
-      // Add change event listener to each radio button
-      radioButtons.forEach(function(radioButton) {
-          radioButton.addEventListener('change', function() {
-              var selectedValue = this.value;
-              
-              // Remove active class from all exam-choice elements
-              examChoices.forEach(function(choice) {
-                  choice.classList.remove('active');
-              });
-  
-              // Find the corresponding exam-choice element and add active class
-              document.querySelector('#question_number_' + selectedValue).classList.add('active');
-          });
+      $(document).ready(function() {
+        $('input[type="radio"]').change(function() {
+            var formId = $(this).closest('form').attr('id'); // Get the ID of the closest form
+            $('#choice_' + formId).addClass('active'); // Add 'active' class to the corresponding exam choice
+        });
       });
-      
-      // Add click event listener to each exam-choice element
-      examChoices.forEach(function(choice) {
-          choice.addEventListener('click', function() {
-              var selectedQuestionNumber = this.textContent.trim();
-              
-              // Remove active class from all exam-choice elements
-              examChoices.forEach(function(choice) {
-                  choice.classList.remove('active');
+
+
+      $(document).ready(function() {
+        $("#finish").click(function() {
+          var answersList = [];
+          //Loop over all questoins
+          $(".exam_page").each(function() {
+
+            var questionId = $(this).attr("id");
+            var answer = $("input[name='answer']:checked", $(this)).val();
+
+            //if Answer isnt provided do not update the answersList
+            if (answer !== undefined) {
+              answersList.push({
+                question: questionId,
+                answer: answer
               });
-  
-              // Add active class to the clicked exam-choice element
-              this.classList.add('active');
-  
-              // Find the corresponding radio button and select it
-              document.querySelector('input[value="' + selectedQuestionNumber + '"]').checked = true;
+            }
           });
+          console.log(answersList);
+        });
       });
   </script>
 </body>

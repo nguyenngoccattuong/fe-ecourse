@@ -234,3 +234,32 @@ function themeGlassEffect(){
 }
 themeGlassEffect();
 
+// Set active for exam status
+$(document).ready(function() {
+  $('input[type="radio"]').change(function() {
+      var formId = $(this).closest('form').attr('id');
+      $('#choice_' + formId).addClass('active');
+  });
+});
+
+
+$(document).ready(function() {
+  $("#finish").click(function() {
+    var answersList = [];
+    //Loop over all questoins
+    $(".exam_page").each(function() {
+
+      var questionId = $(this).attr("id");
+      var answer = $("input[name='answer']:checked", $(this)).val();
+
+      //if Answer isnt provided do not update the answersList
+      if (answer !== undefined) {
+        answersList.push({
+          question: questionId,
+          answer: answer
+        });
+      }
+    });
+    console.log(answersList);
+  });
+});
