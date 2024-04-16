@@ -28,7 +28,7 @@
         <header class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-lg-5 col-sm-12">
                         <div class="header-main d-flex justify-content-between align-items-center">
                             <div class="header-logo">
                                 <a href="index.html"><span>E
@@ -39,7 +39,7 @@
                             <div class="header-backdrop js-header-backdrop"></div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-lg-7 col-sm-12">
                         <!-- <label for="menu_mobile" id="label_menu_mobile"> <i class="fas fa-bars"></i> </label>
                         <input type="checkbox" id="menu_mobile"> -->
                         <nav class="header-menu js-header-menu">
@@ -60,6 +60,12 @@
                                 </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
                                 <li class="menu-item"><a href="log-in.html">Login</a></li>
+
+                                <li class="menu-item nav-actions">
+                                    <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
+                                    <i class="fa-regular fa-user nav-icon p-0" id="btn-login"></i>
+                                </li>
+
                             </ul>
                         </nav>
                     </div>
@@ -68,6 +74,16 @@
             </div>
         </header>
         <!-- header end -->
+        <!-- search start-->
+        <div class="search" id="search">
+            <form action="" class="search-form">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" placeholder="What are you looking for?" class="search-input">
+            </form>
+
+            <i class="fa-solid fa-x search-close" id="btn-close"></i>
+        </div>
+        <!-- search end-->
 
         <!-- banner section start -->
         <section class="banner-section d-flex align-items-center position-relative">
@@ -503,6 +519,7 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
 </body>
 
 </html>
