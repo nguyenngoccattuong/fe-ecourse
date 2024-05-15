@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Course</title>
+    <link rel="icon" type="image/x-icon" href="favicon-standard.png">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -14,14 +15,6 @@
 </head>
 
 <body>
-
-    <!-- page loader start -->
-    <div class="page-loader js-page-loader">
-        <div></div>
-    </div>
-    <!-- page loader end -->
-
-    <!-- main wrapper start-->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -83,79 +76,56 @@
                 </div>
             </div>
         </header>
-        <!-- header end -->
+        <!-- search start-->
+        <div class="search" id="search">
+            <form action="" class="search-form">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" placeholder="What are you looking for?" class="search-input">
+            </form>
 
-        <!-- breadcrumb start -->
-        <div class="breadcrumb-nav">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Contact</li>
-                    </ol>
-                </nav>
-            </div>
+            <i class="fa-solid fa-x search-close" id="btn-close"></i>
         </div>
-        <!-- breadcrumb end -->
+        <!-- search end-->
 
-        <!-- contact section start -->
-        <section class="contact-section section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <section class="section-title">
-                            <p class="sub-title">Get In Touch</p>
-                        </section>
-                        <div class="contact-items">
-                            <div class="contact-item">
-                                <div class="icon-box">
-                                    <i class="fas fa-map-marker-alt"></i>
+        <div class="container">
+            <main role="main" class="pb-3">
+                <div class="container-fluid section-padding">
+                    <div class="product-payment-inner-st">
+                        <div class="review-content-section box">
+                            <h2>Create Course</h2>
+                            <form asp-action="Create" method="post"
+                                class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label asp-for="Category">Category</label>
+                                            <input asp-for="Category" type="text" class="form-control"
+                                                placeholder="Course Name">
+                                            <span asp-validation-for="Category" class="text-danger"></span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3>Address</h3>
-                                <p>High-tech parks in Xa Lo Ha Noi, Thu Duc, HCM City, Vietnam</p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon-box">
-                                    <i class="fas fa-phone"></i>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="payment-adress">
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <a asp-action="Index" class="btn btn-success waves-effect waves-light">
+                                            Back to list
+                                        </a>
+                                    </div>
                                 </div>
-                                <h3>Phone</h3>
-                                <p>0395 000 697</p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon-box">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <h3>Email</h3>
-                                <p>hehe@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="contact-form box">
-                            <h2 class="form-title text-center">Leave a Message</h2>
-                            <form action="">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Message"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-block btn-theme btn-form">Send Message</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- contact section end -->
-
+            </main>
+        </div>
         <!-- footer start -->
         <footer class="footer">
             <div class="footer-top">
@@ -220,8 +190,6 @@
         <!-- footer end -->
 
     </div>
-    <!-- main wrapper end-->
-
     <!-- style switcher start -->
     <div class="style-switcher js-style-switcher">
         <div class="style-switcher-toggler js-style-switcher-toggler">
@@ -252,12 +220,25 @@
             </div>
         </div>
     </div>
+
     <!-- style switcher end -->
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+    <script src="~/js/search.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#myeditor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

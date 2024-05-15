@@ -40,8 +40,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-sm-12">
-                        <!-- <label for="menu_mobile" id="label_menu_mobile"> <i class="fas fa-bars"></i> </label>
-                        <input type="checkbox" id="menu_mobile"> -->
+
                         <nav class="header-menu js-header-menu">
 
                             <button type="button" class="header-close-btn js-header-menu-toggler">
@@ -49,13 +48,23 @@
                             </button>
                             <ul class="menu">
                                 <li class="menu-item"><a href="index.html">home</a></li>
-                                <li class="menu-item "><a href="courses.html">Courses</a></li>
                                 <li class="menu-item menu-item-has-children">
-                                    <a href="#" class="js-toggle-sub-menu">Blogs<i class="fas fa-chevron-down"></i></a>
+                                    <a href="#" class="js-toggle-sub-menu">Pages<i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a href="blog.html">Blog</a></li>
-                                        <li class="sub-menu-item"><a href="course-details.html">QA
-                                            </a></li>
+                                        <li class="sub-menu-item"><a href="/courses.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/exams.html">Exams</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
+                                        <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
+                                        <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
@@ -63,9 +72,8 @@
 
                                 <li class="menu-item nav-actions">
                                     <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
-                                    <i class="fa-regular fa-user nav-icon p-0" id="btn-login"></i>
-                                </li>
 
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -516,10 +524,11 @@
 
     <!-- style switcher end -->
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
+
 </body>
 
 </html>

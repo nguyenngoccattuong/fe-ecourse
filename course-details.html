@@ -28,7 +28,7 @@
         <header class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-lg-5 col-sm-12">
                         <div class="header-main d-flex justify-content-between align-items-center">
                             <div class="header-logo">
                                 <a href="index.html"><span>E
@@ -39,9 +39,9 @@
                             <div class="header-backdrop js-header-backdrop"></div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-lg-7 col-sm-12">
                         <!-- <label for="menu_mobile" id="label_menu_mobile"> <i class="fas fa-bars"></i> </label>
-                                <input type="checkbox" id="menu_mobile"> -->
+                                                    <input type="checkbox" id="menu_mobile"> -->
                         <nav class="header-menu js-header-menu">
 
                             <button type="button" class="header-close-btn js-header-menu-toggler">
@@ -51,18 +51,35 @@
                                 <li class="menu-item"><a href="index.html">home</a></li>
                                 <li class="menu-item "><a href="courses.html">Courses</a></li>
                                 <li class="menu-item menu-item-has-children">
-                                    <a href="#" class="js-toggle-sub-menu">Blogs<i class="fas fa-chevron-down"></i></a>
+                                    <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a href="blog.html">Blog</a></li>
-                                        <li class="sub-menu-item"><a href="course-details.html">QA
-                                            </a></li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Course"
+                                                asp-action="Index">Courses</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Exam"
+                                                asp-action="Index">Exams</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Teacher"
+                                                asp-action="Index">Teachers</a></li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="User"
+                                                asp-action="Index">Users</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Category"
+                                                asp-action="Index">Categories</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
                                 <li class="menu-item"><a href="log-in.html">Login</a></li>
+
+                                <li class="menu-item nav-actions">
+                                    <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
+                                    <i class="fa-regular fa-user nav-icon p-0" id="btn-login"></i>
+                                </li>
+
                             </ul>
                         </nav>
                     </div>
+
 
                 </div>
             </div>

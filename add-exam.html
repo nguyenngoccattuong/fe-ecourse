@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Course</title>
+    <link rel="icon" type="image/x-icon" href="favicon-standard.png">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -14,14 +15,6 @@
 </head>
 
 <body>
-
-    <!-- page loader start -->
-    <div class="page-loader js-page-loader">
-        <div></div>
-    </div>
-    <!-- page loader end -->
-
-    <!-- main wrapper start-->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -83,79 +76,86 @@
                 </div>
             </div>
         </header>
-        <!-- header end -->
+        <!-- search start-->
+        <div class="search" id="search">
+            <form action="" class="search-form">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" placeholder="What are you looking for?" class="search-input">
+            </form>
 
-        <!-- breadcrumb start -->
-        <div class="breadcrumb-nav">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Contact</li>
-                    </ol>
-                </nav>
-            </div>
+            <i class="fa-solid fa-x search-close" id="btn-close"></i>
         </div>
-        <!-- breadcrumb end -->
+        <!-- search end-->
 
-        <!-- contact section start -->
-        <section class="contact-section section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <section class="section-title">
-                            <p class="sub-title">Get In Touch</p>
-                        </section>
-                        <div class="contact-items">
-                            <div class="contact-item">
-                                <div class="icon-box">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <h3>Address</h3>
-                                <p>High-tech parks in Xa Lo Ha Noi, Thu Duc, HCM City, Vietnam</p>
+        <div class="container">
+            <main role="main" class="pb-3">
+                <div class="table-responsive text-nowrap container-fluid section-padding">
+                    <div class="product-payment-inner-st">
+                        <div class="review-content-section box">
+                            <div class="col-10">
+                                <h2>Create Exam</h2>
                             </div>
-                            <div class="contact-item">
-                                <div class="icon-box">
-                                    <i class="fas fa-phone"></i>
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active">Question Details </li>
+                            </ul>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="review-content-section">
+                                        <div id="dropzone1" class="pro-ad addcoursepro">
+                                            <form asp-action="Create" method="post" enctype="multipart/form-data"
+                                                class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div asp-validation-summary="ModelOnly" class="text-danger">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input asp-for="Title" type="text" class="form-control"
+                                                                placeholder="Question Name">
+                                                            <span asp-validation-for="Title" class="text-danger"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="CategoryId">Category</label>
+                                                            <select asp-for="CategoryId" asp-items="ViewBag.Categories"
+                                                                class="form-control"></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="Image">Question Image</label>
+                                                            <input type="file" asp-for="Image" class="form-control" />
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <button type="submit"
+                                                                    class="btn btn-primary waves-effect waves-light">
+                                                                    Submit
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <a asp-action="Index"
+                                                                    class="btn btn-success waves-effect waves-light">
+                                                                    Back to list
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <textarea id="myeditor" asp-for="Description"
+                                                                name="description" placeholder="Description"></textarea>
+                                                            <span asp-validation-for="Description"
+                                                                class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3>Phone</h3>
-                                <p>0395 000 697</p>
                             </div>
-                            <div class="contact-item">
-                                <div class="icon-box">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <h3>Email</h3>
-                                <p>hehe@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="contact-form box">
-                            <h2 class="form-title text-center">Leave a Message</h2>
-                            <form action="">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Message"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-block btn-theme btn-form">Send Message</button>
-                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- contact section end -->
-
+            </main>
+        </div>
         <!-- footer start -->
         <footer class="footer">
             <div class="footer-top">
@@ -220,8 +220,6 @@
         <!-- footer end -->
 
     </div>
-    <!-- main wrapper end-->
-
     <!-- style switcher start -->
     <div class="style-switcher js-style-switcher">
         <div class="style-switcher-toggler js-style-switcher-toggler">
@@ -252,12 +250,22 @@
             </div>
         </div>
     </div>
+
     <!-- style switcher end -->
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
 
+    <script>
+        new DataTable('#example', {
+        });
+    </script>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

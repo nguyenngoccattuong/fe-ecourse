@@ -265,23 +265,21 @@ $(document).ready(function() {
 });
 
 
-
-/*=============== SEARCH ===============*/
-// const search = document.getElementById('search'),
-//       searchBtn = document.getElementById('btn-search'),
-//       searchClose = document.getElementById('btn-close')
-
-// /* Search show */
-// searchBtn.addEventListener('click', () =>{
-//    search.classList.add('show-search')
-// })
-
-// /* Search hidden */
-// searchClose.addEventListener('click', () =>{
-//    search.classList.remove('show-search')
-// })
-
-function Search(){
-    console.log('hehe');
-}
-Search();
+// hehe
+$.ajax({
+    url: "http://localhost:3000/categorys",
+    type: "GET",
+    data: {},
+    success: function (kq) {
+        console.log(kq);
+        $(".banner-text h2").text(kq[0].category)
+        // const array = kq.response;
+        // let str = "";
+        // for (let index = 0; index < array.length; index++) {
+        //     const element = array[index];
+        //     str += "<li>" + element.title + "</li>";
+        // }
+        // console.log(str);
+        // $("#listProvine").html(str)
+    }
+});

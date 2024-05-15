@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Course</title>
+    <link rel="icon" type="image/x-icon" href="favicon-standard.png">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" class="js-color-style" href="css/colors/color-1.css">
+    <link rel="stylesheet" class="js-glass-style" href="css/glass.css" disabled>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- header start -->
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-sm-12">
+                        <div class="header-main d-flex justify-content-between align-items-center">
+                            <div class="header-logo">
+                                <a href="index.html"><span>E
+                                    </span>Course</a>
+                            </div>
+                            <button type="button"
+                                class="header-hamburger-btn js-header-menu-toggler"><span></span></button>
+                            <div class="header-backdrop js-header-backdrop"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-sm-12">
+                        <!-- <label for="menu_mobile" id="label_menu_mobile"> <i class="fas fa-bars"></i> </label>
+                                                    <input type="checkbox" id="menu_mobile"> -->
+                        <nav class="header-menu js-header-menu">
+
+                            <button type="button" class="header-close-btn js-header-menu-toggler">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <ul class="menu">
+                                <li class="menu-item"><a href="index.html">home</a></li>
+                                <li class="menu-item "><a href="courses.html">Courses</a></li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Course"
+                                                asp-action="Index">Courses</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Exam"
+                                                asp-action="Index">Exams</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Teacher"
+                                                asp-action="Index">Teachers</a></li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="User"
+                                                asp-action="Index">Users</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Category"
+                                                asp-action="Index">Categories</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item "><a href="contact.html">contact</a></li>
+                                <li class="menu-item"><a href="log-in.html">Login</a></li>
+
+                                <li class="menu-item nav-actions">
+                                    <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
+                                    <i class="fa-regular fa-user nav-icon p-0" id="btn-login"></i>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                </div>
+            </div>
+        </header>
+        <!-- search start-->
+        <div class="search" id="search">
+            <form action="" class="search-form">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" placeholder="What are you looking for?" class="search-input">
+            </form>
+
+            <i class="fa-solid fa-x search-close" id="btn-close"></i>
+        </div>
+        <!-- search end-->
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                <div class="single-pro-review-area mt-t-30 mg-b-15">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="product-payment-inner-st">
+                                    <div class="review-content-section box">
+                                        <h2> Edit Lesson Detail</h2>
+                                        <form asp-action="Lesson" method="post">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <input asp-for="@Model.CourseLesson.Title" type="text"
+                                                            value="@Model.CourseLesson.Title" class="form-control"
+                                                            placeholder="Lesson Title">
+                                                        <span asp-validation-for="@Model.CourseLesson.Title"
+                                                            class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <input asp-for="@Model.CourseLesson.Lesson" type="number"
+                                                            value="@Model.CourseLesson.Lesson" class="form-control"
+                                                            placeholder="Part Lesson">
+                                                        <span asp-validation-for="@Model.CourseLesson.Lesson"
+                                                            class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </form>
+                                    </div>
+                                    <div class="review-content-section box">
+                                        <h2 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Add Video Detail</h2>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad addcoursepro">
+                                                    <form asp-action="Lesson" method="post"
+                                                        enctype="multipart/form-data">
+                                                        <div class="row">
+                                                            <div
+                                                                class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                                <label asp-for="Part">Part</label>
+                                                                <input asp-for="Part" type="number" class="form-control"
+                                                                    placeholder="Part">
+                                                                <span asp-validation-for="Part"
+                                                                    class="text-danger"></span>
+                                                            </div>
+                                                            <div
+                                                                class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                                <label asp-for="Title">Title</label>
+                                                                <input asp-for="Title" type="text" class="form-control"
+                                                                    placeholder="Title">
+                                                                <span asp-validation-for="Title"
+                                                                    class="text-danger"></span>
+                                                            </div>
+                                                            <div
+                                                                class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                                <label asp-for="Hour">Hour</label>
+                                                                <input asp-for="Hour" type="number" class="form-control"
+                                                                    placeholder="Hour">
+                                                                <span asp-validation-for="Hour"
+                                                                    class="text-danger"></span>
+                                                            </div>
+                                                            <div
+                                                                class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                                <label asp-for="Minute">Minute</label>
+                                                                <input asp-for="Minute" type="number"
+                                                                    class="form-control" placeholder="Minute">
+                                                                <span asp-validation-for="Minute"
+                                                                    class="text-danger"></span>
+                                                            </div>
+                                                            <div
+                                                                class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                                <label asp-for="Video">Video</label>
+                                                                <input type="file" asp-for="Video"
+                                                                    class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </form>
+
+                                                </div>
+                                                <hr />
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="table-responsive text-nowrap">
+                                                        <table id="example" class="table table-hover table-fixed nowrap"
+                                                            style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Id</th>
+                                                                    <th>Part</th>
+                                                                    <th>Title</th>
+                                                                    <th>Hour</th>
+                                                                    <th>Minute</th>
+                                                                    <th>VideoUrl</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>@video.Id</td>
+                                                                    <td>@video.Part</td>
+                                                                    <td>@video.Title</td>
+                                                                    <td>@video.Hour</td>
+                                                                    <td>@video.Minute</td>
+                                                                    <td
+                                                                        style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                                        @video.VideoUrl</td>
+                                                                    <td>
+                                                                        <a class="btn btn-theme"
+                                                                            href="/add-video.html">Edit</a>
+                                                                        <form asp-action="VideoDelete" method="post">
+                                                                            <button type="submit"
+                                                                                asp-action="VideoDelete"
+                                                                                asp-route-id="@video.Id" formnovalidate
+                                                                                class="cancel btn btn-danger"
+                                                                                onclick="return confirm('Are you sure?')">
+                                                                                Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!-- footer start -->
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3 class="footer-logo"><span>E </span>Course</h3>
+                                <ul>
+                                    <li><a href="#">about</a></li>
+                                    <li><a href="#">what we offer</a></li>
+                                    <li><a href="#">careers</a></li>
+                                    <li><a href="#">certificates</a></li>
+                                    <li><a href="#">blog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>learning</h3>
+                                <ul>
+                                    <li><a href="#">get the app</a></li>
+                                    <li><a href="#">testimonials</a></li>
+                                    <li><a href="#">pricing</a></li>
+                                    <li><a href="#">faq</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>more</h3>
+                                <ul>
+                                    <li><a href="#">affitiliates</a></li>
+                                    <li><a href="#">become a course creater</a></li>
+                                    <li><a href="#">traning webinars</a></li>
+                                    <li><a href="#">free personality test</a></li>
+                                    <li><a href="#">help and support</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>get in touh</h3>
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook social-icon"></i> facebook</a></li>
+                                    <li><a href="#"><i class="fab fa-twitter social-icon"></i> twitter</a></li>
+                                    <li><a href="#"><i class="fab fa-instagram social-icon"></i> instagram</a></li>
+                                    <li><a href="#"><i class="fab fa-youtube social-icon"></i> youtube</a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin social-icon"></i> linkedin</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <p></p>
+                </div>
+            </div>
+        </footer>
+        <!-- footer end -->
+
+    </div>
+    <!-- style switcher start -->
+    <div class="style-switcher js-style-switcher">
+        <div class="style-switcher-toggler js-style-switcher-toggler">
+            <i class="fas fa-cog"></i>
+        </div>
+        <h3>Style Switcher</h3>
+        <div class="style-switcher-item">
+            <p class="mb-2">Theme Colors</p>
+            <!-- theme colors -->
+            <div class="theme-colors js-theme-colors">
+                <button type="button" data-js-theme-color="color-1" class="js-theme-color-item color-1"></button>
+                <button type="button" data-js-theme-color="color-2" class="js-theme-color-item color-2"></button>
+                <button type="button" data-js-theme-color="color-3" class="js-theme-color-item color-3"></button>
+                <button type="button" data-js-theme-color="color-4" class="js-theme-color-item color-4"></button>
+                <button type="button" data-js-theme-color="color-5" class="js-theme-color-item color-5"></button>
+            </div>
+        </div>
+        <div class="style-switcher-item">
+            <div class="form-check form-switch">
+                <input class="form-check-input js-dark-mode" type="checkbox" id="dark-mode">
+                <label class="form-check-label" for="dark-mode">Dark Mode</label>
+            </div>
+        </div>
+        <div class="style-switcher-item">
+            <div class="form-check form-switch">
+                <input class="form-check-input js-glass-effect" type="checkbox" id="glass-effect">
+                <label class="form-check-label" for="glass-effect">Glass Effect</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- style switcher end -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
+
+    <script>
+        new DataTable('#example', {
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
