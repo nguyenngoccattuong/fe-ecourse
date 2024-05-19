@@ -283,3 +283,86 @@ $(document).ready(function() {
 //         // $("#listProvine").html(str)
 //     }
 // });
+
+
+// Set active for exam status
+$(document).ready(function () {
+  $('input[type="radio"]').change(function () {
+      var formId = $(this).closest('form').attr('id');
+      $('#choice_' + formId).addClass('active');
+  });
+});
+
+function submitAnswers(url) {
+  var answersList = [];
+
+  // Loop over all questions
+  $(".exam_page").each(function () {
+      var questionId = parseInt($(this).attr("id"), 10);
+      var answer = parseInt($("input[name='answer']:checked", $(this)).val(), 10);
+
+      // Check if answer is NaN and set it to -1
+      if (isNaN(answer)) {
+          answer = -1;
+      }
+
+      // Push to answersList
+      answersList.push({
+          id: questionId,
+          answer: answer
+      });
+  });
+
+  console.log(answersList);
+  
+  // Send data using AJAX
+  $.ajax({
+      type: "POST",
+      url: url, // Use the provided URL
+      data: JSON.stringify(answersList),
+      contentType: "application/json; charset=utf-8",
+      dataType: 'html', // Set dataType to 'html' to expect HTML content
+      success: function (response) {
+          window.location.href = resultUrl;
+      },
+      error: function (xhr, status, error) {
+          toastr.error(error.message);
+      }
+  });
+}
+
+
+// Uncheck all radio button
+$(document).ready(function () {
+  // Uncheck all radio buttons when the page loads
+  $("input[name='answer']").prop('checked', false);
+});
+
+var resultUrl = 'Result';
+
+// Timer
+var countdownTime = 0;
+function updateCountdown() {
+  var hours = Math.floor(countdownTime / 3600);
+  var minutes = Math.floor((countdownTime % 3600) / 60);
+  var seconds = countdownTime % 60;
+
+  var formattedHours = hours.toString().padStart(2, '0');
+  var formattedMinutes = minutes.toString().padStart(2, '0');
+  var formattedSeconds = seconds.toString().padStart(2, '0');
+
+  document.getElementById('countdown').textContent = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+
+  countdownTime--;
+
+  if (countdownTime < 0) {
+      clearInterval(interval);
+      submitAnswers('/Exam/SubmitAnswers');
+  }
+}
+
+function setTime(hour, minute, second) {
+  countdownTime = (hour * 3600) + (minute * 60) + second;
+}
+
+var interval = setInterval(updateCountdown, 1000);
