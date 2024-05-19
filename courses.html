@@ -39,8 +39,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-sm-12">
-                        <!-- <label for="menu_mobile" id="label_menu_mobile"> <i class="fas fa-bars"></i> </label>
-                                                    <input type="checkbox" id="menu_mobile"> -->
+
                         <nav class="header-menu js-header-menu">
 
                             <button type="button" class="header-close-btn js-header-menu-toggler">
@@ -48,23 +47,23 @@
                             </button>
                             <ul class="menu">
                                 <li class="menu-item"><a href="index.html">home</a></li>
-                                <li class="menu-item "><a href="courses.html">Courses</a></li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="js-toggle-sub-menu">Pages<i class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/courses.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/exams.html">Exams</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="menu-item menu-item-has-children">
                                     <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Course"
-                                                asp-action="Index">Courses</a>
+                                        <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Exam"
-                                                asp-action="Index">Exams</a>
-                                        </li>
-                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Teacher"
-                                                asp-action="Index">Teachers</a></li>
-                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="User"
-                                                asp-action="Index">Users</a>
-                                        </li>
-                                        <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Category"
-                                                asp-action="Index">Categories</a></li>
+                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
+                                        <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
+                                        <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
@@ -72,18 +71,27 @@
 
                                 <li class="menu-item nav-actions">
                                     <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
-                                    <i class="fa-regular fa-user nav-icon p-0" id="btn-login"></i>
-                                </li>
 
+                                </li>
                             </ul>
                         </nav>
                     </div>
-
 
                 </div>
             </div>
         </header>
         <!-- header end -->
+
+        <!-- search start-->
+        <div class="search" id="search">
+            <form action="" class="search-form">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" placeholder="What are you looking for?" class="search-input">
+            </form>
+
+            <i class="fa-solid fa-x search-close" id="btn-close"></i>
+        </div>
+        <!-- search end-->
 
         <!-- breadcrumb start -->
         <div class="breadcrumb-nav">
@@ -134,390 +142,20 @@
                     <div class="col-12">
                         <nav>
                             <div class="nav nav-tabs border-0 justify-content-center mb-4" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="web-development-tab" data-bs-toggle="tab"
+                                <!-- <button class="nav-link active" id="web-development-tab" data-bs-toggle="tab"
                                     data-bs-target="#web-development" type="button" role="tab"
                                     aria-controls="#web-development" aria-selected="true">Web development</button>
                                 <button class="nav-link" id="health-tab" data-bs-toggle="tab" data-bs-target="#health"
                                     type="button" role="tab" aria-controls="health"
                                     aria-selected="false">health</button>
                                 <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music"
-                                    type="button" role="tab" aria-controls="music" aria-selected="false">music</button>
+                                    type="button" role="tab" aria-controls="music" aria-selected="false">music</button> -->
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="web-development" role="tabpanel"
-                                aria-labelledby="web-development-tab">
-                                <div class="row justify-content-center">
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="health" role="tabpanel" aria-labelledby="health-tab">
-                                <div class="row justify-content-center">
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="music" role="tabpanel" aria-labelledby="music-tab">
-                                <div class="row justify-content-center">
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                    <!-- courses item start -->
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="courses-item">
-                                            <a href="course-details.html" class="link">
-                                                <div class="courses-item-inner">
-                                                    <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
-                                                    </div>
-                                                    <h3 class="title">html for beginners</h3>
-                                                    <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <span class="average-rating">(4.5)</span>
-                                                        <span class="average-stars">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </span>
-                                                        <span class="reviews">(230)</span>
-                                                    </div>
-                                                    <div class="price">$ 49</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- courses item end -->
-                                </div>
-                            </div>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -652,8 +290,94 @@
 
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+
+
+    <script>
+        // hehe
+        $.ajax({
+            url: "http://localhost:3000/categorys",
+            type: "GET",
+            data: {},
+            success: function (kq) {
+                console.log(kq);
+                const array = kq;
+                let str = '';
+                let tab = '';
+
+                for (let index = 0; index < array.length; index++) {
+
+                    const element = array[index];
+                    str += `<button class="nav-link active" id="` + element._id + `" onclick="getCourse('` + element._id + `')" data-bs-toggle="tab"
+                    data - bs - target="#` + element._id + `" type = "button" role = "tab"
+                    aria - controls="#` + element._id + `" aria - selected="true" >` + element.category + `</button > `;
+
+                    tab += `<div class="tab-pane fade show active" id="` + element._id + `" role="tabpanel"
+                                aria-labelledby="` + element._id + `">
+                                <div class="row justify-content-center">
+
+                                </div>
+                            </div>`;
+                }
+
+                $("#nav-tab").html(str)
+                $("#nav-tabContent").html(tab)
+
+            }
+        });
+        function getCourse(id) {
+            // alert(id);
+            $.ajax({
+                url: "http://localhost:3000/course?category=" + id,
+                type: "GET",
+                data: {},
+                success: function (kq) {
+                    console.log(kq);
+                    const array = kq;
+                    let str = '';
+                    for (let index = 0; index < array.length; index++) {
+
+                        const element = array[index];
+
+                        str += `<div class="col-md-6 col-lg-3">
+                                        <div class="courses-item">
+                                            <a href="course-details.html" class="link">
+                                                <div class="courses-item-inner">
+                                                    <div class="img-box">
+                                                        <img src="img/courses/item.jpg" alt="course img">
+                                                    </div>
+                                                    <h3 class="title">html for beginners</h3>
+                                                    <div class="instructor">
+                                                        <img src="img/instructor/1.png" alt="instructor img">
+                                                        <span class="instructor-name">john doe</span>
+                                                    </div>
+                                                    <div class="rating">
+                                                        <span class="average-rating">(4.5)</span>
+                                                        <span class="average-stars">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star-half-alt"></i>
+                                                        </span>
+                                                        <span class="reviews">(230)</span>
+                                                    </div>
+                                                    <div class="price">$ 49</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div> `;
+                    }
+                    $("#nav-tabContent .tab-pane .row").html(str)
+
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>

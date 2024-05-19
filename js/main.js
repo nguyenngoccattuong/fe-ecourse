@@ -265,21 +265,21 @@ $(document).ready(function() {
 });
 
 
-// hehe
-$.ajax({
-    url: "http://localhost:3000/categorys",
-    type: "GET",
-    data: {},
-    success: function (kq) {
-        console.log(kq);
-        $(".banner-text h2").text(kq[0].category)
-        // const array = kq.response;
-        // let str = "";
-        // for (let index = 0; index < array.length; index++) {
-        //     const element = array[index];
-        //     str += "<li>" + element.title + "</li>";
-        // }
-        // console.log(str);
-        // $("#listProvine").html(str)
-    }
-});
+// // hehe
+// $.ajax({
+//     url: "http://localhost:3000/categorys",
+//     type: "GET",
+//     data: {},
+//     success: function (kq) {
+//         console.log(kq);
+//         $(".banner-text h2").text(kq[0].category)
+//         // const array = kq.response;
+//         // let str = "";
+//         // for (let index = 0; index < array.length; index++) {
+//         //     const element = array[index];
+//         //     str += "<li>" + element.title + "</li>";
+//         // }
+//         // console.log(str);
+//         // $("#listProvine").html(str)
+//     }
+// });
