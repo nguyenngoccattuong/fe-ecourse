@@ -15,6 +15,11 @@
 </head>
 
 <body>
+    <!-- page loader start -->
+    <div class="page-loader js-page-loader">
+        <div></div>
+    </div>
+    <!-- page loader end -->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -54,7 +59,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -98,8 +102,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <input asp-for="@Model.CourseLesson.Title" type="text"
-                                                            value="@Model.CourseLesson.Title" class="form-control"
-                                                            placeholder="Lesson Title">
+                                                            class="form-control" placeholder="Lesson Title">
                                                         <span asp-validation-for="@Model.CourseLesson.Title"
                                                             class="text-danger"></span>
                                                     </div>
@@ -114,7 +117,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Save</button>
+                                            <button type="submit" class="btn btn-theme">Save</button>
                                         </form>
                                     </div>
                                     <div class="review-content-section box">
@@ -164,7 +167,7 @@
                                                                     class="form-control" />
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <button type="submit" class="btn btn-theme">Submit</button>
                                                     </form>
 
                                                 </div>
@@ -319,12 +322,6 @@
 
     <!-- style switcher end -->
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -332,11 +329,52 @@
     <script src="js/search.js"></script>
 
     <script>
-        new DataTable('#example', {
+
+        // bat buoc login moi cho vao
+
+        // lay gia tri token trong local storage
+
+        const token = localStorage.getItem('token')
+
+        if (token == undefined) {
+            alert('Vui long dang nhap!')
+            // tu dong chuyen trang
+            window.location.href = '/log-in.html';
+        }
+
+        // hehe
+        $.ajax({
+            url: "http://localhost:3000/course",
+            type: "GET",
+            success: function (kq) {
+                console.log(kq);
+                const array = kq;
+                let str = '';
+
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+                    str += '<tr>';
+                    str += '<td>' + element.title + '</td>';
+                    str += '<td>' + element.price + '</td>';
+                    str += '<td>' + element.category.category + '</td>';
+                    str += '<td>' + element.teacher.username + '</td>';
+                    str += '<td> <img src=" ' + element.imageIntroduce + '"alt="" width="50"> </td>';
+
+                    str += `<td>
+                                    <a href="edit-course.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
+                                    <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                </td>`;
+
+                }
+
+                $("#example tbody").html(str)
+
+            }
         });
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+
+
 </body>
 
 </html>

@@ -15,6 +15,11 @@
 </head>
 
 <body>
+    <!-- page loader start -->
+    <div class="page-loader js-page-loader">
+        <div></div>
+    </div>
+    <!-- page loader end -->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -54,7 +59,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -103,20 +107,14 @@
                                         <th>Title</th>
                                         <th>Price</th>
                                         <th>Type</th>
-                                        <th>Description</th>
-                                        <th>Rating</th>
-                                        <th>Register</th>
-                                        <th>TeacherId</th>
+                                        <th>Teacher</th>
                                         <th>CourseImage</th>
-                                        <th>Time</th>
-                                        <th>Language</th>
-                                        <th>UpdateAt</th>
-                                        <th>CreatedAt</th>
+
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>@item.Title</td>
                                         <td>@item.Price</td>
                                         <td>@item.CategoryId</td>
@@ -138,8 +136,8 @@
                                         <td>@item.UpdateAt</td>
                                         <td>@item.CreatedAt</td>
                                         <td>
-                                            <a class="btn btn-theme" asp-action="Detail"
-                                                asp-route-id="@item.Id">View</a> |
+                                            <a class="btn btn-theme" asp-action="Detail" asp-route-id="@item.Id"
+                                                href="course-lesson.html">View</a> |
                                             <form asp-action="IndexDelete" method="post">
                                                 <button type="submit" asp-action="IndexDelete" asp-route-id="@item.Id"
                                                     formnovalidate class="cancel btn btn-danger"
@@ -148,7 +146,7 @@
                                                 </button>
                                             </form>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -270,16 +268,26 @@
         });
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
-    <tr>
-        <td></td>
-    </tr>
+
+
     <script>
+
+        // bat buoc login moi cho vao
+
+        // lay gia tri token trong local storage
+
+        const token = localStorage.getItem('token')
+
+        if (token == undefined) {
+            alert('Vui long dang nhap!')
+            // tu dong chuyen trang
+            window.location.href = '/log-in.html';
+        }
+
         // hehe
         $.ajax({
-            url: "http://localhost:3000/courses",
+            url: "http://localhost:3000/course",
             type: "GET",
-            data: {},
             success: function (kq) {
                 console.log(kq);
                 const array = kq;
@@ -290,22 +298,19 @@
                     str += '<tr>';
                     str += '<td>' + element.title + '</td>';
                     str += '<td>' + element.price + '</td>';
-                    str += '<td></td>';
-                    str += '<td></td>';
-                    str += '<td></td>';
-                    str += '</tr>';
+                    str += '<td>' + element.category.category + '</td>';
+                    str += '<td>' + element.teacher.username + '</td>';
+                    str += '<td> <img src=" ' + element.imageIntroduce + '"alt="" width="50"> </td>';
+
+                    str += `<td>
+                                <a href="edit-course.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
+                                <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                            </td>`;
+
                 }
 
                 $("#example tbody").html(str)
-                // $(".banner-text h2").text(kq[0].category)
-                // const array = kq.response;
-                // let str = "";
-                // for (let index = 0; index < array.length; index++) {
-                //     const element = array[index];
-                //     str += "<li>" + element.title + "</li>";
-                // }
-                // console.log(str);
-                // $("#listProvine").html(str)
+
             }
         });
     </script>

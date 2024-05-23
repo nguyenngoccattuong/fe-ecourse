@@ -15,6 +15,11 @@
 </head>
 
 <body>
+    <!-- page loader start -->
+    <div class="page-loader js-page-loader">
+        <div></div>
+    </div>
+    <!-- page loader end -->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -54,7 +59,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -101,26 +105,24 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                    <label asp-for="@Model.Question">Question</label>
-                                                                    <input asp-for="@Model.Question" type="text"
-                                                                        class="form-control" placeholder="Question"
-                                                                        value="@Model.Question">
+                                                                    <label>Question</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Question">
                                                                     <span asp-validation-for="@Model.Question"
                                                                         class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label asp-for="@Model.Answer">Answer</label>
-                                                                    <input asp-for="@Model.Answer" type="number"
-                                                                        class="form-control" placeholder="Answer"
-                                                                        value="@Model.Answer">
-                                                                    <span asp-validation-for="@Model.Answer"
-                                                                        class="text-danger"></span>
+                                                                    <label>Answer</label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Answer">
+
+                                                                    <span class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label asp-for="Image">Image</label>
-                                                                    @if(Model.ImageUrl != null){
-                                                                    <img src="ImageUrl" alt="ImageQuestion" />
-                                                                    }
+
+                                                                    <!-- <img src="ImageUrl" alt="ImageQuestion" /> -->
+
                                                                     <input type="file" asp-for="Image"
                                                                         class="form-control" />
                                                                 </div>
@@ -129,38 +131,46 @@
                                                                 <div class="form-group">
                                                                     <label asp-for="@Model.Option[0]">Option1</label>
                                                                     <input asp-for="@Model.Option1" type="text"
-                                                                        class="form-control" placeholder="A"
-                                                                        value="@Model.Option[0]">
+                                                                        class="form-control" placeholder="A">
                                                                     <span asp-validation-for="@Model.Option[0]"
                                                                         class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label asp-for="@Model.Option[1]">Option2</label>
                                                                     <input asp-for="@Model.Option2" type="text"
-                                                                        class="form-control" placeholder="B"
-                                                                        value="@Model.Option[1]">
-                                                                    <span asp-validation-for="@Model.Option[1]"
-                                                                        class="text-danger"></span>
+                                                                        class="form-control" placeholder="B">
+                                                                    <span class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label asp-for="@Model.Option[2]">Option3</label>
                                                                     <input asp-for="@Model.Option3" type="text"
-                                                                        class="form-control" placeholder="C"
-                                                                        value="@Model.Option[2]">
-                                                                    <span asp-validation-for="@Model.Option[2]"
-                                                                        class="text-danger"></span>
+                                                                        class="form-control" placeholder="C">
+                                                                    <span class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label asp-for="@Model.Option[3]">Option4</label>
                                                                     <input asp-for="@Model.Option4" type="text"
-                                                                        class="form-control" placeholder="D"
-                                                                        value="@Model.Option[3]">
+                                                                        class="form-control" placeholder="D">
                                                                     <span asp-validation-for="@Model.Option[3]"
                                                                         class="text-danger"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <div class="row mb-5">
+                                                            <div class="col-lg-6">
+                                                                <button type="submit"
+                                                                    class="btn btn-theme waves-effect waves-light">
+                                                                    Submit
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <a asp-action="Index"
+                                                                    class="btn btn-theme waves-effect waves-light"
+                                                                    href="exam-lesson.html">
+                                                                    Back to list
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </form>
                                                 </div>
                                             </div>
@@ -270,12 +280,12 @@
 
     <!-- style switcher end -->
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
     <script src="~/js/search.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -290,7 +300,7 @@
             });
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 
 </html>

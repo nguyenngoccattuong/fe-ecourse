@@ -62,7 +62,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -108,107 +107,112 @@
             </div>
         </div>
         <!-- breadcrumb end -->
-      </div>
+    </div>
     </div>
     <div class="container status mt-5 pd-2">
-      <div class="row">
-          <div class="col-md-2 btn-wrap">
-              <button type="button" class="btn btn-theme ">Thoát</button>
-          </div>
-          <div class="col-md-6 text-center pt-2">
-              <p class="fw-bold">User: @Model.FullName</p>
-          </div>
-          <div class="col-md-4 btn-wrap">
-              <div class="row">
-                  <div class="col-md-1 pt-2">
-                      <i class="fa-solid fa-clock"></i>
-                  </div>
-                  <div class="col-md-5 pt-2">
-                      <p class="fw-bold" id="countdown"></p>
-                  </div>
-                  <div class="col-md-6">
-                      <button id="finish" class="btn btn-theme" onclick="submitAnswers('/Exam/SubmitAnswers')">Nộp bài</button>
-                  </div>
-  
-              </div>
-          </div>
-      </div>
-  </div>
-  <!--  course details section start -->
-  <section class="course-details section-padding">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-8">
-                  <!-- quiz start -->
-                  <!-- @{
+        <div class="row">
+            <div class="col-md-2 btn-wrap">
+                <button type="button" class="btn btn-theme " href="exam-details.html">Thoát</button>
+            </div>
+            <div class="col-md-6 text-center pt-2">
+                <p class="fw-bold">User: @Model.FullName</p>
+            </div>
+            <div class="col-md-4 btn-wrap">
+                <div class="row">
+                    <div class="col-md-1 pt-2">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="col-md-5 pt-2">
+                        <p class="fw-bold" id="countdown"></p>
+                    </div>
+                    <div class="col-md-6">
+                        <button id="finish" class="btn btn-theme" onclick="submitAnswers('/Exam/SubmitAnswers')">Nộp
+                            bài</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  course details section start -->
+    <section class="course-details section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- quiz start -->
+                    <!-- @{
                       int iQuestion = 0;
                   }
                   @foreach (var item in Model.ExamQuestions)
                   {
                       iQuestion++; -->
-                      <div class="course-header box mt-3">
-                          <h5 class="text-capitalize">@iQuestion. @item.Question</h5>
-                          <div class="text-center">
-                              <img class="m-4" src="@item.ImageUrl" alt="" width="450">
-                          </div>
-                          <form class="exam_page" id="1">
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <div class="col-auto">
-                                          <div class="form-check">
-                                              <input type="radio" class="form-check-input" id="radio1" name="answer"
-                                                     value="0" checked><p>A. @item.Option[0]</p>
-                                              <label class="form-check-label" for="radio1"></label>
-                                          </div>
-                                      </div>
-                                      <div class="col-auto">
-                                          <div class="form-check">
-                                              <input type="radio" class="form-check-input" id="radio2" name="answer"
-                                                     value="2"><p>C. @item.Option[2]</p>
-                                              <label class="form-check-label" for="radio2"></label>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <div class="col-auto">
-                                          <div class="form-check">
-                                              <input type="radio" class="form-check-input" id="radio3" name="answer"
-                                                     value="1"><p>B. @item.Option[1]</p>
-                                              <label class="form-check-label" for="radio3"></label>
-                                          </div>
-                                      </div>
-                                      <div class="col-auto">
-                                          <div class="form-check">
-                                              <input type="radio" class="form-check-input" id="radio4" name="answer"
-                                                     value="3"><p>D. @item.Option[3]</p>
-                                              <label class="form-check-label" for="radio4"></label>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </form>
-                      </div>
-                  <!-- quiz end -->
-              </div>
-              <div class="col-lg-4">
-                  <!-- course sidebar start -->
-                  <div class="course-sidebar box">
-                      <ul class="row">
-                          <!-- @{
+                    <div class="course-header box mt-3">
+                        <h5 class="text-capitalize">@iQuestion. @item.Question</h5>
+                        <div class="text-center">
+                            <img class="m-4" src="@item.ImageUrl" alt="" width="450">
+                        </div>
+                        <form class="exam_page" id="1">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio1" name="answer"
+                                                value="0" checked>
+                                            <p>A. @item.Option[0]</p>
+                                            <label class="form-check-label" for="radio1"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio2" name="answer"
+                                                value="2">
+                                            <p>C. @item.Option[2]</p>
+                                            <label class="form-check-label" for="radio2"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio3" name="answer"
+                                                value="1">
+                                            <p>B. @item.Option[1]</p>
+                                            <label class="form-check-label" for="radio3"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio4" name="answer"
+                                                value="3">
+                                            <p>D. @item.Option[3]</p>
+                                            <label class="form-check-label" for="radio4"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- quiz end -->
+                </div>
+                <div class="col-lg-4">
+                    <!-- course sidebar start -->
+                    <div class="course-sidebar box">
+                        <ul class="row">
+                            <!-- @{
                               int iStatus = 0;
                           }
                           @foreach (var item in Model.ExamQuestions)
                           {
                               iStatus++; -->
-                              <li class="col-md-2 col-lg-2 exam-choice" id="choice_1">1</li>
-                          <!-- } -->
-                      </ul>
-                  </div>
-                  <!-- course sidebar end -->
-              </div>
-          </div>
-      </div>
-  </section>
+                            <li class="col-md-2 col-lg-2 exam-choice" id="choice_1">1</li>
+                            <!-- } -->
+                        </ul>
+                    </div>
+                    <!-- course sidebar end -->
+                </div>
+            </div>
+        </div>
+    </section>
     <!--  course details section end -->
     <!-- footer start -->
     <footer class="footer">
@@ -332,6 +336,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/time.js"></script>
 
     <!-- <script>
         $(document).ready(function () {

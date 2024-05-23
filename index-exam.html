@@ -15,6 +15,11 @@
 </head>
 
 <body>
+    <!-- page loader start -->
+    <div class="page-loader js-page-loader">
+        <div></div>
+    </div>
+    <!-- page loader end -->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -54,7 +59,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -94,7 +98,7 @@
                                     <h2>List Exams</h2>
                                 </div>
                                 <div class="col-2">
-                                    <a class="btn btn-primary" href="/add-exam.html">Create New</a>
+                                    <a class="btn btn-theme" href="/add-exam.html">Create New</a>
                                 </div>
                             </div>
 
@@ -102,19 +106,14 @@
                                 <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
                                             <th>Title</th>
-                                            <th>CategoryId</th>
-                                            <th>Description</th>
+                                            <th>Type</th>
                                             <th>Image</th>
-                                            <th>Lessons</th>
-                                            <th>UpdateAt</th>
-                                            <th>CreatedAt</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>@item.Id</td>
                                             <td>@item.Title</td>
                                             <td>@item.CategoryId</td>
@@ -140,7 +139,7 @@
                                                     </button>
                                                 </form>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -246,12 +245,12 @@
 
     <!-- style switcher end -->
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -263,7 +262,54 @@
         });
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+
+        // bat buoc login moi cho vao
+
+        // lay gia tri token trong local storage
+
+        const token = localStorage.getItem('token')
+
+        if (token == undefined) {
+            alert('Vui long dang nhap!')
+            // tu dong chuyen trang
+            window.location.href = '/log-in.html';
+        }
+
+        // hehe
+        $.ajax({
+            url: "http://localhost:3000/exam",
+            type: "GET",
+            data: {},
+            beforeSend: function (params) {
+
+                $("#example tbody").html('<img src="./img/loading-gif.gif" alt="" width="50">')
+            },
+            success: function (kq) {
+                console.log(kq);
+                const array = kq;
+                let str = '';
+
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+                    str += '<tr>';
+                    str += '<td>' + element.title + '</td>';
+                    str += '<td>' + element.category.category + '</td>';
+                    str += '<td> <img src=" ' + element.imageUrl + '"alt="" width="50"> </td>';
+
+                    str += `<td>
+                                    <a href="exam-lesson.html"><i class="fa-solid fa-pen-to-square"></i></a> |
+                                    <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                </td>`;
+
+                }
+
+                $("#example tbody").html(str)
+
+            }
+        });
+    </script>
+
 </body>
 
 </html>

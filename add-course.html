@@ -15,6 +15,11 @@
 </head>
 
 <body>
+    <!-- page loader start -->
+    <div class="page-loader js-page-loader">
+        <div></div>
+    </div>
+    <!-- page loader end -->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -54,7 +59,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -149,12 +153,18 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-3">
                                         <div class="payment-adress">
-                                            <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                            <button type="submit" class="btn btn-theme waves-effect waves-light">
                                                 Submit
                                             </button>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <a asp-action="Index" class="btn btn-theme waves-effect waves-light"
+                                            href="index-course.html">
+                                            Back to list
+                                        </a>
                                     </div>
                                 </div>
                             </form>
@@ -280,7 +290,7 @@
             });
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 
 </html>

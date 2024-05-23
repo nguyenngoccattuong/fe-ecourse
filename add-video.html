@@ -15,6 +15,11 @@
 </head>
 
 <body>
+    <!-- page loader start -->
+    <div class="page-loader js-page-loader">
+        <div></div>
+    </div>
+    <!-- page loader end -->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -54,7 +59,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -96,30 +100,30 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form asp-action="Video" method="post"
+                                                    <form id="formEdit" asp-action="Video" method="post"
                                                         enctype="multipart/form-data">
                                                         <div class="row">
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="@Model.CourseVideo.Part">Part</label>
-                                                                <input asp-for="@Model.CourseVideo.Part" type="number"
-                                                                    class="form-control" placeholder="Part">
+                                                                <input id="part" type="text" class="form-control"
+                                                                    placeholder="Part">
                                                                 <span asp-validation-for="@Model.CourseVideo.Part"
                                                                     class="text-danger"></span>
                                                             </div>
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="@Model.CourseVideo.Title">Title</label>
-                                                                <input asp-for="@Model.CourseVideo.Title" type="text"
-                                                                    class="form-control" placeholder="Title">
+                                                                <input id="title" type="text" class="form-control"
+                                                                    placeholder="Title">
                                                                 <span asp-validation-for="@Model.CourseVideo.Title"
                                                                     class="text-danger"></span>
                                                             </div>
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="@Model.CourseVideo.Hour">Hour</label>
-                                                                <input asp-for="@Model.CourseVideo.Hour" type="number"
-                                                                    class="form-control" placeholder="Hour">
+                                                                <input id="hour" type="number" class="form-control"
+                                                                    placeholder="Hour">
                                                                 <span asp-validation-for="@Model.CourseVideo.Hour"
                                                                     class="text-danger"></span>
                                                             </div>
@@ -127,19 +131,35 @@
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label
                                                                     asp-for="@Model.CourseVideo.Minute">Minute</label>
-                                                                <input asp-for="@Model.CourseVideo.Minute" type="number"
-                                                                    class="form-control" placeholder="Minute">
+                                                                <input id="minute" type="number" class="form-control"
+                                                                    placeholder="Minute">
                                                                 <span asp-validation-for="@Model.CourseVideo.Minute"
                                                                     class="text-danger"></span>
                                                             </div>
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="Video">Video</label>
-                                                                <input type="file" asp-for="Video"
+                                                                <input id="file" type="file" asp-for="Video"
                                                                     class="form-control" />
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <div class="payment-adress">
+                                                                    <button type="submit"
+                                                                        class="btn btn-theme waves-effect waves-light">
+                                                                        Submit
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <a asp-action="Index"
+                                                                    class="btn btn-theme waves-effect waves-light"
+                                                                    href="index-course.html">
+                                                                    Back to list
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </form>
                                                 </div>
                                             </div>
@@ -269,7 +289,57 @@
             });
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        // console.log(getUrlVars()['id']);
+        const id = getUrlVars()['id'];
+
+        $.ajax({
+            url: "http://localhost:3000/course/" + id,
+            type: "GET",
+
+
+            success: function (kq) {
+                console.log(kq);
+                const part = kq._id;
+                const title = kq.title;
+                const hour = 1;
+                const minute = kq.time;
+
+                $('#part').val(part)
+                $('#title').val(title)
+                $('#hour').val(hour)
+                $('#minute').val(minute)
+
+
+            }
+        });
+
+        $('#formEdit').on('submit', function (e) {
+            e.preventDefault();
+            // alert(1);
+            // const formData = new FormData();
+            // console.log(formData);
+            var data = new FormData();
+            $.each($('#file')[0].files, function (i, file) {
+                data.append('file-' + i, file);
+            });
+            console.log($('#file')[0].files);
+        })
+
+
+    </script>
+
+
 </body>
 
 </html>

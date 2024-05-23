@@ -61,7 +61,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -159,9 +158,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-12 mt-3">
-                        <!-- pagination start -->
                         <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item">
@@ -182,9 +180,8 @@
                                 </li>
                             </ul>
                         </nav>
-                        <!-- pagination end -->
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
         <!-- courses section start -->
@@ -295,6 +292,13 @@
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
 
+    <style>
+        #nav-tab button:focus {
+            border-color: var(--border-color-2);
+            background-color: var(--main-color);
+            color: var(--WHITE);
+        }
+    </style>
 
     <script>
         // hehe
@@ -303,53 +307,70 @@
             type: "GET",
             data: {},
             success: function (kq) {
-                console.log(kq);
+                // console.log(kq);
                 const array = kq;
                 let str = '';
                 let tab = '';
 
+                // for (let index = 0; index < array.length; index++) {
+
+                //     const element = array[index];
+                //     str += `<button class="nav-link active" id="` + element._id + `" onclick="getCourse('` + element._id + `')" data-bs-toggle="tab"
+                //     data - bs - target="#` + element._id + `" type = "button" role = "tab"
+                //     aria - controls="#` + element._id + `" aria - selected="true" >` + element.category + `</button > `;
+
+                //     tab += `<div class="tab-pane fade show active" id="` + element._id + `" role="tabpanel"
+                //                 aria-labelledby="` + element._id + `">
+                //                 <div class="row justify-content-center">
+
+                //                 </div>
+                //             </div>`;
+                // }
+
+                let idFirst = '';
+
                 for (let index = 0; index < array.length; index++) {
-
                     const element = array[index];
-                    str += `<button class="nav-link active" id="` + element._id + `" onclick="getCourse('` + element._id + `')" data-bs-toggle="tab"
-                    data - bs - target="#` + element._id + `" type = "button" role = "tab"
-                    aria - controls="#` + element._id + `" aria - selected="true" >` + element.category + `</button > `;
-
-                    tab += `<div class="tab-pane fade show active" id="` + element._id + `" role="tabpanel"
-                                aria-labelledby="` + element._id + `">
-                                <div class="row justify-content-center">
-
-                                </div>
-                            </div>`;
+                    let active = '';
+                    if (index == 0) {
+                        active = 'active';
+                        idFirst = element._id;
+                    }
+                    str += `<button 
+                        class="nav-link `+ active + `" 
+                        onclick="getCourse('` + element._id + `', 1)"
+                    >` + element.category + `</button>`;
                 }
 
                 $("#nav-tab").html(str)
-                $("#nav-tabContent").html(tab)
 
+                getCourse(idFirst, 0);
             }
         });
-        function getCourse(id) {
-            // alert(id);
-            $.ajax({
-                url: "http://localhost:3000/course?category=" + id,
-                type: "GET",
-                data: {},
-                success: function (kq) {
-                    console.log(kq);
-                    const array = kq;
-                    let str = '';
-                    for (let index = 0; index < array.length; index++) {
-
-                        const element = array[index];
-
-                        str += `<div class="col-md-6 col-lg-3">
+        function getCourse(id, status) {
+            if (id.trim() == '') {
+                alert('Id khong ton tai!')
+            } else {
+                $.ajax({
+                    url: "http://localhost:3000/course?category=" + id,
+                    type: "GET",
+                    data: {},
+                    // beforeSend: function (params) {
+                    //     $("#nav-tabContent tab-content").html('<img src="./img/loading-gif.gif" alt="" width="50">')
+                    // },
+                    success: function (kq) {
+                        const array = kq;
+                        let str = '<div class="row">';
+                        for (let index = 0; index < array.length; index++) {
+                            const element = array[index];
+                            str += `<div class="col-md-6 col-lg-3">
                                         <div class="courses-item">
                                             <a href="course-details.html" class="link">
                                                 <div class="courses-item-inner">
                                                     <div class="img-box">
-                                                        <img src="img/courses/item.jpg" alt="course img">
+                                                        <img src="`+ element.imageIntroduce + `" alt="course img" width="260" height="170">
                                                     </div>
-                                                    <h3 class="title">html for beginners</h3>
+                                                    <h3 class="title">`+ element.title + `</h3>
                                                     <div class="instructor">
                                                         <img src="img/instructor/1.png" alt="instructor img">
                                                         <span class="instructor-name">john doe</span>
@@ -370,11 +391,15 @@
                                             </a>
                                         </div>
                                     </div> `;
+                        }
+                        str += '</div>';
+                        if (status != 0) {
+                            $('#nav-tab button').removeClass('active')
+                        }
+                        $("#nav-tabContent").html(str)
                     }
-                    $("#nav-tabContent .tab-pane .row").html(str)
-
-                }
-            });
+                });
+            }
         }
     </script>
 

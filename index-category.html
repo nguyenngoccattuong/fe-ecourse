@@ -15,6 +15,11 @@
 </head>
 
 <body>
+    <!-- page loader start -->
+    <div class="page-loader js-page-loader">
+        <div></div>
+    </div>
+    <!-- page loader end -->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -54,7 +59,6 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -250,7 +254,7 @@
         });
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+
 
 
     <script>
@@ -260,7 +264,6 @@
             type: "GET",
             data: {},
             beforeSend: function (params) {
-
                 $("#example tbody").html('<img src="./img/loading-gif.gif" alt="" width="50">')
             },
             success: function (kq) {
@@ -273,8 +276,10 @@
                     str += '<tr>';
                     str += '<td>' + element._id + '</td>';
                     str += '<td>' + element.category + '</td>';
-                    str += `<td><a class="btn btn-theme" asp-action="Create"
-                    asp - route - id="@item.Id" > View</a ></td>`;
+                    str += `<td>
+                                        <a href="add-category.html"><i class="fa-solid fa-pen-to-square"></i></a> |
+                                        <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>`;
                     // str += '<td></td>';
                     // str += '<td></td>';
                     str += '</tr>';
