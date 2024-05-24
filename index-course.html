@@ -288,6 +288,9 @@
         $.ajax({
             url: "http://localhost:3000/course",
             type: "GET",
+            beforeSend: function (params) {
+                $("#example tbody").html('<img src="./img/loading-gif.gif" alt="" width="50">')
+            },
             success: function (kq) {
                 console.log(kq);
                 const array = kq;

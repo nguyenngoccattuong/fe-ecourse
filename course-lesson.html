@@ -101,15 +101,15 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
-                                                        <input asp-for="@Model.CourseLesson.Title" type="text"
-                                                            class="form-control" placeholder="Lesson Title">
+                                                        <input id="lessonTitle" type="text" class="form-control"
+                                                            placeholder="Lesson Title">
                                                         <span asp-validation-for="@Model.CourseLesson.Title"
                                                             class="text-danger"></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
-                                                        <input asp-for="@Model.CourseLesson.Lesson" type="number"
+                                                        <input id="lessonPart" type="number"
                                                             value="@Model.CourseLesson.Lesson" class="form-control"
                                                             placeholder="Part Lesson">
                                                         <span asp-validation-for="@Model.CourseLesson.Lesson"
@@ -167,7 +167,23 @@
                                                                     class="form-control" />
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-theme">Submit</button>
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <div class="payment-adress">
+                                                                    <button type="submit"
+                                                                        class="btn btn-theme waves-effect waves-light">
+                                                                        Submit
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <a asp-action="Index"
+                                                                    class="btn btn-theme waves-effect waves-light"
+                                                                    href="edit-course.html">
+                                                                    Back to list
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </form>
 
                                                 </div>
@@ -344,8 +360,11 @@
 
         // hehe
         $.ajax({
-            url: "http://localhost:3000/course",
+            url: "http://localhost:3000/course_videos",
             type: "GET",
+            beforeSend: function (params) {
+                $("#example tbody").html('<img src="./img/loading-gif.gif" alt="" width="50">')
+            },
             success: function (kq) {
                 console.log(kq);
                 const array = kq;
@@ -354,14 +373,18 @@
                 for (let index = 0; index < array.length; index++) {
                     const element = array[index];
                     str += '<tr>';
+                    str += '<td>' + element._id + '</td>';
+                    str += '<td>' + element.part + '</td>';
                     str += '<td>' + element.title + '</td>';
-                    str += '<td>' + element.price + '</td>';
-                    str += '<td>' + element.category.category + '</td>';
-                    str += '<td>' + element.teacher.username + '</td>';
-                    str += '<td> <img src=" ' + element.imageIntroduce + '"alt="" width="50"> </td>';
+                    str += '<td>' + element.hour + '</td>';
+                    str += '<td>' + element.minute + '</td>';
+                    str += `<td> <video width="300" height="200" controls>
+                            <source src =`+ element.videoUrl + ` type = "video/mp4" >
+                            Your browser does not support the video tag.
+                            </video> </td>`;
 
                     str += `<td>
-                                    <a href="edit-course.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
+                                    <a href="add-video.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
                                     <a href=""><i class="fa-solid fa-trash-can"></i></a>
                                 </td>`;
 
@@ -373,6 +396,60 @@
         });
     </script>
 
+
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        // console.log(getUrlVars()['id']);
+        const id = getUrlVars()['id'];
+
+        $.ajax({
+            url: "http://localhost:3000/course_lessons/" + id,
+            type: "GET",
+
+
+            success: function (kq) {
+                console.log(kq);
+                const lessonTitle = kq.title;
+                const courseTeacherId = kq.teacher.username;
+                const coursePrice = kq.price;
+                const courseLanguage = kq.language;
+                const courseCategoryId = kq.category.category;
+                const courseTime = kq.time;
+
+                $('#courseTitle').val(courseTitle)
+                $('#courseTeacherId').val(courseTeacherId)
+                $('#coursePrice').val(coursePrice)
+                $('#courseLanguage').val(courseLanguage)
+                $('#courseCategoryId').val(courseCategoryId)
+                $('#courseTime').val(courseTime)
+
+
+            }
+        });
+
+        $('#formEdit').on('submit', function (e) {
+            e.preventDefault();
+            // alert(1);
+            // const formData = new FormData();
+            // console.log(formData);
+            var data = new FormData();
+            $.each($('#file')[0].files, function (i, file) {
+                data.append('file-' + i, file);
+            });
+            console.log($('#file')[0].files);
+        })
+
+
+    </script>
 
 
 </body>
