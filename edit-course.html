@@ -112,7 +112,6 @@
                                                 <label asp-for="Course.CategoryId">Category</label>
                                                 <select id="courseCategoryId" asp-items="@categories"
                                                     class="form-control">
-
                                                 </select>
                                                 <span asp-validation-for="Course.CategoryId" class="text-danger"></span>
                                             </div>
@@ -123,14 +122,23 @@
                                                     <input type="file" id="courseImageUrl" class="form-control" />
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group alert-up-pd">
+                                                <div class="form-group">
+                                                    <label asp-for="Course.ImageUrl">Product Video</label>
+                                                    <input type="file" id="videoIntroduce" class="form-control" />
+                                                </div>
+                                            </div>
+
+
                                             <div class="form-group res-mg-t-15">
                                                 <label asp-for="Course.TeacherId">TeacherId</label>
                                                 <input id="courseTeacherId" type="text" class="form-control"
                                                     placeholder="Instructor">
                                                 <span asp-validation-for="Course.TeacherId" class="text-danger"></span>
                                             </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
                                             <div class="form-group">
                                                 <label asp-for="Course.Language">Language</label>
                                                 <input id="courseLanguage" type="text" class="form-control"
@@ -145,6 +153,12 @@
                                             </div>
                                             <div class="form-group">
                                                 <label asp-for="Course.Description">Description</label>
+                                                <style>
+                                                    .ck-content {
+                                                        height: 205px;
+                                                        border-radius: 10px;
+                                                    }
+                                                </style>
                                                 <textarea id="myeditor" asp-for="Course.Description"
                                                     placeholder="Description"
                                                     value="@Model.Course.Description"></textarea>
@@ -335,11 +349,11 @@
 
     <!-- style switcher end -->
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
-    <script src="~/js/search.js"></script>
+    <script src="~/js/search.js"></script> -->
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -356,7 +370,7 @@
     </script>
 
 
-    <script>
+    <!-- <script>
 
         // bat buoc login moi cho vao
 
@@ -398,6 +412,71 @@
 
             }
         });
+    </script> -->
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        // console.log(getUrlVars()['id']);
+        const id1 = getUrlVars()['id1'];
+
+        $.ajax({
+            url: "http://localhost:3000/categorys",
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+
+
+            success: function (array) {
+
+                let str = '<option value="">_Select_</option>';
+
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+
+                    str += '<option value="' + element._id + '">' + element.category + '</option>';
+                }
+
+                $('#courseCategoryId').html(str)
+
+
+                // const courseTitle = kq.title;
+                // const courseTeacherId = kq.teacher.username;
+                // const coursePrice = kq.price;
+                // const courseLanguage = kq.language;
+                // const courseCategoryId = kq.category.category;
+                // const courseTime = kq.time;
+
+                // $('#courseTitle').val(courseTitle)
+                // $('#courseTeacherId').val(courseTeacherId)
+                // $('#coursePrice').val(coursePrice)
+                // $('#courseLanguage').val(courseLanguage)
+                // $('#courseCategoryId').val(courseCategoryId)
+                // $('#courseTime').val(courseTime)
+
+
+            }
+        });
+
+        // $('#formEdit').on('submit', function (e) {
+        //     e.preventDefault();
+        //     // alert(1);
+        //     // const formData = new FormData();
+        //     // console.log(formData);
+        //     var data = new FormData();
+        //     $.each($('#file')[0].files, function (i, file) {
+        //         data.append('file-' + i, file);
+        //     });
+        //     console.log($('#file')[0].files);
+        // })
+
+
     </script>
 
     <script>
@@ -417,6 +496,7 @@
         $.ajax({
             url: "http://localhost:3000/course/" + id,
             type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
 
 
             success: function (kq) {
@@ -439,21 +519,68 @@
             }
         });
 
-        $('#formEdit').on('submit', function (e) {
-            e.preventDefault();
-            // alert(1);
-            // const formData = new FormData();
-            // console.log(formData);
-            var data = new FormData();
-            $.each($('#file')[0].files, function (i, file) {
-                data.append('file-' + i, file);
-            });
-            console.log($('#file')[0].files);
-        })
+        // $('#formEdit').on('submit', function (e) {
+        //     e.preventDefault();
+        //     // alert(1);
+        //     // const formData = new FormData();
+        //     // console.log(formData);
+        //     var data = new FormData();
+        //     $.each($('#file')[0].files, function (i, file) {
+        //         data.append('file-' + i, file);
+        //     });
+        //     console.log($('#file')[0].files);
+        // })
 
 
     </script>
 
+
+    <script>
+        $(document).ready(function () {
+            $('#demo1-upload').on('submit', function (e) {
+                e.preventDefault();
+
+                const courseTitle = $('#courseTitle').val();
+                const coursePrice = $('#coursePrice').val();
+                const courseCategoryId = $('#courseCategoryId').val();
+                const courseLanguage = $('#courseLanguage').val();
+                const courseTime = $('#courseTime').val();
+                const courseTeacherId = $('#courseTeacherId').val();
+                const myeditor = $('#myeditor').val();
+
+                const formData = new FormData(document.getElementById('demo1-upload'));
+
+                formData.append('courseTitle', courseTitle);
+                formData.append('coursePrice', coursePrice);
+                formData.append('courseCategoryId', courseCategoryId);
+                formData.append('courseLanguage', courseLanguage);
+                formData.append('courseTime', courseTime);
+                formData.append('courseTeacherId', courseTeacherId);
+                formData.append('description', myeditor);
+
+
+                $.ajax({
+                    url: "http://localhost:3000/course/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (results) {
+                        console.log(results);
+
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Đã xảy ra lỗi trong quá trình đăng ký: ' + xhr.responseText);
+                    }
+                });
+
+
+                return false;
+            })
+        })
+    </script>
 
 </body>
 
