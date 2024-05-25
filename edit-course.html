@@ -510,7 +510,7 @@
             success: function (kq) {
                 console.log(kq);
                 const courseTitle = kq.title;
-                const courseTeacherId = kq.teacher.username;
+                const courseTeacherId = kq.teacher._id;
                 const coursePrice = kq.price;
                 const courseLanguage = kq.language;
                 const courseCategoryId = kq.category.category;
@@ -558,13 +558,14 @@
 
                 const formData = new FormData(document.getElementById('demo1-upload'));
 
-                formData.append('courseTitle', courseTitle);
-                formData.append('coursePrice', coursePrice);
-                formData.append('courseCategoryId', courseCategoryId);
-                formData.append('courseLanguage', courseLanguage);
-                formData.append('courseTime', courseTime);
-                formData.append('courseTeacherId', courseTeacherId);
+                formData.append('title', courseTitle);
+                formData.append('price', coursePrice);
+                formData.append('category', courseCategoryId);
+                formData.append('language', courseLanguage);
+                formData.append('time', courseTime);
+                formData.append('teacherId', courseTeacherId);
                 formData.append('description', myeditor);
+                formData.append('files', []);
 
 
                 $.ajax({
@@ -576,11 +577,11 @@
                     contentType: false,
                     processData: false,
                     success: function (results) {
-                        console.log(results);
+                        alert('Successfully');
 
                     },
                     error: function (xhr, status, error) {
-                        alert('Đã xảy ra lỗi trong quá trình đăng ký: ' + xhr.responseText);
+                        alert('Error: ' + xhr.responseText);
                     }
                 });
 

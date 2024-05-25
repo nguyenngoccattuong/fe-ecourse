@@ -277,7 +277,8 @@
                     type: 'POST',
                     data: { email, password },
                     success: function (results) {
-                        console.log(results);
+                        // console.log(results);
+                        // return;
                         if (results.access_token != undefined) {
                             localStorage.setItem("token", results.access_token);
                             // tu dong chuyen trang
