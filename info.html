@@ -28,7 +28,7 @@
         <header class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-lg-5 col-sm-12">
                         <div class="header-main d-flex justify-content-between align-items-center">
                             <div class="header-logo">
                                 <a href="index.html"><span>E
@@ -39,9 +39,8 @@
                             <div class="header-backdrop js-header-backdrop"></div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-12">
-                        <!-- <label for="menu_mobile" id="label_menu_mobile"> <i class="fas fa-bars"></i> </label>
-                                <input type="checkbox" id="menu_mobile"> -->
+                    <div class="col-lg-7 col-sm-12">
+
                         <nav class="header-menu js-header-menu">
 
                             <button type="button" class="header-close-btn js-header-menu-toggler">
@@ -49,17 +48,41 @@
                             </button>
                             <ul class="menu">
                                 <li class="menu-item"><a href="index.html">home</a></li>
-                                <li class="menu-item "><a href="courses.html">Courses</a></li>
                                 <li class="menu-item menu-item-has-children">
-                                    <a href="#" class="js-toggle-sub-menu">Blogs<i class="fas fa-chevron-down"></i></a>
+                                    <a href="#" class="js-toggle-sub-menu">Pages<i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a href="blog.html">Blog</a></li>
-                                        <li class="sub-menu-item"><a href="course-details.html">QA
-                                            </a></li>
+                                        <li class="sub-menu-item"><a href="/courses.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/exams.html">Exams</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="menu-item menu-item-has-children" id="admin">
+
+                                    <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
+                                        <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
-                                <li class="menu-item"><a href="log-in.html">Login</a></li>
+                                <li class="menu-item menu-item-has-children" id="account">
+                                    <a href="#" class="js-toggle-sub-menu">Account<i
+                                            class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/log-out.html">Log Out</a></li>
+                                        <li class="sub-menu-item"><a href="/info.html">Setting</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="login" class="menu-item"><a href="/log-in.html">login</a></li>
+                                <li class="menu-item nav-actions">
+                                    <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -68,6 +91,16 @@
             </div>
         </header>
         <!-- header end -->
+        <!-- search start-->
+        <div class="search" id="search">
+            <form action="" class="search-form">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" placeholder="What are you looking for?" class="search-input">
+            </form>
+
+            <i class="fa-solid fa-x search-close" id="btn-close"></i>
+        </div>
+        <!-- search end-->
 
         <!-- breadcrumb start -->
         <div class="breadcrumb-nav">
@@ -109,29 +142,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                  <nav class="course-tabs m-0">
                     <nav class="course-tabs m-0">
-                      <div class="nav nav-tabs flex-column border-0" id="nav-tab" role="tablist">
-                          <button class="nav-link @ManageNavPages.IndexNavClass(ViewContext) border-0 p-2 m-2"
-                                  id="profile">
-                              Profile
-                          </button>
-                          <button class="nav-link @ManageNavPages.EmailNavClass(ViewContext) border-0 p-2 m-2"
-                                  id="email">
-                              Email
-                          </button>
-                          <button class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext) border-0 p-2 m-2"
-                                  id="change-password">
-                              Password
-                          </button>
-                          <button class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) border-0 p-2 m-2"
-                                  id="two-factor">
-                              Two-factor authentication
-                          </button>
-                  
-                      </div>
-                  </nav>
-                  </nav>
+                        <nav class="course-tabs m-0">
+                            <div class="nav nav-tabs flex-column border-0" id="nav-tab" role="tablist">
+                                <button class="nav-link @ManageNavPages.IndexNavClass(ViewContext) border-0 p-2 m-2"
+                                    id="profile">
+                                    Profile
+                                </button>
+                                <button class="nav-link @ManageNavPages.EmailNavClass(ViewContext) border-0 p-2 m-2"
+                                    id="email">
+                                    Email
+                                </button>
+                                <button
+                                    class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext) border-0 p-2 m-2"
+                                    id="change-password">
+                                    Password
+                                </button>
+                                <button
+                                    class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) border-0 p-2 m-2"
+                                    id="two-factor">
+                                    Two-factor authentication
+                                </button>
+
+                            </div>
+                        </nav>
+                    </nav>
                 </div>
 
                 <div class="col-lg-9">
@@ -141,7 +176,8 @@
                             <h2 class="text-center">Personal Information</h2>
                             <div class="col-lg-5 text-center mt-3">
                                 <img src="img/instructor/1.png" alt="">
-                                <input type="file" asp-for="Input.ImageFile" class="form-control" style="margin-top: 73px" />
+                                <input type="file" asp-for="Input.ImageFile" class="form-control"
+                                    style="margin-top: 73px" />
                             </div>
                             <div class="col-lg-7">
                                 <div class="login-form">
@@ -304,8 +340,32 @@
 
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+
+    <script>
+        // console.log(localStorage.getItem('token'));
+        if (localStorage.getItem('token')) {
+            $('#admin').show();
+        }
+        else {
+            $('#admin').hide();
+        }
+    </script>
+
+    <script>
+        // console.log(localStorage.getItem('token'));
+        if (localStorage.getItem('token')) {
+            $('#account').show();
+            $('#login').hide();
+        }
+        else {
+            $('#login').show();
+            $('#account').hide();
+        }
+    </script>
 
 </body>
 

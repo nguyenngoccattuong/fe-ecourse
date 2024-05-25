@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Log Out</title>
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -55,8 +55,19 @@
                                         </li>
                                     </ul>
                                 </li>
-
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" id="admin" class="js-toggle-sub-menu">Admin <i
+                                            class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
+                                        <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
+                                    </ul>
+                                </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
+
 
                                 <li class="menu-item nav-actions">
                                     <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
@@ -88,34 +99,32 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Sign Up</li>
+                        <li class="breadcrumb-item active" aria-current="page">Log Out</li>
                     </ol>
                 </nav>
             </div>
         </div>
         <!-- breadcrumb end -->
 
-        <!-- signup section start -->
-        <section class="signup section-padding">
+        <!-- login section start -->
+        <section class="login-section section-padding">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-7 col-lg-6 col-xl-5">
-                        <div class="signup-form box">
-                            <h2 class="form-title text-center">Create Your Account</h2>
-                            <form action="" id="formSignup">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Full name" id="username">
+                        <div class="login-form box">
+                            <h2 class="form-title text-center">Are you sure log out?</h2>
+                            <form id="formLogin">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-outline-dark btn-block btn-form"
+                                            id="cancel">Cancel</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" id="logout" class="btn btn-theme btn-block btn-form">Log
+                                            Out</button>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password" id="password">
-                                </div>
-                                <button type="submit" class="btn btn-theme btn-block btn-form">Sign Up</button>
-                                <p class="text-center mt-4 mb-0">Already have an account ? <a href="log-in.html">Log
-                                        In</a>
-                                </p>
+
                             </form>
                         </div>
                     </div>
@@ -123,7 +132,8 @@
             </div>
         </section>
 
-        <!-- signup section end -->
+        <!-- login section end -->
+
 
         <!-- footer start -->
         <footer class="footer">
@@ -225,6 +235,7 @@
     <!-- style switcher end -->
 
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
@@ -232,87 +243,14 @@
 
 
     <script>
-        const validateEmail = (email) => {
-            return String(email)
-                .toLowerCase()
-                .match(
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                );
-        };
+        // Lấy tham chiếu đến nút button
+        var button = document.getElementById("cancel");
 
-        $(document).ready(function () {
-            $('#formSignup').on('submit', function (e) {
-                e.preventDefault();
-
-                const username = $('#username').val();
-                const email = $('#email').val();
-                const password = $('#password').val();
-
-                if (username.trim() == '') {
-                    alert('FullName khong duoc rong')
-                    return false;
-                }
-
-                if (email.trim() == '') {
-                    alert('Email khong duoc rong')
-                    return false;
-                }
-
-                if (password.trim() == '') {
-                    alert('Password khong duoc rong')
-                    return false;
-                }
-
-                if (!validateEmail(email)) {
-                    alert('Email khong dung dinh dang')
-                    return false;
-                }
-
-                if (password.length < 6) {
-                    alert('Password > 8 ki tu')
-                    return false;
-                }
-
-                if (password.length > 30) {
-                    alert('Password < 30 ki tu')
-                    return false;
-                }
-
-                $.ajax({
-                    url: 'http://localhost:3000/users/register',
-                    type: 'POST',
-                    data: { username, email, password },
-                    success: function (results) {
-                        // console.log(username, email, password);
-                        // console.log(results);
-                        // return
-                        if (results === '') {
-
-                            alert('Đăng ký thành công');
-                            // tu dong chuyen trang
-                            window.location.href = '/log-in.html';
-                        } else {
-                            alert('Đăng ký thất bại: ' + results.error);
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        alert('Đã xảy ra lỗi trong quá trình đăng ký: ' + xhr.responseText);
-                    }
-                });
-
-                return false;
-            })
-        })
-    </script>
-
-    <script>
-        // console.log(localStorage.getItem('token'));
-        if (localStorage.getItem('token')) {
-            $('#admin').show();
-        }
-        else {
-            $('#admin').hide();
-        }
+        // Thêm sự kiện click vào nút button
+        button.addEventListener("click", function () {
+            // Chuyển hướng đến trang khác
+            window.location.href = '/index.html';
+        });
     </script>
 
 </body>

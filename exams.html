@@ -55,7 +55,9 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="menu-item menu-item-has-children">
+
+                                <li class="menu-item menu-item-has-children" id="admin">
+
                                     <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
@@ -66,11 +68,19 @@
                                     </ul>
                                 </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
-                                <li class="menu-item"><a href="log-in.html">Login</a></li>
+                                <li class="menu-item menu-item-has-children" id="account">
+                                    <a href="#" class="js-toggle-sub-menu">Account<i
+                                            class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/log-out.html">Log Out</a></li>
+                                        <li class="sub-menu-item"><a href="/info.html">Setting</a>
+                                        </li>
+                                    </ul>
+                                </li>
 
+                                <li id="login" class="menu-item"><a href="/log-in.html">login</a></li>
                                 <li class="menu-item nav-actions">
                                     <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
-
                                 </li>
                             </ul>
                         </nav>
@@ -80,7 +90,6 @@
             </div>
         </header>
         <!-- header end -->
-
         <!-- search start-->
         <div class="search" id="search">
             <form action="" class="search-form">
@@ -565,21 +574,6 @@
                 let str = '';
                 let tab = '';
 
-                // for (let index = 0; index < array.length; index++) {
-
-                //     const element = array[index];
-                //     str += `<button class="nav-link active" id="` + element._id + `" onclick="getCourse('` + element._id + `')" data-bs-toggle="tab"
-                //     data - bs - target="#` + element._id + `" type = "button" role = "tab"
-                //     aria - controls="#` + element._id + `" aria - selected="true" >` + element.category + `</button > `;
-
-                //     tab += `<div class="tab-pane fade show active" id="` + element._id + `" role="tabpanel"
-                //                 aria-labelledby="` + element._id + `">
-                //                 <div class="row justify-content-center">
-
-                //                 </div>
-                //             </div>`;
-                // }
-
                 let idFirst = '';
 
                 for (let index = 0; index < array.length; index++) {
@@ -650,6 +644,28 @@
                     }
                 });
             }
+        }
+    </script>
+
+    <script>
+        // console.log(localStorage.getItem('token'));
+        if (localStorage.getItem('token')) {
+            $('#admin').show();
+        }
+        else {
+            $('#admin').hide();
+        }
+    </script>
+
+    <script>
+        // console.log(localStorage.getItem('token'));
+        if (localStorage.getItem('token')) {
+            $('#account').show();
+            $('#login').hide();
+        }
+        else {
+            $('#login').show();
+            $('#account').hide();
         }
     </script>
 

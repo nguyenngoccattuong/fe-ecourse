@@ -69,19 +69,19 @@
                                     </ul>
                                 </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
-                                <li class="menu-item menu-item-has-children">
+                                <li class="menu-item menu-item-has-children" id="account">
                                     <a href="#" class="js-toggle-sub-menu">Account<i
                                             class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a href="/log-in.html">Login</a></li>
+                                        <li class="sub-menu-item"><a href="/log-out.html">Log Out</a></li>
                                         <li class="sub-menu-item"><a href="/info.html">Setting</a>
                                         </li>
                                     </ul>
                                 </li>
 
+                                <li id="login" class="menu-item"><a href="/log-in.html">login</a></li>
                                 <li class="menu-item nav-actions">
                                     <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
-
                                 </li>
                             </ul>
                         </nav>
@@ -485,6 +485,18 @@
         }
         else {
             $('#admin').hide();
+        }
+    </script>
+
+    <script>
+        // console.log(localStorage.getItem('token'));
+        if (localStorage.getItem('token')) {
+            $('#account').show();
+            $('#login').hide();
+        }
+        else {
+            $('#login').show();
+            $('#account').hide();
         }
     </script>
 
