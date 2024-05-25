@@ -368,6 +368,7 @@
                     //     $("#nav-tabContent tab-content").html('<img src="./img/loading-gif.gif" alt="" width="50">')
                     // },
                     success: function (kq) {
+                        console.log(kq);
                         const array = kq;
                         let str = '<div class="row">';
                         for (let index = 0; index < array.length; index++) {
@@ -381,8 +382,8 @@
                                                     </div>
                                                     <h3 class="title">`+ element.title + `</h3>
                                                     <div class="instructor">
-                                                        <img src="img/instructor/1.png" alt="instructor img">
-                                                        <span class="instructor-name">john doe</span>
+                                                        <img src="`+ element.teacher.photoUrl + `" alt="instructor img">
+                                                        <span class="instructor-name">`+ element.teacher.username + `</span>
                                                     </div>
                                                     <div class="rating">
                                                         <span class="average-rating">(4.5)</span>
