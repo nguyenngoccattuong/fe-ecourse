@@ -149,6 +149,12 @@
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
+                                                            <style>
+                                                                .ck-content {
+                                                                    height: 205px;
+                                                                    border-radius: 10px;
+                                                                }
+                                                            </style>
                                                             <textarea id="myeditor" asp-for="Description"
                                                                 name="description" placeholder="Description"></textarea>
                                                             <span asp-validation-for="Description"
@@ -265,16 +271,20 @@
 
 
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
 
     <script>
-        new DataTable('#example', {
-        });
+        ClassicEditor
+            .create(document.querySelector('#myeditor'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
-
 </body>
 
 </html>
