@@ -302,12 +302,20 @@
 
                 for (let index = 0; index < array.length; index++) {
                     const element = array[index];
+                    let deleteAt = element.deleteAt;
+
+                    // Convert the datetime string to a Date object
+                    let dateObj = new Date(deleteAt);
+
+                    // Format the Date object to a readable string
+                    let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                    let formattedDate = dateObj.toLocaleString('en-US', options);
                     str += '<tr>';
                     str += '<td>' + element.title + '</td>';
                     str += '<td>' + element.description + '</td>';
                     str += '<td>' + element.category.category + '</td>';
                     str += '<td> <img src=" ' + element.imageUrl + '"alt="" width="50"> </td>';
-                    str += '<td>' + element.deleteAt + '</td>';
+                    str += '<td>' + element.deleteAt ?? formattedDate + '</td>';
 
                     str += `<td>
                                     <a href="exam-lesson.html"><i class="fa-solid fa-pen-to-square"></i></a> |
