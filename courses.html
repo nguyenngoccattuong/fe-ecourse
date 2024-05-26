@@ -161,9 +161,6 @@
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-
-
-
                         </div>
                     </div>
                 </div>
@@ -364,9 +361,6 @@
                     url: "http://localhost:3000/course?category=" + id,
                     type: "GET",
                     data: {},
-                    // beforeSend: function (params) {
-                    //     $("#nav-tabContent tab-content").html('<img src="./img/loading-gif.gif" alt="" width="50">')
-                    // },
                     success: function (kq) {
                         console.log(kq);
                         const array = kq;
@@ -375,7 +369,7 @@
                             const element = array[index];
                             str += `<div class="col-md-6 col-lg-3">
                                         <div class="courses-item">
-                                            <a href="course-details.html" class="link">
+                                            <a href="course-details.html?id=`+ element._id +`" class="link">
                                                 <div class="courses-item-inner">
                                                     <div class="img-box">
                                                         <img src="`+ element.imageIntroduce + `" alt="course img" width="260" height="170">
@@ -400,7 +394,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    </div> `;
+                                    </div>`;
                         }
                         str += '</div>';
                         if (status != 0) {

@@ -116,7 +116,9 @@
                                         <tr>
                                             <th>Title</th>
                                             <th>Type</th>
+                                            <th>Description</th>
                                             <th>Image</th>
+                                            <th>DeleteAt</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -302,8 +304,10 @@
                     const element = array[index];
                     str += '<tr>';
                     str += '<td>' + element.title + '</td>';
+                    str += '<td>' + element.description + '</td>';
                     str += '<td>' + element.category.category + '</td>';
                     str += '<td> <img src=" ' + element.imageUrl + '"alt="" width="50"> </td>';
+                    str += '<td>' + element.deleteAt + '</td>';
 
                     str += `<td>
                                     <a href="exam-lesson.html"><i class="fa-solid fa-pen-to-square"></i></a> |

@@ -117,7 +117,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
-                                                        <input id="lessonPart" type="number"
+                                                        <input id="lessonSelection" type="number"
                                                             value="@Model.CourseLesson.Lesson" class="form-control"
                                                             placeholder="Part Lesson">
                                                         <span asp-validation-for="@Model.CourseLesson.Lesson"
@@ -351,6 +351,35 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
+    <script>
+      function getUrlVars() {
+          var vars = [], hash;
+          var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+          for (var i = 0; i < hashes.length; i++) {
+              hash = hashes[i].split('=');
+              vars.push(hash[0]);
+              vars[hash[0]] = hash[1];
+          }
+          return vars;
+      }
+      const id = getUrlVars()['id'];
+
+      $.ajax({
+          url: "http://localhost:3000/course_lessons/" + id,
+          type: "GET",
+          headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+
+
+          success: function (kq) {
+              console.log(kq);
+              const lessonTitle = kq.title;
+              const lessonSelection = kq.selection;
+
+              $('#lessonTitle').val(lessonTitle)
+              $('#lessonSelection').val(lessonSelection)
+          }
+      });
+  </script>
 
     <script>
 
@@ -365,10 +394,10 @@
             // tu dong chuyen trang
             window.location.href = '/log-in.html';
         }
-
+        console.log(id);
         // hehe
         $.ajax({
-            url: "http://localhost:3000/course_videos",
+            url: "http://localhost:3000/course_lessons/videosOf/" + id,
             type: "GET",
             beforeSend: function (params) {
                 $("#example tbody").html('<img src="./img/loading-gif.gif" alt="" width="50">')
@@ -405,7 +434,7 @@
     </script>
 
 
-    <script>
+    <!-- <script>
         function getUrlVars() {
             var vars = [], hash;
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -457,7 +486,7 @@
         })
 
 
-    </script>
+    </script> -->
 
 
 </body>

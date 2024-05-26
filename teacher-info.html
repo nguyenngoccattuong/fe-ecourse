@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Course</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
     <link rel="icon" type="image/x-icon" href="favicon-standard.png">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -15,11 +15,14 @@
 </head>
 
 <body>
+
     <!-- page loader start -->
     <div class="page-loader js-page-loader">
         <div></div>
     </div>
     <!-- page loader end -->
+
+    <!-- main wrapper start-->
     <div class="main-wrapper">
         <!-- header start -->
         <header class="header">
@@ -59,6 +62,7 @@
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
+
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -85,6 +89,8 @@
                 </div>
             </div>
         </header>
+        <!-- header end -->
+
         <!-- search start-->
         <div class="search" id="search">
             <form action="" class="search-form">
@@ -96,39 +102,110 @@
         </div>
         <!-- search end-->
 
-        <div class="container">
-            <main role="main" class="pb-3">
-                <div class="table-responsive text-nowrap container-fluid section-padding">
-                    <div class="product-payment-inner-st">
-                        <div class="review-content-section box">
-                            <div class="row">
-                                <div class="col-10">
-                                    <h2>List Courses</h2>
-                                </div>
-                                <div class="col-2">
-                                    <a class="btn btn-theme" href="/add-course.html">Create New</a>
-                                </div>
-                            </div>
-                            <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Price</th>
-                                        <th>Type</th>
-                                        <th>Teacher</th>
-                                        <th>CourseImage</th>
-                                        <th>DeleteAt</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </main>
+        <!-- breadcrumb start -->
+        <div class="breadcrumb-nav">
+            <div class="container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="courses.html">courses</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">course details</details>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
         </div>
+        <!-- breadcrumb end -->
+
+        <!--  course details section start -->
+        <section class="course-details section-padding">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <!-- course header start -->
+                      <div class="course-header box">
+                          <div class="row">
+                              <div class="col-lg-2">
+                                  <img src=@(Model.PhotoUrl != null ? Model.PhotoUrl : Const.DEFAULT_AVATAR)
+                                       class="rounded-circle" style="width: 150px;"
+                                       alt="Avatar" />
+                              </div>
+                              <div class="col-lg-10">
+                                  <h2>@Model.FullName</h2>
+                                  <h5>@Model.Expert</h5>
+                                  <p>
+                                      @Model.Description
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- course header end -->
+                      <!-- course tabs start -->
+                      <nav class="course-tabs">
+                          <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+                              <button class="nav-link active" id="course-curriculum-tab"
+                                      data-bs-toggle="tab"
+                                      data-bs-target="#course-curriculum" type="button" role="tab"
+                                      aria-controls="course-curriculum"
+                                      aria-selected="true">
+                                  course
+                              </button>
+                              <button class="nav-link" id="course-description-tab"
+                                      data-bs-toggle="tab"
+                                      data-bs-target="#course-description" type="button"
+                                      role="tab"
+                                      aria-controls="course-description"
+                                      aria-selected="false">
+                                  description
+                              </button>
+                          </div>
+                      </nav>
+                      <!-- course tabs end -->
+                      <!-- tab panes start -->
+                      <div class="tab-content" id="nav-tabContent">
+                          <!-- course curriculum start -->
+                          <div class="tab-pane fade show active" id="course-curriculum"
+                               role="tabpanel"
+                               aria-labelledby="course-curriculum-tab">
+                              <div class="course-curriculum box">
+                                  <h3 class="text-capitalize mb-4">curriculum</h3>
+                                      <a asp-controller="Course" asp-action="Detail" asp-route-area="Customer" asp-route-id="@course.Id">
+                                          <!-- accordion start -->
+                                          <div class="accordion" id="accordion">
+                                              <div class="row teacher-course">
+                                                  <div class="col-lg-3">
+                                                      <img src=@course.ImageUrl style="width: 200px;"
+                                                           alt="Course Image" />
+                                                  </div>
+                                                  <div class="col-lg-9 ">
+                                                      <h4>@course.Title</h4>
+                                                      <p>@course.Description</p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <!-- accordion end -->
+                                      </a>
+                              </div>
+                          </div>
+                          <!-- course curriculum end -->
+                          <!-- course description start -->
+                          <div class="tab-pane fade" id="course-description"
+                               role="tabpanel"
+                               aria-labelledby="course-description-tab">
+                              <div class="course-description box">
+                                  <h3 class="text-capitalize mb-4">Description</h3>
+                                  @Model.Description
+                              </div>
+                          </div>
+                          <!-- course description end -->
+                      </div>
+                      <!-- tab panes end -->
+                  </div>
+              </div>
+          </div>
+        </section>
+        <!--  course details section end -->
+
         <!-- footer start -->
         <footer class="footer">
             <div class="footer-top">
@@ -193,6 +270,27 @@
         <!-- footer end -->
 
     </div>
+    <!-- main wrapper end-->
+    <!-- course preview modal start -->
+    <div class="modal fade video-modal js-course-preview-modal" id="video-modal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="ratio ratio-16x9">
+                        <video controls class="js-course-preview-video">
+                            <source src="videos/course-preview.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- course preview modal end -->
+
     <!-- style switcher start -->
     <div class="style-switcher js-style-switcher">
         <div class="style-switcher-toggler js-style-switcher-toggler">
@@ -226,79 +324,11 @@
 
     <!-- style switcher end -->
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
-
-    <script>
-        new DataTable('#example', {
-        });
-    </script>
-
-
-
-    <script>
-
-        // bat buoc login moi cho vao
-
-        // lay gia tri token trong local storage
-
-        const token = localStorage.getItem('token')
-
-        if (token == undefined) {
-            alert('Vui long dang nhap!')
-            // tu dong chuyen trang
-            window.location.href = '/log-in.html';
-        }
-
-        // hehe
-        $.ajax({
-            url: "http://localhost:3000/course",
-            type: "GET",
-            beforeSend: function (params) {
-                $("#example tbody").html('<img src="./img/loading-gif.gif" alt="" width="50">')
-            },
-            success: function (kq) {
-                console.log(kq);
-                const array = kq;
-                let str = '';
-
-                for (let index = 0; index < array.length; index++) {
-                    const element = array[index];
-                    let deleteAt = element.deleteAt;
-
-                    // Convert the datetime string to a Date object
-                    let dateObj = new Date(deleteAt);
-
-                    // Format the Date object to a readable string
-                    let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-                    let formattedDate = dateObj.toLocaleString('en-US', options);
-                    str += '<tr>';
-                    str += '<td>' + element.title + '</td>';
-                    str += '<td>' + element.price + '</td>';
-                    str += '<td>' + element.category.category + '</td>';
-                    str += '<td>' + element.teacher.username + '</td>';
-                    str += '<td> <img src=" ' + element.imageIntroduce + '"alt="" width="50"> </td>';
-                    str += '<td>' + formattedDate + '</td>';
-
-                    str += `<td>
-                                <a href="edit-course.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
-                                <a href=""><i class="fa-solid fa-trash-can"></i></a>
-                            </td>`;
-                }
-                $("#example tbody").html(str)
-
-            }
-        });
-    </script>
 </body>
 
 </html>

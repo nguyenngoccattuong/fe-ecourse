@@ -228,30 +228,12 @@
                                 <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
                                             <th>Title</th>
                                             <th>Lesson</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>@lesson.Id</td>
-                                            <td>@lesson.Title</td>
-                                            <td>@lesson.Lesson</td>
-                                            <td>
-                                                <a class="btn btn-theme" asp-action="Lesson"
-                                                    asp-route-id="@lesson.Id">Edit</a>
-                                                <form asp-action="DetailDelete" method="post">
-                                                    <button type="submit" asp-action="DetailDelete"
-                                                        asp-route-id="@lesson.Id" formnovalidate
-                                                        class="cancel btn btn-danger"
-                                                        onclick="return confirm('Are you sure?')">
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -580,13 +562,38 @@
                         alert('Error: ' + xhr.responseText);
                     }
                 });
-
-
                 return false;
             })
         })
     </script>
+<script>
+  const idCourse = getUrlVars()['id'];
+  console.log(idCourse);
+  $.ajax({
+            url: "http://localhost:3000/course/lessonsOf/" + idCourse,
+            type: "GET",
+            beforeSend: function (params) {
+                $("#example tbody").html('<img src="./img/loading-gif.gif" alt="" width="50">')
+            },
+            success: function (kq) {
+                console.log(kq);
+                const array = kq;
+                let str = '';
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+                    str += '<tr>';
+                    str += '<td>' + element.title + '</td>';
+                    str += '<td>' + element.selection + '</td>';
+                    str += `<td>
+                                <a href="course-lesson.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
+                                <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                            </td>`;
+                }
+                $("#example tbody").html(str)
 
+            }
+        });
+</script>
 </body>
 
 </html>
