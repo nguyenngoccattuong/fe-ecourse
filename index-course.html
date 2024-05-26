@@ -309,15 +309,13 @@
             // alert(id)
             $.ajax({
                 url: "http://localhost:3000/course/" + id,
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
                 type: "DELETE",
-
                 success: function (kq) {
-                    console.log(kq);
+                  window.location.href = 'index-course.html';
                 }
             })
         }
-
-
     </script>
 
     <!-- The Modal -->
