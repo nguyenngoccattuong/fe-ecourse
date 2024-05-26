@@ -55,9 +55,10 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="#" id="admin" class="js-toggle-sub-menu">Admin <i
-                                            class="fas fa-chevron-down"></i></a>
+
+                                <li class="menu-item menu-item-has-children" id="admin">
+
+                                    <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
@@ -67,11 +68,19 @@
                                     </ul>
                                 </li>
                                 <li class="menu-item "><a href="contact.html">contact</a></li>
+                                <li class="menu-item menu-item-has-children" id="account">
+                                    <a href="#" class="js-toggle-sub-menu">Account<i
+                                            class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/log-out.html">Log Out</a></li>
+                                        <li class="sub-menu-item"><a href="/info.html">Setting</a>
+                                        </li>
+                                    </ul>
+                                </li>
 
-
+                                <li id="login" class="menu-item"><a href="/log-in.html">login</a></li>
                                 <li class="menu-item nav-actions">
                                     <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
-
                                 </li>
                             </ul>
                         </nav>
@@ -81,7 +90,6 @@
             </div>
         </header>
         <!-- header end -->
-
         <!-- search start-->
         <div class="search" id="search">
             <form action="" class="search-form">
@@ -113,19 +121,19 @@
                     <div class="col-md-7 col-lg-6 col-xl-5">
                         <div class="login-form box">
                             <h2 class="form-title text-center">Are you sure log out?</h2>
-                            <form id="formLogin">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-outline-dark btn-block btn-form"
-                                            id="cancel">Cancel</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="submit" id="logout" class="btn btn-theme btn-block btn-form">Log
-                                            Out</button>
-                                    </div>
-                                </div>
 
-                            </form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-outline-dark btn-block btn-form"
+                                        id="cancel">Cancel</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" id="logout" class="btn btn-theme btn-block btn-form">Log
+                                        Out</button>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -242,15 +250,50 @@
     <script src="js/search.js"></script>
 
 
-    <script>
-        // Lấy tham chiếu đến nút button
-        var button = document.getElementById("cancel");
 
-        // Thêm sự kiện click vào nút button
+    <script>
+        // console.log(localStorage.getItem('token'));
+        if (localStorage.getItem('token')) {
+
+            $.ajax({
+                url: "http://localhost:3000/users/current",
+                type: "GET",
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                data: {},
+                success: function (kq) {
+                    const roles = kq.roles;
+                    // console.log(roles);
+                    // return
+                    if (roles.includes('ADMIN')) {
+                        console.log(1);
+                        $('#admin').show();
+
+                    }
+                    else {
+                        $('#admin').hide();
+                    }
+
+                }
+            });
+
+            $('#account').show();
+            $('#login').hide();
+        }
+        else {
+            $('#login').show();
+            $('#account').hide();
+        }
+    </script>
+
+    <script>
+        var button = document.getElementById("logout");
         button.addEventListener("click", function () {
-            // Chuyển hướng đến trang khác
-            window.location.href = '/index.html';
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
         });
+
+
+
     </script>
 
 </body>

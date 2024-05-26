@@ -369,7 +369,7 @@
                             const element = array[index];
                             str += `<div class="col-md-6 col-lg-3">
                                         <div class="courses-item">
-                                            <a href="course-details.html?id=`+ element._id +`" class="link">
+                                            <a href="course-details.html?id=`+ element._id + `" class="link">
                                                 <div class="courses-item-inner">
                                                     <div class="img-box">
                                                         <img src="`+ element.imageIntroduce + `" alt="course img" width="260" height="170">
@@ -419,6 +419,28 @@
     <script>
         // console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token')) {
+
+            $.ajax({
+                url: "http://localhost:3000/users/current",
+                type: "GET",
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                data: {},
+                success: function (kq) {
+                    const roles = kq.roles;
+                    // console.log(roles);
+                    // return
+                    if (roles.includes('ADMIN')) {
+                        console.log(1);
+                        $('#admin').show();
+
+                    }
+                    else {
+                        $('#admin').hide();
+                    }
+
+                }
+            });
+
             $('#account').show();
             $('#login').hide();
         }

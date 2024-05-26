@@ -56,7 +56,9 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="menu-item menu-item-has-children">
+
+                                <li class="menu-item menu-item-has-children" id="admin">
+
                                     <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
@@ -77,9 +79,9 @@
                                     </ul>
                                 </li>
 
+                                <li id="login" class="menu-item"><a href="/log-in.html">login</a></li>
                                 <li class="menu-item nav-actions">
                                     <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
-
                                 </li>
                             </ul>
                         </nav>
@@ -89,7 +91,6 @@
             </div>
         </header>
         <!-- header end -->
-
         <!-- search start-->
         <div class="search" id="search">
             <form action="" class="search-form">
@@ -376,6 +377,40 @@
             });
         });
     </script> -->
+
+    <script>
+        // console.log(localStorage.getItem('token'));
+        if (localStorage.getItem('token')) {
+
+            $.ajax({
+                url: "http://localhost:3000/users/current",
+                type: "GET",
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                data: {},
+                success: function (kq) {
+                    const roles = kq.roles;
+                    // console.log(roles);
+                    // return
+                    if (roles.includes('ADMIN')) {
+                        console.log(1);
+                        $('#admin').show();
+
+                    }
+                    else {
+                        $('#admin').hide();
+                    }
+
+                }
+            });
+
+            $('#account').show();
+            $('#login').hide();
+        }
+        else {
+            $('#login').show();
+            $('#account').hide();
+        }
+    </script>
 </body>
 
 </html>

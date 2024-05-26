@@ -489,8 +489,6 @@
     </script>
 
     <script>
-
-
         // console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token')) {
 
@@ -500,9 +498,6 @@
                 headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
                 data: {},
                 success: function (kq) {
-
-
-
                     const roles = kq.roles;
                     // console.log(roles);
                     // return

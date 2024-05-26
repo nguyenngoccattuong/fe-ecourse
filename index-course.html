@@ -281,7 +281,7 @@
                     // Format the Date object to a readable string
                     let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
                     let formattedDate = dateObj.toLocaleString('en-US', options);
-                    str += '<tr>';
+                    str += '<tr id="id_' + element._id + '">';
                     str += '<td>' + element.title + '</td>';
                     str += '<td>' + element.price + '</td>';
                     str += '<td>' + element.category.category + '</td>';
@@ -291,14 +291,62 @@
 
                     str += `<td>
                                 <a href="edit-course.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
-                                <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="javscript:void(0);" onclick="getId('` + element._id + `')" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i></a>
                             </td>`;
                 }
                 $("#example tbody").html(str)
 
             }
         });
+        function getId(id) {
+            // alert(id);
+            // $('#id_' + id).remove()
+            $('#_getId').val(id)
+        }
+
+        function deleteRow() {
+            const id = $('#_getId').val()
+            // alert(id)
+            $.ajax({
+                url: "http://localhost:3000/course/" + id,
+                type: "DELETE",
+
+                success: function (kq) {
+                    console.log(kq);
+                }
+            })
+        }
+
+
     </script>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Notification</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Are you sure to delete?
+                    <input type="hidden" id="_getId">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" onclick="deleteRow()" class="btn btn-danger"
+                        data-bs-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

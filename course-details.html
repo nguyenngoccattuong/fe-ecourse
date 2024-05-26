@@ -56,13 +56,14 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="menu-item menu-item-has-children">
+
+                                <li class="menu-item menu-item-has-children" id="admin">
+
                                     <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
                                         <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
                                         <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
                                         </li>
-
                                         <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
                                         <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
                                     </ul>
@@ -78,9 +79,9 @@
                                     </ul>
                                 </li>
 
+                                <li id="login" class="menu-item"><a href="/log-in.html">login</a></li>
                                 <li class="menu-item nav-actions">
                                     <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
-
                                 </li>
                             </ul>
                         </nav>
@@ -90,7 +91,6 @@
             </div>
         </header>
         <!-- header end -->
-
         <!-- search start-->
         <div class="search" id="search">
             <form action="" class="search-form">
@@ -301,8 +301,9 @@
                             </div>
                             <!-- course curriculum end -->
                             <!-- course description start -->
-                            <div class="tab-pane fade" id="course-description" role="tabpanel" aria-labelledby="course-description-tab">
-                                
+                            <div class="tab-pane fade" id="course-description" role="tabpanel"
+                                aria-labelledby="course-description-tab">
+
                             </div>
                             <!-- course description end -->
                             <!-- course instructor start -->
@@ -336,7 +337,8 @@
                             </div>
                             <!-- course instructor end -->
                             <!-- course reviews end -->
-                            <div class="tab-pane fade" id="course-reviews" role="tabpanel" aria-labelledby="course-reviews-tab">
+                            <div class="tab-pane fade" id="course-reviews" role="tabpanel"
+                                aria-labelledby="course-reviews-tab">
                                 <div class="course-reviews box">
                                     <!-- rating summary start -->
                                     <div class="rating-summary">
@@ -495,7 +497,8 @@
                     <div class="col-lg-4">
                         <!-- course sidebar start -->
                         <div class="course-sidebar box">
-                            <div class="img-box position-relative" id="image-introduce" data-bs-toggle="modal" data-bs-target="#video-modal">
+                            <div class="img-box position-relative" id="image-introduce" data-bs-toggle="modal"
+                                data-bs-target="#video-modal">
                             </div>
                             <div class="price d-flex align-items-center mb-3">
                                 <span class="price-old text-decoration-line-through">$111</span>
@@ -643,30 +646,65 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
+
     <script>
-      function getUrlVars() {
-          var vars = [], hash;
-          var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-          for (var i = 0; i < hashes.length; i++) {
-              hash = hashes[i].split('=');
-              vars.push(hash[0]);
-              vars[hash[0]] = hash[1];
-          }
-          return vars;
-      }
-      const id = getUrlVars()['id'];
+        // console.log(localStorage.getItem('token'));
+        if (localStorage.getItem('token')) {
 
-      $.ajax({
-          url: "http://localhost:3000/course/" + id,
-          type: "GET",
-          headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-          success: function (kq) {
-            let deleteAt = kq.updatedAt;
-            let dateObj = new Date(deleteAt);
-            let options = { year: 'numeric', month: 'long', day: 'numeric'};
-            let formattedDate = dateObj.toLocaleString('en-US', options);
+            $.ajax({
+                url: "http://localhost:3000/users/current",
+                type: "GET",
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                data: {},
+                success: function (kq) {
+                    const roles = kq.roles;
+                    // console.log(roles);
+                    // return
+                    if (roles.includes('ADMIN')) {
+                        console.log(1);
+                        $('#admin').show();
 
-            let strDetail = `<h2 class="text-capitalize">`+ kq.title+`</h2>
+                    }
+                    else {
+                        $('#admin').hide();
+                    }
+
+                }
+            });
+
+            $('#account').show();
+            $('#login').hide();
+        }
+        else {
+            $('#login').show();
+            $('#account').hide();
+        }
+    </script>
+
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        const id = getUrlVars()['id'];
+
+        $.ajax({
+            url: "http://localhost:3000/course/" + id,
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+            success: function (kq) {
+                let deleteAt = kq.updatedAt;
+                let dateObj = new Date(deleteAt);
+                let options = { year: 'numeric', month: 'long', day: 'numeric' };
+                let formattedDate = dateObj.toLocaleString('en-US', options);
+
+                let strDetail = `<h2 class="text-capitalize">` + kq.title + `</h2>
             <div class="rating">
               <span class="average-rating">(4.5)</span>
               <span class="average-stars">
@@ -680,19 +718,19 @@
                 </div>
                 <ul>
                   <li> enrolled students - <span>2200</span></li>
-                  <li> created by - <span><a href="teacher-info.html?id=` + kq.teacher._id + `">`+ kq.teacher.username+`</a></span></li>
-                  <li> last updated - <span>`+ formattedDate +`</span></li>
+                  <li> created by - <span><a href="teacher-info.html?id=` + kq.teacher._id + `">` + kq.teacher.username + `</a></span></li>
+                  <li> last updated - <span>`+ formattedDate + `</span></li>
                   </ul>`;
-            $("#courseDetail").html(strDetail);
-                  
-            let courseDescription = 
-            `<div class="course-description box">
-                `+ kq.description +`
-            </div>`;
-            $("#course-description").html(courseDescription);
+                $("#courseDetail").html(strDetail);
 
-            let courseInstructor = 
-            `<div class="course-instructor box">
+                let courseDescription =
+                    `<div class="course-description box">
+                `+ kq.description + `
+            </div>`;
+                $("#course-description").html(courseDescription);
+
+                let courseInstructor =
+                    `<div class="course-instructor box">
               <h3 class="text-capitalize mb-4">Instructor</h3>
               <div class="instructor-details">
                   <div class="details-wrap d-flex align-items-center">
@@ -701,7 +739,7 @@
                                   class="rounde-circle" alt="instructor img"></div>
                       </div>
                       <div class="right-box">
-                          <h4>`+ kq.teacher.username +`</h4>
+                          <h4>`+ kq.teacher.username + `</h4>
                           <ul>
                               <li><i class="fas fa-star"></i>4.5 Ratting</li>
                               <li><i class="fas fa-play-circle"></i>10 Courses</li>
@@ -717,10 +755,10 @@
                   </div>
                 </div>
             </div>`;
-            $("#course-instructor").html(courseInstructor);
+                $("#course-instructor").html(courseInstructor);
 
-            let modelVideo = 
-            `<div class="modal-dialog modal-lg modal-dialog-centered">
+                let modelVideo =
+                    `<div class="modal-dialog modal-lg modal-dialog-centered">
               <div class="modal-content">
                   <div class="modal-body p-0">
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -728,24 +766,24 @@
                       </button>
                       <div class="ratio ratio-16x9">
                           <video controls class="js-course-preview-video">
-                              <source src="`+ kq.videoIntroduce+`" type="video/mp4">
+                              <source src="`+ kq.videoIntroduce + `" type="video/mp4">
                           </video>
                       </div>
                   </div>
               </div>
             </div>`
-            $("#video-modal").html(modelVideo);
-            
-            let imageIntroduce = 
-            `<img src="` + kq.imageIntroduce + `" alt="course img" class="w-100">
+                $("#video-modal").html(modelVideo);
+
+                let imageIntroduce =
+                    `<img src="` + kq.imageIntroduce + `" alt="course img" class="w-100" width="260" height="170">
             <div class="play-icon">
                 <i class="fas fa-play"></i>
             </div>`
-            $("#image-introduce").html(imageIntroduce);
+                $("#image-introduce").html(imageIntroduce);
 
-          }
-      });
-  </script>
+            }
+        });
+    </script>
 
 
 
