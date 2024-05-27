@@ -102,14 +102,15 @@
                     <div class="product-payment-inner-st">
                         <div class="review-content-section box">
                             <h2>Create Course</h2>
-                            <form asp-action="Create" method="post"
+                            <form id="createCategory" method="post"
                                 class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <div class="form-group">
                                             <label class="m-2">Category</label>
-                                            <input " type=" text" class="form-control" placeholder="Course Name">
+                                            <input " type=" text" id="category" class="form-control"
+                                                placeholder="Course Name">
                                             <span asp-validation-for="Category" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -117,7 +118,8 @@
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="payment-adress">
-                                            <button type="submit" class="btn btn-theme waves-effect waves-light">
+                                            <button id="submit" type="submit"
+                                                class="btn btn-theme waves-effect waves-light">
                                                 Submit
                                             </button>
                                         </div>
@@ -246,6 +248,40 @@
             .catch(error => {
                 console.error(error);
             });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#createCategory").on("submit", function (e) {
+                e.preventDefault();
+
+                const category = $("#category").val();
+
+                $.ajax({
+                    url: "http://localhost:3000/categorys",
+                    type: "POST",
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                    data: { category },
+                    success: function (results) {
+                        alert("Seccessfully!");
+                        // console.log(results);
+                    },
+                    // error: function (xhr, status, error) {
+                    //     alert("Error: " + xhr.responseText);
+                    // },
+                });
+            });
+        });
+        // $.ajax({
+        //     url: "http://localhost:3000/course_lessons",
+        //     type: "POST",
+        //     // headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        //     success: function (results) {
+        //         console.log(results);
+        //     }
+        // });
     </script>
 
 

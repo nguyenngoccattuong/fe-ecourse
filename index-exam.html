@@ -319,7 +319,8 @@
 
                     str += `<td>
                                     <a href="exam-lesson.html"><i class="fa-solid fa-pen-to-square"></i></a> |
-                                    <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="javscript:void(0);" onclick="getId('` + element._id + `')" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i></a>
+
                                 </td>`;
 
                 }
@@ -328,7 +329,53 @@
 
             }
         });
+        function getId(id) {
+            // alert(id);
+            // $('#id_' + id).remove()
+            $('#_getId').val(id)
+        }
+
+        function deleteRow() {
+            const id = $('#_getId').val()
+            // alert(id)
+            // return
+            $.ajax({
+                url: "http://localhost:3000/exam/" + id,
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                type: "DELETE",
+                success: function (kq) {
+                    location.reload();
+                }
+            })
+        }
     </script>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Notification</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Are you sure to delete?
+                    <input type="hidden" id="_getId">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" onclick="deleteRow()" class="btn btn-danger"
+                        data-bs-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </body>
 

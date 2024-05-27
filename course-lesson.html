@@ -105,7 +105,7 @@
                                 <div class="product-payment-inner-st">
                                     <div class="review-content-section box">
                                         <h2> Edit Lesson Detail</h2>
-                                        <form asp-action="Lesson" method="post">
+                                        <form asp-action="Lesson" method="post" id="lessonDetail">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
@@ -212,7 +212,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -330,34 +330,70 @@
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
     <script>
-      function getUrlVars() {
-          var vars = [], hash;
-          var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-          for (var i = 0; i < hashes.length; i++) {
-              hash = hashes[i].split('=');
-              vars.push(hash[0]);
-              vars[hash[0]] = hash[1];
-          }
-          return vars;
-      }
-      const id = getUrlVars()['id'];
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        const id = getUrlVars()['id'];
 
-      $.ajax({
-          url: "http://localhost:3000/course_lessons/" + id,
-          type: "GET",
-          headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+        $.ajax({
+            url: "http://localhost:3000/course_lessons/" + id,
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
 
 
-          success: function (kq) {
-              console.log(kq);
-              const lessonTitle = kq.title;
-              const lessonSelection = kq.selection;
+            success: function (kq) {
+                console.log(kq);
+                const lessonTitle = kq.title;
+                const lessonSelection = kq.selection;
 
-              $('#lessonTitle').val(lessonTitle)
-              $('#lessonSelection').val(lessonSelection)
-          }
-      });
-  </script>
+                $('#lessonTitle').val(lessonTitle)
+                $('#lessonSelection').val(lessonSelection)
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#lessonDetail').on('submit', function (e) {
+                e.preventDefault();
+
+                const lessonTitle = $('#lessonTitle').val();
+                const lessonSelection = $('#lessonTitle').val();
+
+                const formData = new FormData(document.getElementById('lessonDetail'));
+
+                formData.append('title', lessonTitle);
+                formData.append('selection', lessonSelection);
+
+
+
+                $.ajax({
+                    url: "http://localhost:3000/course_lessons/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (results) {
+                        alert('Successfully');
+
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
 
     <script>
 
@@ -408,7 +444,7 @@
 
                     str += `<td>
                                     <a href="add-video.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
-                                    <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="javscript:void(0);" onclick="getId('` + element._id + `')" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>`;
 
                 }
@@ -417,7 +453,54 @@
 
             }
         });
+        function getId(id) {
+            // alert(id);
+            // $('#id_' + id).remove()
+            $('#_getId').val(id)
+        }
+
+        function deleteRow() {
+            const id = $('#_getId').val()
+            // alert(id)
+            // return
+            $.ajax({
+                url: "http://localhost:3000/course_videos/" + id,
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                type: "DELETE",
+                success: function (kq) {
+                    location.reload();
+                }
+            })
+        }
     </script>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Notification</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Are you sure to delete?
+                    <input type="hidden" id="_getId">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" onclick="deleteRow()" class="btn btn-danger"
+                        data-bs-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- <script>
