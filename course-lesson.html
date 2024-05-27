@@ -105,23 +105,21 @@
                                 <div class="product-payment-inner-st">
                                     <div class="review-content-section box">
                                         <h2> Edit Lesson Detail</h2>
-                                        <form asp-action="Lesson" method="post" id="lessonDetail">
+                                        <form asp-action="Lesson" method="put" id="lessonDetail">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <input id="lessonTitle" type="text" class="form-control"
                                                             placeholder="Lesson Title">
-                                                        <span asp-validation-for="@Model.CourseLesson.Title"
-                                                            class="text-danger"></span>
                                                     </div>
+                                                    <div class="form-group">
+                                                      <input id="lessonCourse" type="text" class="form-control"
+                                                          placeholder="CourseId">
+                                                  </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
-                                                        <input id="lessonSelection" type="number"
-                                                            value="@Model.CourseLesson.Lesson" class="form-control"
-                                                            placeholder="Part Lesson">
-                                                        <span asp-validation-for="@Model.CourseLesson.Lesson"
-                                                            class="text-danger"></span>
+                                                        <input id="lessonSelection" type="number" class="form-control" placeholder="Part Lesson">
                                                     </div>
                                                 </div>
                                             </div>
@@ -352,50 +350,52 @@
                 console.log(kq);
                 const lessonTitle = kq.title;
                 const lessonSelection = kq.selection;
+                const course = kq.course;
 
                 $('#lessonTitle').val(lessonTitle)
                 $('#lessonSelection').val(lessonSelection)
+                $('#lessonCourse').val(course)
             }
         });
     </script>
 
-    <script>
-        $(document).ready(function () {
-            $('#lessonDetail').on('submit', function (e) {
-                e.preventDefault();
+  <script>
+    $(document).ready(function () {
+        $('#lessonDetail').on('submit', function (e) {
+            e.preventDefault();
 
-                const lessonTitle = $('#lessonTitle').val();
-                const lessonSelection = $('#lessonTitle').val();
+            const lessonTitle = $('#lessonTitle').val();
+            const lessonSelection = parseInt($('#lessonSelection').val(), 10);  // Convert to number
+            const lessonCourse = $('#lessonCourse').val();
 
-                const formData = new FormData(document.getElementById('lessonDetail'));
+            // Constructing the JSON object
+            const jsonData = {
+                "title": lessonTitle,
+                "selection": lessonSelection,
+                "course": lessonCourse
+            };
 
-                formData.append('title', lessonTitle);
-                formData.append('selection', lessonSelection);
+            $.ajax({
+                url: "http://localhost:3000/course_lessons/" + id,
+                type: "PUT",
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                data: JSON.stringify(jsonData),  // Stringify the JSON object
+                contentType: "application/json",  // Ensure content type is application/json
+                success: function (results) {
+                    alert('Successfully');
+                    console.log(results);
+                },
+                error: function (xhr, status, error) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+            return false;
+        });
+    });
+  </script>
 
 
-
-                $.ajax({
-                    url: "http://localhost:3000/course_lessons/" + id,
-                    type: "PUT",
-                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (results) {
-                        alert('Successfully');
-
-                    },
-                    error: function (xhr, status, error) {
-                        alert('Error: ' + xhr.responseText);
-                    }
-                });
-                return false;
-            })
-        })
-    </script>
-
-    <script>
+    <!-- <script>
 
         // bat buoc login moi cho vao
 
@@ -472,26 +472,23 @@
                 }
             })
         }
-    </script>
+    </script> -->
 
     <!-- The Modal -->
-    <div class="modal" id="myModal">
+    <!-- <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Notification</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <!-- Modal body -->
                 <div class="modal-body">
                     Are you sure to delete?
                     <input type="hidden" id="_getId">
                 </div>
 
-                <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" onclick="deleteRow()" class="btn btn-danger"
                         data-bs-dismiss="modal">Yes</button>
@@ -499,8 +496,7 @@
 
             </div>
         </div>
-    </div>
-
+    </div> -->
 
 
     <!-- <script>

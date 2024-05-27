@@ -206,10 +206,9 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label asp-for="Lesson">Selection</label>
+                                            <label>Selection</label>
                                             <input id="lessonSelection" type="number" class="form-control"
                                                 placeholder="Part Lesson">
-                                            <span asp-validation-for="Lesson" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -424,8 +423,6 @@
             url: "http://localhost:3000/categorys",
             type: "GET",
             headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-
-
             success: function (array) {
 
                 let str = '<option value="">_Select_</option>';
@@ -437,39 +434,8 @@
                 }
 
                 $('#courseCategoryId').html(str)
-
-
-                // const courseTitle = kq.title;
-                // const courseTeacherId = kq.teacher.username;
-                // const coursePrice = kq.price;
-                // const courseLanguage = kq.language;
-                // const courseCategoryId = kq.category.category;
-                // const courseTime = kq.time;
-
-                // $('#courseTitle').val(courseTitle)
-                // $('#courseTeacherId').val(courseTeacherId)
-                // $('#coursePrice').val(coursePrice)
-                // $('#courseLanguage').val(courseLanguage)
-                // $('#courseCategoryId').val(courseCategoryId)
-                // $('#courseTime').val(courseTime)
-
-
             }
         });
-
-        // $('#formEdit').on('submit', function (e) {
-        //     e.preventDefault();
-        //     // alert(1);
-        //     // const formData = new FormData();
-        //     // console.log(formData);
-        //     var data = new FormData();
-        //     $.each($('#file')[0].files, function (i, file) {
-        //         data.append('file-' + i, file);
-        //     });
-        //     console.log($('#file')[0].files);
-        // })
-
-
     </script>
 
     <script>
@@ -511,20 +477,6 @@
 
             }
         });
-
-        // $('#formEdit').on('submit', function (e) {
-        //     e.preventDefault();
-        //     // alert(1);
-        //     // const formData = new FormData();
-        //     // console.log(formData);
-        //     var data = new FormData();
-        //     $.each($('#file')[0].files, function (i, file) {
-        //         data.append('file-' + i, file);
-        //     });
-        //     console.log($('#file')[0].files);
-        // })
-
-
     </script>
 
 
@@ -563,7 +515,7 @@
                     processData: false,
                     success: function (results) {
                         alert('Successfully');
-
+                        console.log(results);
                     },
                     error: function (xhr, status, error) {
                         alert('Error: ' + xhr.responseText);
@@ -662,41 +614,35 @@
             $("#formLesson").on("submit", function (e) {
                 e.preventDefault();
 
-                // const title = $("#lessonTitle").val();
-                // const selection = Number($("#lessonSelection").val());
-                // const course = getUrlVars()["id"];
-                // alert([title, selection, course])
-                // return;
+                const title = $("#lessonTitle").val();
+                const selection = parseInt($("#lessonSelection").val(), 10);
+                const course = getUrlVars()["id"];
+
+                const jsonData = {
+                "title": title,
+                "selection": selection,
+                "course": course
+                };
 
                 $.ajax({
-                    url: "http://localhost:3000/course_lessons",
+                    url: "http://localhost:3000/course_lessons/",
                     type: "POST",
-                    // headers: {
-                    //     Authorization: "Bearer " + localStorage.getItem("token"),
-                    // },
-                    // data: {
-                    //     "title": "aagarraww",
-                    //     "selection": 1111,
-                    //     "course": "66339bb41856a6df59b2ecfe"
-                    // },
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                    data: JSON.stringify(jsonData),  // Stringify the JSON object
+                    contentType: "application/json",  // Ensure content type is application/json
                     success: function (results) {
-                        // alert("Seccessfully!");
+                        alert("Seccessfully!");
                         console.log(results);
                     },
-                    // error: function (xhr, status, error) {
-                    //     alert("Error: " + xhr.responseText);
-                    // },
+                    error: function (xhr, status, error) {
+                        alert("Error: " + xhr.responseText);
+                    },
                 });
             });
         });
-        // $.ajax({
-        //     url: "http://localhost:3000/course_lessons",
-        //     type: "POST",
-        //     // headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-        //     success: function (results) {
-        //         console.log(results);
-        //     }
-        // });
+       
     </script>
 
 </body>
