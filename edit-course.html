@@ -188,7 +188,7 @@
                         <hr class="hr" />
                         <div class="review-content-section box">
                             <h2> Lesson Details </h2>
-                            <form asp-action="Detail" method="post">
+                            <form asp-action="Detail" method="post" id="formLesson">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
@@ -200,8 +200,8 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label asp-for="Lesson">Lesson</label>
-                                            <input id="partLessson" type="number" class="form-control"
+                                            <label asp-for="Lesson">Selection</label>
+                                            <input id="lessonSelection" type="number" class="form-control"
                                                 placeholder="Part Lesson">
                                             <span asp-validation-for="Lesson" class="text-danger"></span>
                                         </div>
@@ -566,10 +566,10 @@
             })
         })
     </script>
-<script>
-  const idCourse = getUrlVars()['id'];
-  console.log(idCourse);
-  $.ajax({
+    <script>
+        const idCourse = getUrlVars()['id'];
+        console.log(idCourse);
+        $.ajax({
             url: "http://localhost:3000/course/lessonsOf/" + idCourse,
             type: "GET",
             beforeSend: function (params) {
@@ -602,7 +602,50 @@
 
             }
         });
-</script>
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#formLesson").on("submit", function (e) {
+                e.preventDefault();
+
+                // const title = $("#lessonTitle").val();
+                // const selection = Number($("#lessonSelection").val());
+                // const course = getUrlVars()["id"];
+                // alert([title, selection, course])
+                // return;
+
+                $.ajax({
+                    url: "http://localhost:3000/course_lessons",
+                    type: "POST",
+                    // headers: {
+                    //     Authorization: "Bearer " + localStorage.getItem("token"),
+                    // },
+                    // data: {
+                    //     "title": "aagarraww",
+                    //     "selection": 1111,
+                    //     "course": "66339bb41856a6df59b2ecfe"
+                    // },
+                    success: function (results) {
+                        // alert("Seccessfully!");
+                        console.log(results);
+                    },
+                    // error: function (xhr, status, error) {
+                    //     alert("Error: " + xhr.responseText);
+                    // },
+                });
+            });
+        });
+        // $.ajax({
+        //     url: "http://localhost:3000/course_lessons",
+        //     type: "POST",
+        //     // headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        //     success: function (results) {
+        //         console.log(results);
+        //     }
+        // });
+    </script>
+
 </body>
 
 </html>
