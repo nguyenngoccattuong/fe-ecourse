@@ -109,17 +109,21 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
+                                                        <label asp-for="Part">Title</label>
                                                         <input id="lessonTitle" type="text" class="form-control"
                                                             placeholder="Lesson Title">
                                                     </div>
                                                     <div class="form-group">
-                                                      <input id="lessonCourse" type="text" class="form-control"
-                                                          placeholder="CourseId">
-                                                  </div>
+                                                        <label asp-for="Part">CourseId</label>
+                                                        <input id="lessonCourse" type="text" class="form-control"
+                                                            placeholder="CourseId">
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
-                                                        <input id="lessonSelection" type="number" class="form-control" placeholder="Part Lesson">
+                                                        <label asp-for="Part">Lesson</label>
+                                                        <input id="lessonSelection" type="number" class="form-control"
+                                                            placeholder="Part Lesson">
                                                     </div>
                                                 </div>
                                             </div>
@@ -327,6 +331,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
+
     <script>
         function getUrlVars() {
             var vars = [], hash;
@@ -359,43 +364,43 @@
         });
     </script>
 
-  <script>
-    $(document).ready(function () {
-        $('#lessonDetail').on('submit', function (e) {
-            e.preventDefault();
+    <script>
+        $(document).ready(function () {
+            $('#lessonDetail').on('submit', function (e) {
+                e.preventDefault();
 
-            const lessonTitle = $('#lessonTitle').val();
-            const lessonSelection = parseInt($('#lessonSelection').val(), 10);  // Convert to number
-            const lessonCourse = $('#lessonCourse').val();
+                const lessonTitle = $('#lessonTitle').val();
+                const lessonSelection = parseInt($('#lessonSelection').val(), 10);  // Convert to number
+                const lessonCourse = $('#lessonCourse').val();
 
-            // Constructing the JSON object
-            const jsonData = {
-                "title": lessonTitle,
-                "selection": lessonSelection,
-                "course": lessonCourse
-            };
+                // Constructing the JSON object
+                const jsonData = {
+                    "title": lessonTitle,
+                    "selection": lessonSelection,
+                    "course": lessonCourse
+                };
 
-            $.ajax({
-                url: "http://localhost:3000/course_lessons/" + id,
-                type: "PUT",
-                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-                data: JSON.stringify(jsonData),  // Stringify the JSON object
-                contentType: "application/json",  // Ensure content type is application/json
-                success: function (results) {
-                    alert('Successfully');
-                    console.log(results);
-                },
-                error: function (xhr, status, error) {
-                    alert('Error: ' + xhr.responseText);
-                }
+                $.ajax({
+                    url: "http://localhost:3000/course_lessons/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: JSON.stringify(jsonData),  // Stringify the JSON object
+                    contentType: "application/json",  // Ensure content type is application/json
+                    success: function (results) {
+                        alert('Successfully');
+                        console.log(results);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
             });
-            return false;
         });
-    });
-  </script>
+    </script>
 
 
-    <!-- <script>
+    <script>
 
         // bat buoc login moi cho vao
 
@@ -472,10 +477,10 @@
                 }
             })
         }
-    </script> -->
+    </script>
 
     <!-- The Modal -->
-    <!-- <div class="modal" id="myModal">
+    <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -496,10 +501,10 @@
 
             </div>
         </div>
-    </div> -->
+    </div>
 
 
-    <!-- <script>
+    <script>
         function getUrlVars() {
             var vars = [], hash;
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -511,10 +516,10 @@
             return vars;
         }
         // console.log(getUrlVars()['id']);
-        const id = getUrlVars()['id'];
+        const iD = getUrlVars()['id'];
 
         $.ajax({
-            url: "http://localhost:3000/course_lessons/" + id,
+            url: "http://localhost:3000/course_lessons/" + iD,
             type: "GET",
 
 
@@ -551,7 +556,7 @@
         })
 
 
-    </script> -->
+    </script>
 
 
 </body>

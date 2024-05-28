@@ -154,15 +154,14 @@
                                                         <div class="row">
                                                             <div class="col-lg-3">
                                                                 <div class="payment-adress">
-                                                                    <button type="submit"
+                                                                    <button type="submit" id="submit"
                                                                         class="btn btn-theme waves-effect waves-light">
-                                                                        Submit
+                                                                        Save
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-3">
-                                                                <a asp-action="Index"
-                                                                    class="btn btn-theme waves-effect waves-light"
+                                                                <a class="btn btn-theme waves-effect waves-light"
                                                                     href="course-lesson.html">
                                                                     Back to list
                                                                 </a>
@@ -277,21 +276,10 @@
 
     <!-- style switcher end -->
 
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
-
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#myeditor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
 
     <script>
         function getUrlVars() {
@@ -314,7 +302,7 @@
 
             success: function (kq) {
                 console.log(kq);
-                const part = kq._id;
+                const part = kq.part;
                 const title = kq.title;
                 const hour = kq.hour;
                 const minute = kq.minute;
@@ -339,8 +327,46 @@
             });
             console.log($('#file')[0].files);
         })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#formEdit').on('submit', function (e) {
+                e.preventDefault();
+
+                const part = $("#part").val();
+                const title = $("#title").val();
+                const hour = $("#hour").val();
+                const minute = $("#minute").val();
+
+                const formData = new FormData(document.getElementById('formEdit'));
+
+                formData.append('part', part);
+                formData.append('title', title);
+                formData.append('hour', hour);
+                formData.append('minute', minute);
+                formData.append('files', []);
 
 
+                $.ajax({
+                    url: "http://localhost:3000/course_videos/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (results) {
+                        alert('Successfully');
+                        console.log(results);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
     </script>
 
 
