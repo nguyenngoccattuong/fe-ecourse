@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Course</title>
+    <link rel="icon" type="image/x-icon" href="favicon-standard.png">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" class="js-color-style" href="css/colors/color-1.css">
+    <link rel="stylesheet" class="js-glass-style" href="css/glass.css" disabled>
+</head>
+
+<body>
+
+    <!-- page loader start -->
+    <div class="page-loader js-page-loader">
+        <div></div>
+    </div>
+    <!-- page loader end -->
+    <div class="main-wrapper">
+        <!-- header start -->
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-sm-12">
+                        <div class="header-main d-flex justify-content-between align-items-center">
+                            <div class="header-logo">
+                                <a href="index.html"><span>E
+                                    </span>Course</a>
+                            </div>
+                            <button type="button"
+                                class="header-hamburger-btn js-header-menu-toggler"><span></span></button>
+                            <div class="header-backdrop js-header-backdrop"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-sm-12">
+
+                        <nav class="header-menu js-header-menu">
+
+                            <button type="button" class="header-close-btn js-header-menu-toggler">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <ul class="menu">
+                                <li class="menu-item"><a href="index.html">home</a></li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="js-toggle-sub-menu">Pages<i class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/courses.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/exams.html">Exams</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
+                                        <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
+                                        </li>
+                                        <li class="sub-menu-item"><a href="/index-user.html">Teachers</a></li>
+                                        <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
+                                        <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item "><a href="contact.html">contact</a></li>
+                                <li class="menu-item menu-item-has-children" id="account">
+                                    <a href="#" class="js-toggle-sub-menu">Account<i
+                                            class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a href="/log-out.html">Log Out</a></li>
+                                        <li class="sub-menu-item"><a href="/info.html">Setting</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="menu-item nav-actions">
+                                    <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
+
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <!-- search start-->
+        <div class="search" id="search">
+            <form action="" class="search-form">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" placeholder="What are you looking for?" class="search-input">
+            </form>
+
+            <i class="fa-solid fa-x search-close" id="btn-close"></i>
+        </div>
+        <!-- search end-->
+
+        <div class="container">
+            <main role="main" class="pb-3">
+              <div class="single-pro-review-area mt-t-30 mg-b-15">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="review-content-section box">
+                                <h2>Edit Exam Details </h2>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="review-content-section">
+                                            <div id="dropzone1" class="pro-ad addcoursepro">
+                                                <form asp-action="Detail" method="post" enctype="multipart/form-data"
+                                                      class="dropzone dropzone-custom needsclick addcourse"
+                                                      id="demo1-upload">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                            <div class="form-group">
+                                                                <label asp-for="Exam.Title">Title</label>
+                                                                <input asp-for="Exam.Title" type="text"
+                                                                       class="form-control"
+                                                                       placeholder="Question Title">
+                                                                <span asp-validation-for="Exam.Title" class="text-danger"></span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label asp-for="Exam.CategoryId">Category</label>
+                                                                <select asp-for="Exam.CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label asp-for="Image">Question Image</label>
+                                                                <input type="file" asp-for="Image" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label asp-for="Exam.Description">Description</label>
+                                                                <textarea id="myeditor" asp-for="Exam.Description"
+                                                                          placeholder="Description"></textarea>
+                                                                <span asp-validation-for="Exam.Description" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="payment-adress">
+                                                                <button type="submit"
+                                                                        class="btn btn-primary waves-effect waves-light">
+                                                                    Save
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="hr" />
+                                <h2>Add Lesson Details </h2>
+                                <div class="review-content-section">
+                                    <form asp-action="Detail" method="post">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Title">Title</label>
+                                                    <input asp-for="Title" type="text"
+                                                           class="form-control"
+                                                           placeholder="Lesson Title">
+                                                    <span asp-validation-for="Lesson" class="text-danger"></span>
+                                                </div><div class="form-group">
+                                                    <label asp-for="Lesson">Lesson</label>
+                                                    <input asp-for="Lesson" type="number"
+                                                           class="form-control"
+                                                           placeholder="Lesson">
+                                                    <span asp-validation-for="Lesson" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Point">Point</label>
+                                                    <input asp-for="Point" type="number"
+                                                           class="form-control"
+                                                           placeholder="Point">
+                                                    <span asp-validation-for="Point" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Hour">Hour</label>
+                                                    <input asp-for="Hour" type="number"
+                                                           class="form-control"
+                                                           placeholder="Hour">
+                                                    <span asp-validation-for="Hour" class="text-danger"></span>
+                                                </div><div class="form-group">
+                                                    <label asp-for="Minute">Minute</label>
+                                                    <input asp-for="Minute" type="number"
+                                                           class="form-control"
+                                                           placeholder="Minute">
+                                                    <span asp-validation-for="Minute" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Second">Second</label>
+                                                    <input asp-for="Second" type="number"
+                                                           class="form-control"
+                                                           placeholder="Second">
+                                                    <span asp-validation-for="Second" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                    <div class="table-responsive text-nowrap">
+                                        <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Title</th>
+                                                    <th>Lesson</th>
+                                                    <th>Point</th>
+                                                    <th>Hour</th>
+                                                    <th>Minute</th>
+                                                    <th>Second</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                        <td>@lesson.Id</td>
+                                                        <td>@lesson.Title</td>
+                                                        <td>@lesson.Lesson</td>
+                                                        <td>@lesson.Point</td>
+                                                        <td>@lesson.Hour</td>
+                                                        <td>@lesson.Minute</td>
+                                                        <td>@lesson.Second</td>
+                                                        <td>
+                                                            <a class="btn btn-theme" asp-action="Lesson" asp-route-id="@lesson.Id">Edit</a>
+                                                            <form asp-action="DetailDelete" method="post">
+                                                                <button type="submit" asp-action="DetailDelete" asp-route-id="@lesson.Id" formnovalidate
+                                                                        class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer start -->
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3 class="footer-logo"><span>E </span>Course</h3>
+                                <ul>
+                                    <li><a href="#">about</a></li>
+                                    <li><a href="#">what we offer</a></li>
+                                    <li><a href="#">careers</a></li>
+                                    <li><a href="#">certificates</a></li>
+                                    <li><a href="#">blog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>learning</h3>
+                                <ul>
+                                    <li><a href="#">get the app</a></li>
+                                    <li><a href="#">testimonials</a></li>
+                                    <li><a href="#">pricing</a></li>
+                                    <li><a href="#">faq</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>more</h3>
+                                <ul>
+                                    <li><a href="#">affitiliates</a></li>
+                                    <li><a href="#">become a course creater</a></li>
+                                    <li><a href="#">traning webinars</a></li>
+                                    <li><a href="#">free personality test</a></li>
+                                    <li><a href="#">help and support</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>get in touh</h3>
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook social-icon"></i> facebook</a></li>
+                                    <li><a href="#"><i class="fab fa-twitter social-icon"></i> twitter</a></li>
+                                    <li><a href="#"><i class="fab fa-instagram social-icon"></i> instagram</a></li>
+                                    <li><a href="#"><i class="fab fa-youtube social-icon"></i> youtube</a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin social-icon"></i> linkedin</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <p></p>
+                </div>
+            </div>
+        </footer>
+        <!-- footer end -->
+
+    </div>
+    <!-- style switcher start -->
+    <div class="style-switcher js-style-switcher">
+        <div class="style-switcher-toggler js-style-switcher-toggler">
+            <i class="fas fa-cog"></i>
+        </div>
+        <h3>Style Switcher</h3>
+        <div class="style-switcher-item">
+            <p class="mb-2">Theme Colors</p>
+            <!-- theme colors -->
+            <div class="theme-colors js-theme-colors">
+                <button type="button" data-js-theme-color="color-1" class="js-theme-color-item color-1"></button>
+                <button type="button" data-js-theme-color="color-2" class="js-theme-color-item color-2"></button>
+                <button type="button" data-js-theme-color="color-3" class="js-theme-color-item color-3"></button>
+                <button type="button" data-js-theme-color="color-4" class="js-theme-color-item color-4"></button>
+                <button type="button" data-js-theme-color="color-5" class="js-theme-color-item color-5"></button>
+            </div>
+        </div>
+        <div class="style-switcher-item">
+            <div class="form-check form-switch">
+                <input class="form-check-input js-dark-mode" type="checkbox" id="dark-mode">
+                <label class="form-check-label" for="dark-mode">Dark Mode</label>
+            </div>
+        </div>
+        <div class="style-switcher-item">
+            <div class="form-check form-switch">
+                <input class="form-check-input js-glass-effect" type="checkbox" id="glass-effect">
+                <label class="form-check-label" for="glass-effect">Glass Effect</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- style switcher end -->
+
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#myeditor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+</body>
+
+</html>
