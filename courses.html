@@ -342,12 +342,10 @@
                         active = 'active';
                         idFirst = element._id;
                     }
-                    if (element.deleteAt === null) {
-                        str += `<button 
+                    str += `<button 
                         class="nav-link `+ active + `" 
                         onclick="getCourse('` + element._id + `', 1)"
                     >` + element.category + `</button>`;
-                    }
                 }
 
                 $("#nav-tab").html(str)
@@ -369,8 +367,8 @@
                         let str = '<div class="row">';
                         for (let index = 0; index < array.length; index++) {
                             const element = array[index];
-                            if (element.deleteAt === null) {
-                                str += `<div class="col-md-6 col-lg-3">
+                            if(element.deleteAt === null){
+                              str += `<div class="col-md-6 col-lg-3">
                                         <div class="courses-item">
                                             <a href="course-details.html?id=`+ element._id + `" class="link">
                                                 <div class="courses-item-inner">
