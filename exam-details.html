@@ -408,22 +408,20 @@
               let dateObj = new Date(deleteAt);
               let options = { year: 'numeric', month: 'long', day: 'numeric' };
               let formattedDate = dateObj.toLocaleString('en-US', options);
-
-              let strDetail = `<h2 id="exam-title" class="text-capitalize">` + kq.title + `</h2>
-                <div class="rating">
-                  <span class="average-rating">(4.5)</span>
-                  <span class="average-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </span>
-                  <span class="reviews">(23 Reviews)</span>
+              
+              let strDetail = 
+              `<div class="row">
+                <div class="col-lg-9">
+                  <h2 id="exam-title" class="text-capitalize">` + kq.title + `</h2>
+                  
+                  <ul>
+                      <li> last updated - <span>`+ formattedDate + `</span></li>
+                  </ul>
                 </div>
-                <ul>
-                  <li> last updated - <span>`+ formattedDate + `</span></li>
-                </ul>`;
+                <div class="col-lg-3">
+                  <img src="`+ kq.imageUrl +`" alt="course img" width="200px" height="100px">
+                </div>
+              </div>`;
               $("#examDetail").html(strDetail);
 
               let courseDescription =
@@ -431,23 +429,6 @@
               `+ kq.description + `
           </div>`;
               $("#course-description").html(courseDescription);
-
-              let modelVideo =
-                  `<div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body p-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <div class="ratio ratio-16x9">
-                        <video controls class="js-course-preview-video">
-                            <source src="`+ kq.videoIntroduce + `" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-          </div>`
-              $("#video-modal").html(modelVideo);
 
               let imageIntroduce =
                   `<img src="` + kq.imageIntroduce + `" alt="course img" class="w-100" width="260" height="170">

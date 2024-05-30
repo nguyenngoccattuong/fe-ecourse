@@ -153,148 +153,6 @@
                                     <h3 class="text-capitalize mb-4">curriculum</h3>
                                     <!-- accordion start -->
                                     <div class="accordion" id="accordion">
-                                        <!-- accordion item start -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="heading-1">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse-1" aria-expanded="true"
-                                                    aria-controls="collapse-1">
-                                                    Language basics <span> 2 lessons | 20min </span>
-                                                </button>
-                                            </h2>
-                                            <div id="collapse-1" class="accordion-collapse collapse show"
-                                                aria-labelledby="heading-1" data-bs-parent="#accordion">
-                                                <div class="accordion-body">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Lexical structure
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Values
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Types
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Variables
-                                                            <span>06:00</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- accordion item end -->
-                                        <!-- accordion item start -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="heading-2">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapse-2"
-                                                    aria-expanded="false" aria-controls="collapse-2">
-                                                    Types <span> 2 lessons | 20min</span>
-                                                </button>
-                                            </h2>
-                                            <div id="collapse-2" class="accordion-collapse collapse"
-                                                aria-labelledby="heading-2" data-bs-parent="#accordion">
-                                                <div class="accordion-body">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Strings
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Boolean
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Null and underfined
-                                                            <span>06:00</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- accordion item end -->
-                                        <!-- accordion item start -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="heading-3">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapse-3"
-                                                    aria-expanded="false" aria-controls="collapse-3">
-                                                    Control structure <span> 2 lessons | 20min</span>
-                                                </button>
-                                            </h2>
-                                            <div id="collapse-3" class="accordion-collapse collapse"
-                                                aria-labelledby="heading-3" data-bs-parent="#accordion">
-                                                <div class="accordion-body">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            If / else
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Switch
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Loops
-                                                            <span>06:00</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- accordion item end -->
-                                        <!-- accordion item start -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="heading-4">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapse-4"
-                                                    aria-expanded="false" aria-controls="collapse-4">
-                                                    Function <span> 2 lessons | 20min</span>
-                                                </button>
-                                            </h2>
-                                            <div id="collapse-4" class="accordion-collapse collapse"
-                                                aria-labelledby="heading-4" data-bs-parent="#accordion">
-                                                <div class="accordion-body">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Arrow function
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Parameters
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Return value
-                                                            <span>06:00</span>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            Recursion
-                                                            <span>06:00</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- accordion item end -->
                                     </div>
                                     <!-- accordion end -->
                                 </div>
@@ -702,8 +560,8 @@
             //     $("#course-instructor").html('<img src="./img/loading-gif.gif" alt="" width="50">')
             // },
             success: function (kq) {
-                let deleteAt = kq.updatedAt;
-                let dateObj = new Date(deleteAt);
+                let updateAt = kq.updatedAt;
+                let dateObj = new Date(updateAt);
                 let options = { year: 'numeric', month: 'long', day: 'numeric' };
                 let formattedDate = dateObj.toLocaleString('en-US', options);
 
@@ -788,6 +646,55 @@
         });
     </script>
 
+    <script>
+      $.ajax({
+            url: "http://localhost:3000/course/lessonsOf/" + id,
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+            // beforeSend: function (params) {
+            //     $("#course-instructor").html('<img src="./img/loading-gif.gif" alt="" width="50">')
+            // },
+            success: function (kq) {
+              console.log(kq);
+                const array = kq;
+                let str = '';
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+                    const videos = element.videos;
+                    let strVideo = '';
+                    for (let j = 0; j < videos.length; j++) {
+                      const video = videos[j];
+                      strVideo += 
+                      `<li>
+                        <i class="fas fa-play-circle"></i>` + video.title + `
+                        Lexical structure
+                        <span>`+ video.hour + "h:" + video.minute+ "m" + `</span>
+                      </li>`;
+                    }
+                    str+=  
+                    `<div class="accordion-item">
+                      <h2 class="accordion-header" id="heading-`+index+`">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#collapse-`+index+`"
+                              aria-controls="collapse-`+index+`">
+                              `+ element.title +` <span> `+element.videos.length +` | 20min </span>
+                          </button>
+                      </h2>
+                      <div id="collapse-`+index+`" class="accordion-collapse collapse"
+                          aria-labelledby="heading-`+index+`" data-bs-parent="#accordion">
+                          <div class="accordion-body">
+                              <ul>
+                                `+ strVideo +`
+                              </ul>
+                          </div>
+                      </div>
+                  </div>`;
+                }
+                
+                $("#accordion").html(str);
+            }
+        });
+    </script>
 
 
 </body>
