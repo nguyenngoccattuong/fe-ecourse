@@ -137,25 +137,8 @@
           <div class="row">
             <div class="col-lg-12">
               <!-- course header start -->
-              <div class="course-header box">
-                <h2 id="exam-title" class="text-capitalize"></h2>
-                <div class="rating">
-                  <span class="average-rating">(4.5)</span>
-                  <span class="average-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </span>
-                  <span class="reviews">(23 Reviews)</span>
-                </div>
-                <ul>
-                  <li> enrolled students - <span>2200</span></li>
-                  <li> created by - <span><a href="#">john doe</a></span></li>
-                  <li> last updated - <span>20/03/2024</span></li>
-                  <li> language - <span>english</span></li>
-                </ul>
+              <div class="course-header box" id="examDetail">
+                
               </div>
               <!-- course header end -->
               <!-- course tabs start -->
@@ -426,23 +409,22 @@
               let options = { year: 'numeric', month: 'long', day: 'numeric' };
               let formattedDate = dateObj.toLocaleString('en-US', options);
 
-              let strDetail = `<h2 class="text-capitalize">` + kq.title + `</h2>
-          <div class="rating">
-            <span class="average-rating">(4.5)</span>
-            <span class="average-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              </span>
-              <span class="reviews">(23 Reviews)</span>
-              </div>
-              <ul>
-                <li> enrolled students - <span>2200</span></li>
-                <li> last updated - <span>`+ formattedDate + `</span></li>
+              let strDetail = `<h2 id="exam-title" class="text-capitalize">` + kq.title + `</h2>
+                <div class="rating">
+                  <span class="average-rating">(4.5)</span>
+                  <span class="average-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </span>
+                  <span class="reviews">(23 Reviews)</span>
+                </div>
+                <ul>
+                  <li> last updated - <span>`+ formattedDate + `</span></li>
                 </ul>`;
-              $("#courseDetail").html(strDetail);
+              $("#examDetail").html(strDetail);
 
               let courseDescription =
                   `<div class="course-description box">
