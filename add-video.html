@@ -147,7 +147,7 @@
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="Video">Video</label>
-                                                                <input id="file" type="file" asp-for="Video"
+                                                                <input name="file" id="file" type="file" asp-for="Video"
                                                                     class="form-control" />
                                                             </div>
                                                         </div>
@@ -345,7 +345,7 @@
                 formData.append('title', title);
                 formData.append('hour', hour);
                 formData.append('minute', minute);
-                formData.append('files', []);
+                // formData.append('files', []);
 
 
                 $.ajax({
@@ -359,6 +359,7 @@
                     success: function (results) {
                         alert('Successfully');
                         console.log(results);
+                        location.reload();
                     },
                     error: function (xhr, status, error) {
                         alert('Error: ' + xhr.responseText);
