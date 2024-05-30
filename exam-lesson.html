@@ -105,18 +105,18 @@
                                 <div class="review-content-section box">
                                     <h2>Edit Lesson Detail</h2>
                                     <div class="review-content-section">
-                                        <form asp-action="Lesson" method="post">
+                                        <form id="editLesson" method="post">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Title</label>
-                                                        <input type="text" class="form-control"
+                                                        <input id="lessonTitle" type="text" class="form-control"
                                                             placeholder="Lesson Title">
                                                         <span class="text-danger"></span>
                                                     </div>
                                                     <div class="form-group">
                                                         <label asp-for="@Model.ExamLesson.Lesson">Lesson</label>
-                                                        <input asp-for="@Model.ExamLesson.Lesson" type="number"
+                                                        <input id="lessonSelection" type="number"
                                                             value="@Model.ExamLesson.Lesson" class="form-control"
                                                             placeholder="Lesson">
                                                         <span asp-validation-for="@Model.ExamLesson.Lesson"
@@ -124,7 +124,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label asp-for="@Model.ExamLesson.Point">Point</label>
-                                                        <input asp-for="@Model.ExamLesson.Point" type="number"
+                                                        <input id="lessonPoint" type="number"
                                                             value="@Model.ExamLesson.Point" class="form-control"
                                                             placeholder="Point">
                                                         <span asp-validation-for="@Model.ExamLesson.Point"
@@ -134,7 +134,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label asp-for="@Model.ExamLesson.Hour">Hour</label>
-                                                        <input asp-for="@Model.ExamLesson.Hour" type="number"
+                                                        <input id="lessonHour" type="number"
                                                             value="@Model.ExamLesson.Hour" class="form-control"
                                                             placeholder="Hour">
                                                         <span asp-validation-for="@Model.ExamLesson.Lesson"
@@ -142,7 +142,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label asp-for="@Model.ExamLesson.Minute">Minute</label>
-                                                        <input asp-for="@Model.ExamLesson.Minute" type="number"
+                                                        <input id="lessonMinute" type="number"
                                                             value="@Model.ExamLesson.Minute" class="form-control"
                                                             placeholder="Minute">
                                                         <span asp-validation-for="@Model.ExamLesson.Minute"
@@ -150,7 +150,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label asp-for="@Model.ExamLesson.Second">Second</label>
-                                                        <input asp-for="@Model.ExamLesson.Second" type="number"
+                                                        <input id="lessonSecond" type="number"
                                                             value="@Model.ExamLesson.Second" class="form-control"
                                                             placeholder="Second">
                                                         <span asp-validation-for="@Model.ExamLesson.Second"
@@ -158,7 +158,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-theme">Save</button>
+                                            <button type="submit" id="save" class="btn btn-theme">Save</button>
                                         </form>
                                     </div>
                                     <hr class="hr" />
@@ -463,19 +463,23 @@
             headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
             success: function (kq) {
                 console.log(kq);
-                const part = kq.part;
                 const title = kq.title;
+                const selection = kq.selection;
+                const point = kq.point;
                 const hour = kq.hour;
                 const minute = kq.minute;
+                const second = kq.second;
 
-                $('#part').val(part)
-                $('#title').val(title)
-                $('#hour').val(hour)
-                $('#minute').val(minute)
+                $('#lessonTitle').val(title)
+                $('#lessonSelection').val(selection)
+                $('#lessonPoint').val(point)
+                $('#lessonHour').val(hour)
+                $('#lessonMinute').val(minute)
+                $('#lessonSecond').val(second)
             }
         });
 
-        $('#formEdit').on('submit', function (e) {
+        $('#editLesson').on('save', function (e) {
             e.preventDefault();
             // alert(1);
             // const formData = new FormData();
