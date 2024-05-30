@@ -102,58 +102,62 @@
                     <div class="product-payment-inner-st">
                         <div class="review-content-section box">
                             <h2>Create Course</h2>
-                            <form asp-action="Create" method="post" enctype="multipart/form-data"
+                            <form id="formCreate" method="post" enctype="multipart/form-data"
                                 class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <div class="form-group">
                                             <label asp-for="Title">Title</label>
-                                            <input asp-for="Title" type="text" class="form-control"
+                                            <input id="title" type="text" class="form-control"
                                                 placeholder="Course Name">
                                             <span asp-validation-for="Title" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
                                             <label asp-for="Price">Price</label>
-                                            <input asp-for="Price" type="number" class="form-control"
+                                            <input id="price" type="number" class="form-control"
                                                 placeholder="Course Price">
                                             <span asp-validation-for="Price" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
                                             <label asp-for="CategoryId">Category</label>
-                                            <select asp-for="CategoryId" asp-items="ViewBag.Categories"
+                                            <select id="categoryId" asp-items="ViewBag.Categories"
                                                 class="form-control"></select>
                                         </div>
                                         <div class="form-group">
                                             <label asp-for="CourseImage">Product Image</label>
-                                            <input type="file" asp-for="CourseImage" class="form-control" />
+                                            <input name="files" type="file" asp-for="CourseImage"
+                                                class="form-control" />
                                         </div>
                                         <div class="form-group">
                                             <label asp-for="IntroductVideo">Introduce Video</label>
-                                            <input type="file" asp-for="IntroductVideo" class="form-control" />
+                                            <input name="files" type="file" asp-for="IntroductVideo"
+                                                class="form-control" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group res-mg-t-15">
-                                            <label asp-for="TeacherId">Instructor</label>
-                                            <input asp-for="TeacherId" name="TeacherId" type="text" class="form-control"
-                                                placeholder="Instructor">
-                                            <span asp-validation-for="TeacherId" class="text-danger"></span>
-                                        </div>
+                                        <input id="teacherId" name="TeacherId" type="hidden" class="form-control"
+                                            placeholder="TeacherId">
                                         <div class="form-group">
                                             <label asp-for="Language">Language</label>
-                                            <input asp-for="Language" name="Language" type="text" class="form-control"
+                                            <input id="language" name="Language" type="text" class="form-control"
                                                 placeholder="Language">
                                             <span asp-validation-for="Language" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
                                             <label asp-for="Time">Time</label>
-                                            <input asp-for="Time" name="Time" type="text" class="form-control"
+                                            <input id="time" name="Time" type="text" class="form-control"
                                                 placeholder="Time">
                                             <span asp-validation-for="Time" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
                                             <label asp-for="Description">Description</label>
+                                            <style>
+                                                .ck-content {
+                                                    height: 203px;
+                                                    border-radius: 10px;
+                                                }
+                                            </style>
                                             <textarea id="myeditor" asp-for="Description" name="description"
                                                 placeholder="Description"></textarea>
                                             <span asp-validation-for="Description" class="text-danger"></span>
@@ -163,7 +167,8 @@
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="payment-adress">
-                                            <button type="submit" class="btn btn-theme waves-effect waves-light">
+                                            <button id="submit" type="submit"
+                                                class="btn btn-theme waves-effect waves-light">
                                                 Submit
                                             </button>
                                         </div>
@@ -294,6 +299,102 @@
             });
     </script>
 
+    <script>
+        $.ajax({
+            url: "http://localhost:3000/users/current",
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+            // data: formData,
+            // cache: false,
+            // contentType: false,
+            // processData: false,
+            success: function (results) {
+                // alert('Successfully');
+                // console.log(results);
+                const id = results._id
+                console.log(id);
+                $("#teacherId").val(id)
+            }
+        });
+        // return false;
+    </script>
+
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        // console.log(getUrlVars()['id']);
+        const id1 = getUrlVars()['id1'];
+
+        $.ajax({
+            url: "http://localhost:3000/categorys",
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+            success: function (array) {
+
+                let str = '<option value="">_Select_</option>';
+
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+                    if (element.deleteAt === null) {
+                        str += '<option value="' + element._id + '">' + element.category + '</option>';
+                    }
+                }
+
+                $('#categoryId').html(str)
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#formCreate").on("submit", function (e) {
+                e.preventDefault();
+
+                const title = $("#title").val();
+                const price = $("#price").val();
+                const category = $("#categoryId").val();
+                const teacher = $("#teacherId").val();
+                const language = $("#language").val();
+                const time = $("#time").val();
+
+                const formData = new FormData(document.getElementById('formCreate'));
+
+                formData.append('title', title);
+                formData.append('price', price);
+                formData.append('category', category);
+                formData.append('language', language);
+                formData.append('time', time);
+                formData.append('teacher', teacher);
+
+                $.ajax({
+                    url: "http://localhost:3000/course/",
+                    type: "POST",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (results) {
+                        alert('Successfully');
+                        console.log(results);
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
 
 </body>
 

@@ -363,50 +363,6 @@
             });
     </script>
 
-
-    <!-- <script>
-
-        // bat buoc login moi cho vao
-
-        // lay gia tri token trong local storage
-
-        const token = localStorage.getItem('token')
-
-        if (token == undefined) {
-            alert('Vui long dang nhap!')
-            // tu dong chuyen trang
-            window.location.href = '/log-in.html';
-        }
-
-
-        // hehe
-        $.ajax({
-            url: "http://localhost:3000/course_lessons",
-            type: "GET",
-            success: function (kq) {
-                console.log(kq);
-                const array = kq;
-                let str = '';
-
-                for (let index = 0; index < array.length; index++) {
-                    const element = array[index];
-                    str += '<tr>';
-                    str += '<td>' + element._id + '</td>';
-                    str += '<td>' + element.title + '</td>';
-                    str += '<td>' + element.selection + '</td>';
-
-                    str += `<td>
-                                            <a href="course-lesson.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
-                                            <a href=""><i class="fa-solid fa-trash-can"></i></a>
-                                        </td>`;
-
-                }
-
-                $("#example tbody").html(str)
-
-            }
-        });
-    </script> -->
     <script>
         function getUrlVars() {
             var vars = [], hash;
