@@ -134,8 +134,8 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label asp-for="Image">Question Image</label>
-                                                                    <input id="examImg" type="file" asp-for="Image"
-                                                                        class="form-control" />
+                                                                    <input name="file" id="examImg" type="file"
+                                                                        asp-for="Image" class="form-control" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -446,7 +446,7 @@
                 formData.append('title', editTitle);
                 formData.append('category', examCategoryId);
                 formData.append('description', myeditor);
-                formData.append('files', []);
+                // formData.append('files', []);
 
 
                 $.ajax({
@@ -460,6 +460,7 @@
                     success: function (results) {
                         alert('Successfully');
                         console.log(results);
+                        location.reload();
                     },
                     error: function (xhr, status, error) {
                         alert('Error: ' + xhr.responseText);
@@ -506,6 +507,7 @@
                         alert("Seccessfully!");
                         location.reload();
                         console.log(results);
+                        location.reload();
                     },
                     error: function (xhr, status, error) {
                         // alert("Error: " + xhr.responseText);

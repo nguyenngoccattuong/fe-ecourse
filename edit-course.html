@@ -517,6 +517,7 @@
                     success: function (results) {
                         alert('Successfully');
                         console.log(results);
+                        location.reload();
                     },
                     error: function (xhr, status, error) {
                         alert('Error: ' + xhr.responseText);
@@ -637,6 +638,7 @@
                     success: function (results) {
                         alert("Seccessfully!");
                         console.log(results);
+                        location.reload();
                     },
                     error: function (xhr, status, error) {
                         alert("Error: " + xhr.responseText);

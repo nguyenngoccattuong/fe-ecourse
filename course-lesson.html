@@ -172,8 +172,8 @@
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="Video">Video</label>
-                                                                <input id="video" type="file" asp-for="Video"
-                                                                    class="form-control" />
+                                                                <input name="file" id="video" type="file"
+                                                                    asp-for="Video" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -377,6 +377,7 @@
                     "title": lessonTitle,
                     "selection": lessonSelection,
                     "course": lessonCourse
+
                 };
 
                 $.ajax({
@@ -388,6 +389,7 @@
                     success: function (results) {
                         alert('Successfully');
                         console.log(results);
+                        location.reload();
                     },
                     error: function (xhr, status, error) {
                         alert('Error: ' + xhr.responseText);
@@ -502,61 +504,6 @@
         </div>
     </div>
 
-
-    <script>
-        function getUrlVars() {
-            var vars = [], hash;
-            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for (var i = 0; i < hashes.length; i++) {
-                hash = hashes[i].split('=');
-                vars.push(hash[0]);
-                vars[hash[0]] = hash[1];
-            }
-            return vars;
-        }
-        // console.log(getUrlVars()['id']);
-        const iD = getUrlVars()['id'];
-
-        $.ajax({
-            url: "http://localhost:3000/course_lessons/" + iD,
-            type: "GET",
-
-
-            success: function (kq) {
-                console.log(kq);
-                const lessonTitle = kq.title;
-                const courseTeacherId = kq.teacher.username;
-                const coursePrice = kq.price;
-                const courseLanguage = kq.language;
-                const courseCategoryId = kq.category.category;
-                const courseTime = kq.time;
-
-                $('#courseTitle').val(courseTitle)
-                $('#courseTeacherId').val(courseTeacherId)
-                $('#coursePrice').val(coursePrice)
-                $('#courseLanguage').val(courseLanguage)
-                $('#courseCategoryId').val(courseCategoryId)
-                $('#courseTime').val(courseTime)
-
-
-            }
-        });
-
-        $('#formEdit').on('submit', function (e) {
-            e.preventDefault();
-            // alert(1);
-            // const formData = new FormData();
-            // console.log(formData);
-            var data = new FormData();
-            $.each($('#file')[0].files, function (i, file) {
-                data.append('file-' + i, file);
-            });
-            console.log($('#file')[0].files);
-        })
-
-
-    </script>
-
     <script>
         $(document).ready(function () {
             $('#videoForm').on('submit', function (e) {
@@ -566,6 +513,7 @@
                 const title = $('#videoTitle').val();
                 const hour = $('#videoHour').val();
                 const minute = $('#videoMinute').val();
+                const courseLesson = getUrlVars()["id"];
 
                 const formData = new FormData(document.getElementById('videoForm'));
 
@@ -573,7 +521,8 @@
                 formData.append('title', title);
                 formData.append('hour', hour);
                 formData.append('minute', minute);
-                formData.append('files', []);
+                formData.append('lesson', courseLesson);
+                // formData.append('files', []);
                 // console.log(part, title, hour, minute);
                 // return
 
@@ -588,6 +537,7 @@
                     success: function (results) {
                         alert('Successfully');
                         console.log(results);
+                        location.reload();
                     },
                     error: function (xhr, status, error) {
                         alert('Error: ' + xhr.responseText);
