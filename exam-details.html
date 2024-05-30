@@ -1,342 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Details</title>
+    <title>Course Details</title>
     <link rel="icon" type="image/x-icon" href="favicon-standard.png">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/exam.css">
     <link rel="stylesheet" class="js-color-style" href="css/colors/color-1.css">
     <link rel="stylesheet" class="js-glass-style" href="css/glass.css" disabled>
-</head>
+  </head>
 
-<body>
+  <body>
+
     <!-- page loader start -->
     <div class="page-loader js-page-loader">
-        <div></div>
+      <div></div>
     </div>
     <!-- page loader end -->
 
     <!-- main wrapper start-->
     <div class="main-wrapper">
-        <!-- header start -->
-        <header class="header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 col-sm-12">
-                        <div class="header-main d-flex justify-content-between align-items-center">
-                            <div class="header-logo">
-                                <a href="index.html"><span>E
-                                    </span>Course</a>
-                            </div>
-                            <button type="button"
-                                class="header-hamburger-btn js-header-menu-toggler"><span></span></button>
-                            <div class="header-backdrop js-header-backdrop"></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-sm-12">
-
-                        <nav class="header-menu js-header-menu">
-
-                            <button type="button" class="header-close-btn js-header-menu-toggler">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            <ul class="menu">
-                                <li class="menu-item"><a href="index.html">home</a></li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="#" class="js-toggle-sub-menu">Pages<i class="fas fa-chevron-down"></i></a>
-                                    <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a href="/courses.html">Courses</a></li>
-                                        <li class="sub-menu-item"><a href="/exams.html">Exams</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="menu-item menu-item-has-children" id="admin">
-
-                                    <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
-                                    <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a href="/index-course.html">Courses</a></li>
-                                        <li class="sub-menu-item"><a href="/index-exam.html">Exams</a>
-                                        </li>
-                                        <li class="sub-menu-item"><a href="/index-user.html">Users</a></li>
-                                        <li class="sub-menu-item"><a href="/index-category.html">Categories</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item "><a href="contact.html">contact</a></li>
-                                <li class="menu-item menu-item-has-children" id="account">
-                                    <a href="#" class="js-toggle-sub-menu">Account<i
-                                            class="fas fa-chevron-down"></i></a>
-                                    <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a href="/log-out.html">Log Out</a></li>
-                                        <li class="sub-menu-item"><a href="/info.html">Setting</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li id="login" class="menu-item"><a href="/log-in.html">login</a></li>
-                                <li class="menu-item nav-actions">
-                                    <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                </div>
-            </div>
-        </header>
-        <!-- header end -->
-        <!-- search start-->
-        <div class="search" id="search">
-            <form action="" class="search-form">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="search" placeholder="What are you looking for?" class="search-input">
-            </form>
-
-            <i class="fa-solid fa-x search-close" id="btn-close"></i>
-        </div>
-        <!-- search end-->
-
-        <!-- breadcrumb start -->
-        <div class="breadcrumb-nav">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="courses.html">courses</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">course details</details>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-        <!-- breadcrumb end -->
-
-    </div>
-    </div>
-    <div class="container status mt-5 pd-2">
-        <div class="row">
-            <div class="col-md-2 btn-wrap"><button type="button" class="btn btn-danger ">Thoát</button>
-            </div>
-            <div class="col-md-7 text-center pt-2">
-                <p>User: Ngô Văn Tiến Đạt</p>
-            </div>
-            <div class="col-md-3 btn-wrap">
-                <div class="row">
-                    <div class="col-md-6 pt-2">
-                        <p>00:41:43</p>
-                    </div>
-                    <div class="col-md-6">
-                        <button id="finish" type="button" class="btn btn-theme">Nộp bài</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--  course details section start -->
-    <section class="course-details section-padding">
+      <!-- header start -->
+      <header class="header">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- quiz start -->
-                    <div class="course-header box">
-                        <h5 class="text-capitalize">1. Phương pháp lập trình module</h5>
-                        <div class="text-center">
-                            <img class="m-4" src="img/courses/item.jpg" alt="" width="450">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>A. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                <p>C. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p>B. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                <p>D. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-
-                        <form class="exam_page" id="1">
-                            <div class="container">
-                                <div class="row pt-4">
-                                    <p class="col-auto">Đáp án của bạn:</p>
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio1" name="answer"
-                                                value="1" checked>A
-                                            <label class="form-check-label" for="radio1"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio2" name="answer"
-                                                value="2">B
-                                            <label class="form-check-label" for="radio2"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio3" name="answer"
-                                                value="3">C
-                                            <label class="form-check-label" for="radio3"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio4" name="answer"
-                                                value="4">D
-                                            <label class="form-check-label" for="radio4"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- quiz end -->
-                    <!-- quiz start -->
-                    <div class="course-header box">
-                        <h5 class="text-capitalize">1. Phương pháp lập trình module</h5>
-                        <div class="text-center">
-                            <img class="m-4" src="img/courses/item.jpg" alt="" width="450">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>A. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                <p>C. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p>B. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                <p>D. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-
-                        <form class="exam_page" id="2">
-                            <div class="container">
-                                <div class="row pt-4">
-                                    <p class="col-auto">Đáp án của bạn:</p>
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio1" name="answer"
-                                                value="1" checked>A
-                                            <label class="form-check-label" for="radio1"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio2" name="answer"
-                                                value="2">B
-                                            <label class="form-check-label" for="radio2"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio3" name="answer"
-                                                value="3">C
-                                            <label class="form-check-label" for="radio3"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio4" name="answer"
-                                                value="4">D
-                                            <label class="form-check-label" for="radio4"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- quiz end -->
+          <div class="row">
+            <div class="col-lg-5 col-sm-12">
+              <div
+                class="header-main d-flex justify-content-between align-items-center">
+                <div class="header-logo">
+                  <a href="index.html"><span>E
+                    </span>Course</a>
                 </div>
-                <div class="col-lg-4">
-                    <!-- course sidebar start -->
-                    <div class="course-sidebar box">
-                        <ul class="row">
-                            <li class="col-md-2 col-lg-2 exam-choice" id="choice_1">1</li>
-                            <li class="col-md-2 col-lg-2 exam-choice" id="choice_2">2</li>
-                            <li class="col-md-2 col-lg-2 exam-choice" id="choice_3">3</li>
-                            <li class="col-md-2 col-lg-2 exam-choice" id="choice_4">4</li>
-                            <li class="col-md-2 col-lg-2 exam-choice" id="choice_5">5</li>
-                        </ul>
-                    </div>
-                    <!-- course sidebar end -->
-                </div>
+                <button type="button"
+                  class="header-hamburger-btn js-header-menu-toggler"><span></span></button>
+                <div class="header-backdrop js-header-backdrop"></div>
+              </div>
             </div>
+            <div class="col-lg-7 col-sm-12">
+
+              <nav class="header-menu js-header-menu">
+
+                <button type="button"
+                  class="header-close-btn js-header-menu-toggler">
+                  <i class="fas fa-times"></i>
+                </button>
+                <ul class="menu">
+                  <li class="menu-item"><a href="index.html">home</a></li>
+                  <li class="menu-item menu-item-has-children">
+                    <a href="#" class="js-toggle-sub-menu">Pages<i
+                        class="fas fa-chevron-down"></i></a>
+                    <ul class="sub-menu js-sub-menu">
+                      <li class="sub-menu-item"><a
+                          href="/courses.html">Courses</a></li>
+                      <li class="sub-menu-item"><a href="/exams.html">Exams</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="menu-item menu-item-has-children" id="admin">
+
+                    <a href="#" class="js-toggle-sub-menu">Admin <i
+                        class="fas fa-chevron-down"></i></a>
+                    <ul class="sub-menu js-sub-menu">
+                      <li class="sub-menu-item"><a
+                          href="/index-course.html">Courses</a></li>
+                      <li class="sub-menu-item"><a
+                          href="/index-exam.html">Exams</a>
+                      </li>
+                      <li class="sub-menu-item"><a
+                          href="/index-user.html">Users</a></li>
+                      <li class="sub-menu-item"><a
+                          href="/index-category.html">Categories</a></li>
+                    </ul>
+                  </li>
+                  <li class="menu-item "><a href="contact.html">contact</a></li>
+                  <li class="menu-item menu-item-has-children" id="account">
+                    <a href="#" class="js-toggle-sub-menu">Account<i
+                        class="fas fa-chevron-down"></i></a>
+                    <ul class="sub-menu js-sub-menu">
+                      <li class="sub-menu-item"><a href="/log-out.html">Log
+                          Out</a></li>
+                      <li class="sub-menu-item"><a href="/info.html">Setting</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li id="login" class="menu-item"><a
+                      href="/log-in.html">login</a></li>
+                  <li class="menu-item nav-actions">
+                    <i class="fa-solid fa-magnifying-glass nav-icon"
+                      id="btn-search"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+          </div>
         </div>
-    </section>
-    <!--  course details section end -->
-    <!-- footer start -->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <h3 class="footer-logo"><span>E </span>Course</h3>
-                            <ul>
-                                <li><a href="#">about</a></li>
-                                <li><a href="#">what we offer</a></li>
-                                <li><a href="#">careers</a></li>
-                                <li><a href="#">certificates</a></li>
-                                <li><a href="#">blog</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <h3>learning</h3>
-                            <ul>
-                                <li><a href="#">get the app</a></li>
-                                <li><a href="#">testimonials</a></li>
-                                <li><a href="#">pricing</a></li>
-                                <li><a href="#">faq</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <h3>more</h3>
-                            <ul>
-                                <li><a href="#">affitiliates</a></li>
-                                <li><a href="#">become a course creater</a></li>
-                                <li><a href="#">traning webinars</a></li>
-                                <li><a href="#">free personality test</a></li>
-                                <li><a href="#">help and support</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <h3>get in touh</h3>
-                            <ul>
-                                <li><a href="#"><i class="fab fa-facebook social-icon"></i> facebook</a></li>
-                                <li><a href="#"><i class="fab fa-twitter social-icon"></i> twitter</a></li>
-                                <li><a href="#"><i class="fab fa-instagram social-icon"></i> instagram</a></li>
-                                <li><a href="#"><i class="fab fa-youtube social-icon"></i> youtube</a></li>
-                                <li><a href="#"><i class="fab fa-linkedin social-icon"></i> linkedin</a></li>
-                            </ul>
-                        </div>
-                    </div>
+      </header>
+      <!-- header end -->
+      <!-- search start-->
+      <div class="search" id="search">
+        <form action class="search-form">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="search" placeholder="What are you looking for?"
+            class="search-input">
+        </form>
+
+        <i class="fa-solid fa-x search-close" id="btn-close"></i>
+      </div>
+      <!-- search end-->
+
+      <!-- breadcrumb start -->
+      <div class="breadcrumb-nav">
+        <div class="container">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item"><a
+                  href="courses.html">courses</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                course details
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- breadcrumb end -->
+      <!--  course details section start -->
+      <section class="course-details section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- course header start -->
+              <div class="course-header box">
+                <h2 id="exam-title" class="text-capitalize"></h2>
+                <div class="rating">
+                  <span class="average-rating">(4.5)</span>
+                  <span class="average-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </span>
+                  <span class="reviews">(23 Reviews)</span>
                 </div>
+                <ul>
+                  <li> enrolled students - <span>2200</span></li>
+                  <li> created by - <span><a href="#">john doe</a></span></li>
+                  <li> last updated - <span>20/03/2024</span></li>
+                  <li> language - <span>english</span></li>
+                </ul>
+              </div>
+              <!-- course header end -->
+              <!-- course tabs start -->
+              <nav class="course-tabs">
+                <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="course-curriculum-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#course-curriculum" type="button" role="tab"
+                    aria-controls="course-curriculum" aria-selected="true">
+                    curriculum
+                  </button>
+                  <button class="nav-link" id="course-description-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#course-description" type="button"
+                    role="tab"
+                    aria-controls="course-description" aria-selected="false">
+                    description
+                  </button>
+
+                </div>
+              </nav>
+              <!-- course tabs end -->
+              <!-- tab panes start -->
+              <div class="tab-content" id="nav-tabContent">
+                <!-- course curriculum start -->
+                <div class="tab-pane fade show active" id="course-curriculum"
+                  role="tabpanel"
+                  aria-labelledby="course-curriculum-tab">
+                  <div class="course-curriculum box">
+                    <h3 class="text-capitalize mb-4">curriculum</h3>
+                    <!-- accordion start -->
+                    <div class="accordion" id="accordion">
+                      <!-- accordion item start -->
+                      <a asp-action="test" asp-controller="exam"
+                        asp-area="customer" asp-route-id="@lesson.Id">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header"
+                            id="heading-@(lesson.Id)">
+                            <button class="accordion-button" type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#collapse-@(lesson.Id)"
+                              aria-expanded="true"
+                              aria-controls="collapse-@(lesson.Id)">
+                              @lesson.Title<span> @(lesson.ExamQuestion.Count)
+                                lessons | @(lesson.Hour)h
+                                @(lesson.Minute)m</span>
+                            </button>
+                          </h2>
+                        </div>
+                      </a>
+                    </div>
+                    <!-- accordion end -->
+                  </div>
+                </div>
+                <!-- course curriculum end -->
+                <!-- course description start -->
+                <div class="tab-pane fade" id="course-description"
+                  role="tabpanel"
+                  aria-labelledby="course-description-tab">
+                  <div class="course-description box">
+                    <h3 class="text-capitalize mb-4">Description</h3>
+                    <p>@Html.Raw(Model.Description)</p>
+                  </div>
+                </div>
+                <!-- course description end -->
+                <!-- course reviews end -->
+                <!-- course reviews end -->
+              </div>
+              <!-- tab panes end -->
+
             </div>
+          </div>
+        </div>
+      </section>
+      <!--  course details section end -->
+
+      <!-- footer start -->
+      <footer class="footer">
+        <div class="footer-top">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-lg-3">
+                <div class="footer-item">
+                  <h3 class="footer-logo"><span>E </span>Course</h3>
+                  <ul>
+                    <li><a href="#">about</a></li>
+                    <li><a href="#">what we offer</a></li>
+                    <li><a href="#">careers</a></li>
+                    <li><a href="#">certificates</a></li>
+                    <li><a href="#">blog</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="footer-item">
+                  <h3>learning</h3>
+                  <ul>
+                    <li><a href="#">get the app</a></li>
+                    <li><a href="#">testimonials</a></li>
+                    <li><a href="#">pricing</a></li>
+                    <li><a href="#">faq</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="footer-item">
+                  <h3>more</h3>
+                  <ul>
+                    <li><a href="#">affitiliates</a></li>
+                    <li><a href="#">become a course creater</a></li>
+                    <li><a href="#">traning webinars</a></li>
+                    <li><a href="#">free personality test</a></li>
+                    <li><a href="#">help and support</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="footer-item">
+                  <h3>get in touh</h3>
+                  <ul>
+                    <li><a href="#"><i class="fab fa-facebook social-icon"></i>
+                        facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter social-icon"></i>
+                        twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram social-icon"></i>
+                        instagram</a></li>
+                    <li><a href="#"><i class="fab fa-youtube social-icon"></i>
+                        youtube</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin social-icon"></i>
+                        linkedin</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="footer-bottom">
-            <div class="container">
-                <p></p>
-            </div>
+          <div class="container">
+            <p></p>
+          </div>
         </div>
-    </footer>
-    <!-- footer end -->
+      </footer>
+      <!-- footer end -->
+
     </div>
     <!-- main wrapper end-->
     <!-- course preview modal start -->
-    <div class="modal fade video-modal js-course-preview-modal" id="video-modal" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal fade video-modal js-course-preview-modal" id="video-modal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+              aria-label="Close">
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="ratio ratio-16x9">
+              <video controls class="js-course-preview-video">
+                <source src="videos/course-preview.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- course preview modal end -->
+
+    <!-- style switcher start -->
+    <div class="style-switcher js-style-switcher">
+      <div class="style-switcher-toggler js-style-switcher-toggler">
+        <i class="fas fa-cog"></i>
+      </div>
+      <h3>Style Switcher</h3>
+      <div class="style-switcher-item">
+        <p class="mb-2">Theme Colors</p>
+        <!-- theme colors -->
+        <div class="theme-colors js-theme-colors">
+          <button type="button" data-js-theme-color="color-1"
+            class="js-theme-color-item color-1"></button>
+          <button type="button" data-js-theme-color="color-2"
+            class="js-theme-color-item color-2"></button>
+          <button type="button" data-js-theme-color="color-3"
+            class="js-theme-color-item color-3"></button>
+          <button type="button" data-js-theme-color="color-4"
+            class="js-theme-color-item color-4"></button>
+          <button type="button" data-js-theme-color="color-5"
+            class="js-theme-color-item color-5"></button>
+        </div>
+      </div>
+      <div class="style-switcher-item">
+        <div class="form-check form-switch">
+          <input class="form-check-input js-dark-mode" type="checkbox"
+            id="dark-mode">
+          <label class="form-check-label" for="dark-mode">Dark Mode</label>
+        </div>
+      </div>
+      <div class="style-switcher-item">
+        <div class="form-check form-switch">
+          <input class="form-check-input js-glass-effect" type="checkbox"
+            id="glass-effect">
+          <label class="form-check-label" for="glass-effect">Glass
+            Effect</label>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+    <script>
+      // console.log(localStorage.getItem('token'));
+      if (localStorage.getItem('token')) {
+
+          $.ajax({
+              url: "http://localhost:3000/users/current",
+              type: "GET",
+              headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+              data: {},
+              success: function (kq) {
+                  const roles = kq.roles;
+                  // console.log(roles);
+                  // return
+                  if (roles.includes('ADMIN')) {
+                      console.log(1);
+                      $('#admin').show();
+
+                  }
+                  else {
+                      $('#admin').hide();
+                  }
+
+              }
+          });
+
+          $('#account').show();
+          $('#login').hide();
+      }
+      else {
+          $('#login').show();
+          $('#account').hide();
+      }
+  </script>
+
+  <script>
+      function getUrlVars() {
+          var vars = [], hash;
+          var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+          for (var i = 0; i < hashes.length; i++) {
+              hash = hashes[i].split('=');
+              vars.push(hash[0]);
+              vars[hash[0]] = hash[1];
+          }
+          return vars;
+      }
+      const id = getUrlVars()['id'];
+
+      $.ajax({
+          url: "http://localhost:3000/exam/" + id,
+          type: "GET",
+          headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+          success: function (kq) {
+            console.log(kq);
+              let deleteAt = kq.updatedAt;
+              let dateObj = new Date(deleteAt);
+              let options = { year: 'numeric', month: 'long', day: 'numeric' };
+              let formattedDate = dateObj.toLocaleString('en-US', options);
+
+              let strDetail = `<h2 class="text-capitalize">` + kq.title + `</h2>
+          <div class="rating">
+            <span class="average-rating">(4.5)</span>
+            <span class="average-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              </span>
+              <span class="reviews">(23 Reviews)</span>
+              </div>
+              <ul>
+                <li> enrolled students - <span>2200</span></li>
+                <li> last updated - <span>`+ formattedDate + `</span></li>
+                </ul>`;
+              $("#courseDetail").html(strDetail);
+
+              let courseDescription =
+                  `<div class="course-description box">
+              `+ kq.description + `
+          </div>`;
+              $("#course-description").html(courseDescription);
+
+              let modelVideo =
+                  `<div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -344,118 +459,23 @@
                     </button>
                     <div class="ratio ratio-16x9">
                         <video controls class="js-course-preview-video">
-                            <source src="videos/course-preview.mp4" type="video/mp4">
+                            <source src="`+ kq.videoIntroduce + `" type="video/mp4">
                         </video>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- course preview modal end -->
-    <!-- style switcher start -->
-    <div class="style-switcher js-style-switcher">
-        <div class="style-switcher-toggler js-style-switcher-toggler">
-            <i class="fas fa-cog"></i>
-        </div>
-        <h3>Style Switcher</h3>
-        <div class="style-switcher-item">
-            <p class="mb-2">Theme Colors</p>
-            <!-- theme colors -->
-            <div class="theme-colors js-theme-colors">
-                <button type="button" data-js-theme-color="color-1" class="js-theme-color-item color-1"></button>
-                <button type="button" data-js-theme-color="color-2" class="js-theme-color-item color-2"></button>
-                <button type="button" data-js-theme-color="color-3" class="js-theme-color-item color-3"></button>
-                <button type="button" data-js-theme-color="color-4" class="js-theme-color-item color-4"></button>
-                <button type="button" data-js-theme-color="color-5" class="js-theme-color-item color-5"></button>
-            </div>
-        </div>
-        <div class="style-switcher-item">
-            <div class="form-check form-switch">
-                <input class="form-check-input js-dark-mode" type="checkbox" id="dark-mode">
-                <label class="form-check-label" for="dark-mode">Dark Mode</label>
-            </div>
-        </div>
-        <div class="style-switcher-item">
-            <div class="form-check form-switch">
-                <input class="form-check-input js-glass-effect" type="checkbox" id="glass-effect">
-                <label class="form-check-label" for="glass-effect">Glass Effect</label>
-            </div>
-        </div>
-    </div>
+          </div>`
+              $("#video-modal").html(modelVideo);
 
-    <!-- style switcher end -->
+              let imageIntroduce =
+                  `<img src="` + kq.imageIntroduce + `" alt="course img" class="w-100" width="260" height="170">
+          <div class="play-icon">
+              <i class="fas fa-play"></i>
+          </div>`
+              $("#image-introduce").html(imageIntroduce);
 
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/search.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('input[type="radio"]').change(function () {
-                var formId = $(this).closest('form').attr('id'); // Get the ID of the closest form
-                $('#choice_' + formId).addClass('active'); // Add 'active' class to the corresponding exam choice
-            });
-        });
-
-
-        $(document).ready(function () {
-            $("#finish").click(function () {
-                var answersList = [];
-                //Loop over all questoins
-                $(".exam_page").each(function () {
-
-                    var questionId = $(this).attr("id");
-                    var answer = $("input[name='answer']:checked", $(this)).val();
-
-                    //if Answer isnt provided do not update the answersList
-                    if (answer !== undefined) {
-                        answersList.push({
-                            question: questionId,
-                            answer: answer
-                        });
-                    }
-                });
-                console.log(answersList);
-            });
-        });
-    </script>
-
-    <script>
-        // console.log(localStorage.getItem('token'));
-        if (localStorage.getItem('token')) {
-
-            $.ajax({
-                url: "http://localhost:3000/users/current",
-                type: "GET",
-                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-                data: {},
-                success: function (kq) {
-                    const roles = kq.roles;
-                    // console.log(roles);
-                    // return
-                    if (roles.includes('ADMIN')) {
-                        console.log(1);
-                        $('#admin').show();
-
-                    }
-                    else {
-                        $('#admin').hide();
-                    }
-
-                }
-            });
-
-            $('#account').show();
-            $('#login').hide();
-        }
-        else {
-            $('#login').show();
-            $('#account').hide();
-        }
-    </script>
-</body>
-
+          }
+      });
+  </script>
+  </body>
 </html>
