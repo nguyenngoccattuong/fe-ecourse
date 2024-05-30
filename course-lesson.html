@@ -135,13 +135,12 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form asp-action="Lesson" method="post"
-                                                        enctype="multipart/form-data">
+                                                    <form id="videoForm" method="post" enctype="multipart/form-data">
                                                         <div class="row">
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="Part">Part</label>
-                                                                <input asp-for="Part" type="number" class="form-control"
+                                                                <input id="videoPart" type="number" class="form-control"
                                                                     placeholder="Part">
                                                                 <span asp-validation-for="Part"
                                                                     class="text-danger"></span>
@@ -149,7 +148,7 @@
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="Title">Title</label>
-                                                                <input asp-for="Title" type="text" class="form-control"
+                                                                <input id="videoTitle" type="text" class="form-control"
                                                                     placeholder="Title">
                                                                 <span asp-validation-for="Title"
                                                                     class="text-danger"></span>
@@ -157,7 +156,7 @@
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="Hour">Hour</label>
-                                                                <input asp-for="Hour" type="number" class="form-control"
+                                                                <input id="videoHour" type="number" class="form-control"
                                                                     placeholder="Hour">
                                                                 <span asp-validation-for="Hour"
                                                                     class="text-danger"></span>
@@ -165,7 +164,7 @@
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="Minute">Minute</label>
-                                                                <input asp-for="Minute" type="number"
+                                                                <input id="videoMinute" type="number"
                                                                     class="form-control" placeholder="Minute">
                                                                 <span asp-validation-for="Minute"
                                                                     class="text-danger"></span>
@@ -173,14 +172,14 @@
                                                             <div
                                                                 class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
                                                                 <label asp-for="Video">Video</label>
-                                                                <input type="file" asp-for="Video"
+                                                                <input id="video" type="file" asp-for="Video"
                                                                     class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-3">
                                                                 <div class="payment-adress">
-                                                                    <button type="submit"
+                                                                    <button type="submit" id="submit"
                                                                         class="btn btn-theme waves-effect waves-light">
                                                                         Submit
                                                                     </button>
@@ -558,6 +557,46 @@
 
     </script>
 
+    <script>
+        $(document).ready(function () {
+            $('#videoForm').on('submit', function (e) {
+                e.preventDefault();
+
+                const part = $('#videoPart').val();
+                const title = $('#videoTitle').val();
+                const hour = $('#videoHour').val();
+                const minute = $('#videoMinute').val();
+
+                const formData = new FormData(document.getElementById('videoForm'));
+
+                formData.append('part', part);
+                formData.append('title', title);
+                formData.append('hour', hour);
+                formData.append('minute', minute);
+                formData.append('files', []);
+                // console.log(part, title, hour, minute);
+                // return
+
+                $.ajax({
+                    url: "http://localhost:3000/course_videos/",
+                    type: "POST",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (results) {
+                        alert('Successfully');
+                        console.log(results);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
 
 </body>
 

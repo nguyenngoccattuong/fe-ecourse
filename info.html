@@ -181,19 +181,15 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="login-form">
-                                    <form action="">
+                                    <form id="form-info" action="">
+                                        <input id="userId" type="hidden" class="form-control" placeholder="Name">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Name">
+                                            <input id="username" type="text" class="form-control" placeholder="Name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="ID">
+                                            <input id="userEmail" type="text" class="form-control" placeholder="Email">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Email">
-                                        </div>
-
                                         <button type="submit" class="btn btn-theme btn-block btn-form">Save</button>
-
                                     </form>
                                 </div>
                             </div>
@@ -388,6 +384,66 @@
             $('#account').hide();
         }
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#form-info').on('submit', function (e) {
+                e.preventDefault();
+
+                const username = $('#username').val();
+                const email = $('#userEmail').val();
+
+                const formData = new FormData(document.getElementById('form-info'));
+
+                formData.append('username', username);
+                formData.append('email', email);
+
+                $.ajax({
+                    url: "http://localhost:3000/users/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (results) {
+                        alert('Successfully');
+                        console.log(results);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
+
+    <script>
+        $.ajax({
+            url: "http://localhost:3000/users/current",
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+            // data: formData,
+            // cache: false,
+            // contentType: false,
+            // processData: false,
+            success: function (results) {
+                // alert('Successfully');
+                // console.log(results);
+                const id = results._id
+                console.log(id);
+                $("#userId").val(id)
+            },
+            error: function (xhr, status, error) {
+                alert('Error: ' + xhr.responseText);
+            }
+        });
+        // return false;
+    </script>
+
+
+
 
 </body>
 

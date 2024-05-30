@@ -108,13 +108,12 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form asp-action="Question" method="post"
-                                                        enctype="multipart/form-data">
+                                                    <form id="editQuestion" method="post" enctype="multipart/form-data">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
                                                                     <label>Question</label>
-                                                                    <input type="text" class="form-control"
+                                                                    <input id="" type="text" class="form-control"
                                                                         placeholder="Question">
                                                                     <span asp-validation-for="@Model.Question"
                                                                         class="text-danger"></span>
@@ -304,6 +303,54 @@
             });
     </script>
 
+    <!-- <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        console.log(getUrlVars()['id']);
+        const id = getUrlVars()['id'];
+
+        $.ajax({
+            url: "http://localhost:3000/exam_lessons/" + id,
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+            success: function (kq) {
+                console.log(kq);
+                const title = kq.title;
+                const selection = kq.selection;
+                const point = kq.point;
+                const hour = kq.hour;
+                const minute = kq.minute;
+                const second = kq.second;
+
+                $('#lessonTitle').val(title)
+                $('#lessonSelection').val(selection)
+                $('#lessonPoint').val(point)
+                $('#lessonHour').val(hour)
+                $('#lessonMinute').val(minute)
+                $('#lessonSecond').val(second)
+            }
+        });
+
+        $('#editLesson').on('save', function (e) {
+            e.preventDefault();
+            // alert(1);
+            // const formData = new FormData();
+            // console.log(formData);
+            var data = new FormData();
+            $.each($('#file')[0].files, function (i, file) {
+                data.append('file-' + i, file);
+            });
+            console.log($('#file')[0].files);
+        })
+    </script> -->
 
 </body>
 
