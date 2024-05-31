@@ -242,7 +242,6 @@ $(document).ready(function() {
   });
 });
 
-
 $(document).ready(function() {
   $("#finish").click(function() {
     var answersList = [];
@@ -284,15 +283,6 @@ $(document).ready(function() {
 //     }
 // });
 
-
-// Set active for exam status
-$(document).ready(function () {
-  $('input[type="radio"]').change(function () {
-      var formId = $(this).closest('form').attr('id');
-      $('#choice_' + formId).addClass('active');
-  });
-});
-
 function submitAnswers(url) {
   var answersList = [];
 
@@ -315,19 +305,19 @@ function submitAnswers(url) {
 
   console.log(answersList);
   
-  // Send data using AJAX
-  $.ajax({
-      type: "POST",
-      url: url, // Use the provided URL
-      data: JSON.stringify(answersList),
-      contentType: "application/json; charset=utf-8",
-      dataType: 'html', // Set dataType to 'html' to expect HTML content
-      success: function (response) {
-          window.location.href = resultUrl;
-      },
-      error: function (xhr, status, error) {
-          toastr.error(error.message);
-      }
-  });
+  // // Send data using AJAX
+  // $.ajax({
+  //     type: "POST",
+  //     url: url, // Use the provided URL
+  //     data: JSON.stringify(answersList),
+  //     contentType: "application/json; charset=utf-8",
+  //     dataType: 'html', // Set dataType to 'html' to expect HTML content
+  //     success: function (response) {
+  //         window.location.href = resultUrl;
+  //     },
+  //     error: function (xhr, status, error) {
+  //         toastr.error(error.message);
+  //     }
+  // });
 }
 

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/exam.css">
     <link rel="stylesheet" class="js-color-style" href="css/colors/color-1.css">
     <link rel="stylesheet" class="js-glass-style" href="css/glass.css" disabled>
+    
+  
 </head>
 
 <body>
@@ -124,7 +126,7 @@
                 <button type="button" class="btn btn-theme " href="exam-details.html">Thoát</button>
             </div>
             <div class="col-md-6 text-center pt-2">
-                <p class="fw-bold">User: @Model.FullName</p>
+                <p id="username" class="fw-bold"></p>
             </div>
             <div class="col-md-4 btn-wrap">
                 <div class="row">
@@ -147,15 +149,8 @@
     <section class="course-details section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-                    <!-- quiz start -->
-                    <!-- @{
-                      int iQuestion = 0;
-                  }
-                  @foreach (var item in Model.ExamQuestions)
-                  {
-                      iQuestion++; -->
-                    <div class="course-header box mt-3">
+                <div id="questionChoice" class="col-lg-8">
+                    <div class="course-header box">
                         <h5 class="text-capitalize">@iQuestion. @item.Question</h5>
                         <div class="text-center">
                             <img class="m-4" src="@item.ImageUrl" alt="" width="450">
@@ -206,15 +201,7 @@
                 <div class="col-lg-4">
                     <!-- course sidebar start -->
                     <div class="course-sidebar box">
-                        <ul class="row">
-                            <!-- @{
-                              int iStatus = 0;
-                          }
-                          @foreach (var item in Model.ExamQuestions)
-                          {
-                              iStatus++; -->
-                            <li class="col-md-2 col-lg-2 exam-choice" id="choice_1">1</li>
-                            <!-- } -->
+                        <ul id="questionStatus" class="row">
                         </ul>
                     </div>
                     <!-- course sidebar end -->
@@ -349,14 +336,6 @@
 
     <!-- <script>
         $(document).ready(function () {
-            $('input[type="radio"]').change(function () {
-                var formId = $(this).closest('form').attr('id'); // Get the ID of the closest form
-                $('#choice_' + formId).addClass('active'); // Add 'active' class to the corresponding exam choice
-            });
-        });
-
-
-        $(document).ready(function () {
             $("#finish").click(function () {
                 var answersList = [];
                 //Loop over all questoins
@@ -410,6 +389,111 @@
             $('#login').show();
             $('#account').hide();
         }
+    </script>
+
+    <script>
+      function getUrlVars() {
+          var vars = [], hash;
+          var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+          for (var i = 0; i < hashes.length; i++) {
+              hash = hashes[i].split('=');
+              vars.push(hash[0]);
+              vars[hash[0]] = hash[1];
+          }
+          return vars;
+      }
+      const id = getUrlVars()['id'];
+
+      $.ajax({
+            url: "http://localhost:3000/exam_lessons/questionsOf/" + id,
+            type: "GET",
+            success: function (kq) {
+              console.log(kq);
+                const array = kq;
+                let strQuestions = '';
+                let strStatus = '';
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+                    strQuestions+=  
+                    `<div class="course-header box">
+                        <h5 class="text-capitalize">`+ index + `. ` + element.question +`</h5>
+                        <div class="text-center">
+                            <img class="m-4" src="`+element.imageUrl+`" alt="" width="450">
+                        </div>
+                        <form class="exam_page" id="`+index+`">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio1" name="answer"
+                                                value="0" checked>
+                                            <p>A. `+ element.options[0] +`</p>
+                                            <label class="form-check-label" for="radio1"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio2" name="answer"
+                                                value="2">
+                                            <p>C. `+ element.options[2] +`</p>
+                                            <label class="form-check-label" for="radio2"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio3" name="answer"
+                                                value="1">
+                                            <p>B. `+ element.options[1] +`</p>
+                                            <label class="form-check-label" for="radio3"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio4" name="answer"
+                                                value="3">
+                                            <p>D. `+ element.options[3] +`</p>
+                                            <label class="form-check-label" for="radio4"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>`;
+
+                    strStatus+=`<li class="col-md-2 col-lg-2 exam-choice" id="choice_`+index+`">`+index+`</li>`;
+                }
+                $("#questionChoice").html(strQuestions);
+                $("#questionStatus").html(strStatus);
+
+                $("input[type='radio']").prop('checked', false);
+            }
+        });
+
+        // Use event delegation to handle change event for dynamically added radio buttons
+        $(document).on('change', 'input[type="radio"]', function () {
+            var formId = $(this).closest('form').attr('id');
+            $('#choice_' + formId).addClass('active');
+        });
+
+        $(document).ready(function () {
+          // Uncheck all radio buttons when the page loads
+          $("input[name='answer']").prop('checked', false);
+        });
+    </script>
+
+    <script>
+      $.ajax({
+            url: "http://localhost:3000/users/current",
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+            success: function (kq) {
+              console.log(kq);
+              // const username = kq.username;
+              // $('#username').val(username)
+            }
+        });
     </script>
 </body>
 

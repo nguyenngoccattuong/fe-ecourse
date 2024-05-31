@@ -440,5 +440,33 @@
           }
       });
   </script>
-  </body>
+
+  <script>
+    $.ajax({
+          url: "http://localhost:3000/exam/lessonsOf/" + id,
+          type: "GET",
+          success: function (kq) {
+            console.log(kq);
+              const array = kq;
+              let str = '';
+              for (let index = 0; index < array.length; index++) {
+                  const element = array[index];
+                  str+=  
+                  `<a href="exam-play.html?id=` + element._id + `">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="heading-`+index+`">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#collapse-`+index+`"
+                              aria-controls="collapse-`+index+`">
+                              `+ element.title +` <span> `+element.questions.length +` | 20min </span>
+                          </button>
+                      </h2>
+                    </div>
+                  </a>`;
+              }
+              $("#accordion").html(str);
+          }
+      });
+  </script>
+</body>
 </html>

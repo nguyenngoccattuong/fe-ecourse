@@ -651,9 +651,6 @@
             url: "http://localhost:3000/course/lessonsOf/" + id,
             type: "GET",
             headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-            // beforeSend: function (params) {
-            //     $("#course-instructor").html('<img src="./img/loading-gif.gif" alt="" width="50">')
-            // },
             success: function (kq) {
               console.log(kq);
                 const array = kq;
@@ -667,7 +664,6 @@
                       strVideo += 
                       `<li>
                         <i class="fas fa-play-circle"></i>` + video.title + `
-                        Lexical structure
                         <span>`+ video.hour + "h:" + video.minute+ "m" + `</span>
                       </li>`;
                     }
@@ -695,8 +691,6 @@
             }
         });
     </script>
-
-
 </body>
 
 </html>
