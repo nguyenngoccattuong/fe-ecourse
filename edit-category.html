@@ -98,52 +98,40 @@
 
         <div class="container">
             <main role="main" class="pb-3">
-                <div class="table-responsive text-nowrap container-fluid section-padding">
+                <div class="container-fluid section-padding">
                     <div class="product-payment-inner-st">
                         <div class="review-content-section box">
-                            <div class="row">
-                                <div class="col-10">
-                                    <h2>Add Category</h2>
+                            <h2>Edit Category</h2>
+                            <form id="editCategory" method="post" class="dropzone dropzone-custom needsclick addcourse"
+                                id="demo1-upload">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label class="m-2">Category</label>
+                                            <input type=" text" id="category" class="form-control"
+                                                placeholder="Course Name">
+                                            <span asp-validation-for="Category" class="text-danger"></span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-2">
-                                    <a class="btn btn-theme" href="/add-category.html">Create New</a>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="payment-adress">
+                                            <button id="submit" type="submit"
+                                                class="btn btn-theme waves-effect waves-light">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <a asp-action="Index" class="btn btn-theme waves-effect waves-light"
+                                            href="index-category.html">
+                                            Back to list
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Category</th>
-                                        <th>DeleteAt</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- <tr>
-                                        <td>@item.Id</td>
-                                        <td>@item.Category</td>
-                                        <td>
-                                            <row class="row">
-                                                <div class="col-lg-2">
-                                                    <a class="btn btn-theme" asp-action="Create"
-                                                        asp-route-id="@item.Id">View</a>
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <form asp-action="IndexDelete" method="post">
-                                                        <button type="submit" asp-action="IndexDelete"
-                                                            asp-route-id="@item.Id" formnovalidate
-                                                            class="cancel btn btn-danger"
-                                                            onclick="return confirm('Are you sure?')">
-                                                            Delete
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </row>
-                                        </td>
-                                    </tr> -->
-
-                                </tbody>
-                            </table>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -246,106 +234,68 @@
 
     <!-- style switcher end -->
 
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script> -->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
 
-
     <script>
-        // hehe
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        // console.log(getUrlVars()['id']);
+        const id = getUrlVars()['id'];
+
         $.ajax({
-            url: "http://localhost:3000/categorys",
+            url: "http://localhost:3000/categorys/" + id,
             type: "GET",
-            data: {},
-            beforeSend: function (params) {
-                $("#example tbody").html('<img src="./img/loading-gif.gif" alt="" width="50">')
-            },
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
             success: function (kq) {
                 console.log(kq);
-                const array = kq;
-                let str = '';
-
-
-                for (let index = 0; index < array.length; index++) {
-                    const element = array[index];
-                    let deleteAt = element.deleteAt;
-
-                    // Convert the datetime string to a Date object
-                    let dateObj = new Date(deleteAt);
-
-                    // Format the Date object to a readable string
-                    let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-                    let formattedDate = dateObj.toLocaleString('en-US', options);
-                    str += '<tr>';
-                    str += '<td>' + element._id + '</td>';
-                    str += '<td>' + element.category + '</td>';
-                    str += '<td>' + element.deleteAt ?? formattedDate + '</td>';
-                    str += `<td>
-                                        <a href="edit-category.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |
-                                        <a href="javscript:void(0);" onclick="getId('` + element._id + `')" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-trash-can"></i></a>
-                                    </td>`;
-                    str += '</tr>';
-                }
-
-                $("#example tbody").html(str)
-
+                const category = kq.category;
+                $('#category').val(category)
             }
         });
-        function getId(id) {
-            // alert(id);
-            // $('#id_' + id).remove()
-            $('#_getId').val(id)
-        }
-
-        function deleteRow() {
-            const id = $('#_getId').val()
-            // alert(id)
-            // return
-            $.ajax({
-                url: "http://localhost:3000/categorys/" + id,
-                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-                type: "DELETE",
-                success: function (kq) {
-                    location.reload();
-                }
-            })
-        }
     </script>
 
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <script>
+        $(document).ready(function () {
+            $('#editCategory').on('submit', function (e) {
+                e.preventDefault();
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Notification</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
+                const category = $('#category').val();
+                const jsonData = {
+                    "category": category,
+                };
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    Are you sure to delete?
-                    <input type="hidden" id="_getId">
-                </div>
+                $.ajax({
+                    url: "http://localhost:3000/categorys/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: JSON.stringify(jsonData),  // Stringify the JSON object
+                    contentType: "application/json",  // Ensure content type is application/json
+                    success: function (results) {
+                        alert('Successfully');
+                        console.log(results);
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" onclick="deleteRow()" class="btn btn-danger"
-                        data-bs-dismiss="modal">Yes</button>
-                </div>
 
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

@@ -586,7 +586,8 @@
                         let str = '<div class="row">';
                         for (let index = 0; index < array.length; index++) {
                             const element = array[index];
-                            str += `<div class="col-md-6 col-lg-3">
+                            if (element.deleteAt === null) {
+                                str += `<div class="col-md-6 col-lg-3">
                                         <div class="courses-item">
                                           <a href="exam-details.html?id=`+ element._id + `" class="link">
                                                 <div class="courses-item-inner">
@@ -614,6 +615,7 @@
                                             </a>
                                         </div>
                                     </div> `;
+                            }
                         }
                         str += '</div>';
                         if (status != 0) {

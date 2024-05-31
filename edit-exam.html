@@ -393,8 +393,9 @@
 
                 for (let index = 0; index < array.length; index++) {
                     const element = array[index];
-
-                    str += '<option value="' + element._id + '">' + element.category + '</option>';
+                    if (element.deleteAt === null) {
+                        str += '<option value="' + element._id + '">' + element.category + '</option>';
+                    }
                 }
 
                 $('#examCategoryId').html(str)

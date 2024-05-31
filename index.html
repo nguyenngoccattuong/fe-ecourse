@@ -438,34 +438,36 @@
                 let str = '<div class="row">';
                 for (let index = 0; index < array.length; index++) {
                     const element = array[index];
-                    str += `<div class="col-md-6 col-lg-3">
-                                            <div class="courses-item">
-                                                <a href="course-details.html" class="link">
-                                                    <div class="courses-item-inner">
-                                                        <div class="img-box">
-                                                            <img src="`+ element.imageIntroduce + `" alt="course img" width="260" height="170">
-                                                        </div>
-                                                        <h3 class="title">`+ element.title + `</h3>
-                                                        <div class="instructor">
-                                                            <img src="img/instructor/1.png" alt="instructor img">
-                                                            <span class="instructor-name">john doe</span>
-                                                        </div>
-                                                        <div class="rating">
-                                                            <span class="average-rating">(4.5)</span>
-                                                            <span class="average-stars">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star-half-alt"></i>
-                                                            </span>
-                                                            <span class="reviews">(230)</span>
-                                                        </div>
-                                                        <div class="price">$ 49</div>
+                    if (element.deleteAt === null) {
+                        str += `<div class="col-md-6 col-lg-3">
+                                        <div class="courses-item">
+                                            <a href="course-details.html?id=`+ element._id + `" class="link">
+                                                <div class="courses-item-inner">
+                                                    <div class="img-box">
+                                                        <img src="`+ element.imageIntroduce + `" alt="course img" width="260" height="170">
                                                     </div>
-                                                </a>
-                                            </div>
-                                        </div> `;
+                                                    <h3 class="title">`+ element.title + `</h3>
+                                                    <div class="instructor">
+                                                        <img src="`+ element.teacher.photoUrl + `" alt="instructor img">
+                                                        <span class="instructor-name">`+ element.teacher.username + `</span>
+                                                    </div>
+                                                    <div class="rating">
+                                                        <span class="average-rating">(4.5)</span>
+                                                        <span class="average-stars">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star-half-alt"></i>
+                                                        </span>
+                                                        <span class="reviews">(230)</span>
+                                                    </div>
+                                                    <div class="price">$ 49</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>`;
+                    }
                 }
                 str += '</div>';
                 if (status != 0) {
