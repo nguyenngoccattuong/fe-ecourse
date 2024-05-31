@@ -103,7 +103,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="review-content-section box">
-                                    <h2>Question Details </h2>
+                                    <h2>Edit Question </h2>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
@@ -112,60 +112,62 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                    <label>Question</label>
-                                                                    <input id="" type="text" class="form-control"
-                                                                        placeholder="Question">
-                                                                    <span asp-validation-for="@Model.Question"
+                                                                    <label asp-for="Question">Question</label>
+                                                                    <input id="question" type="text"
+                                                                        class="form-control" placeholder="Question">
+                                                                    <span asp-validation-for="Question"
                                                                         class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Answer</label>
-                                                                    <input type="number" class="form-control"
+                                                                    <label asp-for="Answer">Answer</label>
+                                                                    <input id="answer" type="text" class="form-control"
                                                                         placeholder="Answer">
-
-                                                                    <span class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label asp-for="Image">Image</label>
-
-                                                                    <!-- <img src="ImageUrl" alt="ImageQuestion" /> -->
-
-                                                                    <input type="file" asp-for="Image"
+                                                                    <input name="file" type="file" asp-for="Image"
                                                                         class="form-control" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label asp-for="Answer">LessonID</label>
+                                                                    <input id="lesson" type="text" class="form-control"
+                                                                        placeholder="LessonID">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                    <label asp-for="@Model.Option[0]">Option1</label>
-                                                                    <input asp-for="@Model.Option1" type="text"
-                                                                        class="form-control" placeholder="A">
-                                                                    <span asp-validation-for="@Model.Option[0]"
+                                                                    <label asp-for="Option1">Option1</label>
+                                                                    <input id="option1" type="text" class="form-control"
+                                                                        placeholder="A">
+                                                                    <span asp-validation-for="Option1"
                                                                         class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label asp-for="@Model.Option[1]">Option2</label>
-                                                                    <input asp-for="@Model.Option2" type="text"
-                                                                        class="form-control" placeholder="B">
-                                                                    <span class="text-danger"></span>
+                                                                    <label asp-for="Option2">Option2</label>
+                                                                    <input id="option2" type="text" class="form-control"
+                                                                        placeholder="B">
+                                                                    <span asp-validation-for="Option2"
+                                                                        class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label asp-for="@Model.Option[2]">Option3</label>
-                                                                    <input asp-for="@Model.Option3" type="text"
-                                                                        class="form-control" placeholder="C">
-                                                                    <span class="text-danger"></span>
+                                                                    <label asp-for="Option3">Option3</label>
+                                                                    <input id="option3" type="text" class="form-control"
+                                                                        placeholder="C">
+                                                                    <span asp-validation-for="Option3"
+                                                                        class="text-danger"></span>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label asp-for="@Model.Option[3]">Option4</label>
-                                                                    <input asp-for="@Model.Option4" type="text"
-                                                                        class="form-control" placeholder="D">
-                                                                    <span asp-validation-for="@Model.Option[3]"
+                                                                    <label asp-for="Option4">Option4</label>
+                                                                    <input id="option4" type="text" class="form-control"
+                                                                        placeholder="D">
+                                                                    <span asp-validation-for="Option4"
                                                                         class="text-danger"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-5">
                                                             <div class="col-lg-6">
-                                                                <button type="submit"
+                                                                <button type="submit" id="submit"
                                                                     class="btn btn-theme waves-effect waves-light">
                                                                     Submit
                                                                 </button>
@@ -287,23 +289,12 @@
 
     <!-- style switcher end -->
 
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
 
     <script>
-        ClassicEditor
-            .create(document.querySelector('#myeditor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
-
-    <!-- <script>
         function getUrlVars() {
             var vars = [], hash;
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -315,42 +306,95 @@
             return vars;
         }
         console.log(getUrlVars()['id']);
+        const iD = getUrlVars()['id'];
+
+        $(document).ready(function () {
+            $('#editQuestion').on('submit', function (e) {
+                e.preventDefault();
+
+                const question = $('#question').val();
+                const option1 = $('#option1').val();
+                const option2 = $('#option2').val();
+                const option3 = $('#option3').val();
+                const option4 = $('#option4').val();
+                const answer = $('#answer').val();
+                const examLesson = getUrlVars()["id"];
+
+                const formData = new FormData(document.getElementById('editQuestion'));
+
+                formData.append('question', question);
+                formData.append('options', option1);
+                formData.append('options', option2);
+                formData.append('options', option3);
+                formData.append('options', option4);
+                formData.append('answer', answer);
+                formData.append('lesson', examLesson);
+                // formData.append('files', []);
+                // console.log(part, title, hour, minute);
+                // return
+
+                $.ajax({
+                    url: "http://localhost:3000/exam_questions/" + iD,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (results) {
+                        alert('Successfully');
+                        location.reload();
+                        console.log(results);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
+
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
         const id = getUrlVars()['id'];
 
         $.ajax({
-            url: "http://localhost:3000/exam_lessons/" + id,
+            url: "http://localhost:3000/exam_questions/" + id,
             type: "GET",
             headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+
+
             success: function (kq) {
                 console.log(kq);
-                const title = kq.title;
-                const selection = kq.selection;
-                const point = kq.point;
-                const hour = kq.hour;
-                const minute = kq.minute;
-                const second = kq.second;
 
-                $('#lessonTitle').val(title)
-                $('#lessonSelection').val(selection)
-                $('#lessonPoint').val(point)
-                $('#lessonHour').val(hour)
-                $('#lessonMinute').val(minute)
-                $('#lessonSecond').val(second)
+                const question = kq.question;
+                const options = kq.options;
+                // const option2 = kq.options;
+                // const option3 = kq.options;
+                // const option4 = kq.option4;
+                const answer = kq.answer;
+                const lesson = kq.lesson
+
+                $('#question').val(question)
+                $('#option1').val(options[0])
+                $('#option2').val(options[1])
+                $('#option3').val(options[2])
+                $('#option4').val(options[3])
+                $('#answer').val(answer)
+                $('#lesson').val(lesson)
             }
         });
-
-        $('#editLesson').on('save', function (e) {
-            e.preventDefault();
-            // alert(1);
-            // const formData = new FormData();
-            // console.log(formData);
-            var data = new FormData();
-            $.each($('#file')[0].files, function (i, file) {
-                data.append('file-' + i, file);
-            });
-            console.log($('#file')[0].files);
-        })
-    </script> -->
+    </script>
 
 </body>
 

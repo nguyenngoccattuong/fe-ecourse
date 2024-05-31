@@ -115,7 +115,6 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Type</th>
                                             <th>Category</th>
                                             <th>Image</th>
                                             <th>DeleteAt</th>
@@ -312,7 +311,6 @@
                     let formattedDate = dateObj.toLocaleString('en-US', options);
                     str += '<tr>';
                     str += '<td>' + element.title + '</td>';
-                    str += '<td>' + element.description + '</td>';
                     str += '<td>' + element.category.category + '</td>';
                     str += '<td> <img src=" ' + element.imageUrl + '"alt="" width="50"> </td>';
                     str += '<td>' + element.deleteAt ?? formattedDate + '</td>';
