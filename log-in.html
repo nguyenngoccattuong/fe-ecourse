@@ -110,7 +110,7 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Password" id="password">
                                     <div class="d-flex mb-2 justify-content-end"><a href="forgot-password.html">Forgot
-                                            Password</a>
+                                            Password?</a>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-theme btn-block btn-form">Log In</button>
@@ -291,7 +291,10 @@
                         }
                         // localStorage.setItem("myCat", "Tom");
                         // console.log(results);
-                    }
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error: " + xhr.responseText);
+                    },
                 });
 
                 return false;

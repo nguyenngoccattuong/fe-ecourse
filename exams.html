@@ -562,10 +562,12 @@
                         active = 'active';
                         idFirst = element._id;
                     }
-                    str += `<button 
+                    if (element.deleteAt === null) {
+                        str += `<button 
                         class="nav-link `+ active + `" 
                         onclick="getCourse('` + element._id + `', 1)"
                     >` + element.category + `</button>`;
+                    }
                 }
 
                 $("#nav-tab").html(str)
