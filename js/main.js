@@ -283,41 +283,41 @@ $(document).ready(function() {
 //     }
 // });
 
-function submitAnswers(url) {
-  var answersList = [];
+// function submitAnswers(url) {
+//   var answersList = [];
 
-  // Loop over all questions
-  $(".exam_page").each(function () {
-      var questionId = parseInt($(this).attr("id"), 10);
-      var answer = parseInt($("input[name='answer']:checked", $(this)).val(), 10);
+//   // Loop over all questions
+//   $(".exam_page").each(function () {
+//       var questionId = parseInt($(this).attr("id"), 10);
+//       var answer = parseInt($("input[name='answer']:checked", $(this)).val(), 10);
 
-      // Check if answer is NaN and set it to -1
-      if (isNaN(answer)) {
-          answer = -1;
-      }
+//       // Check if answer is NaN and set it to -1
+//       if (isNaN(answer)) {
+//           answer = -1;
+//       }
 
-      // Push to answersList
-      answersList.push({
-          id: questionId,
-          answer: answer
-      });
-  });
+//       // Push to answersList
+//       answersList.push({
+//           id: questionId,
+//           answer: answer
+//       });
+//   });
 
-  console.log(answersList);
+//   console.log(answersList);
   
-  // // Send data using AJAX
-  // $.ajax({
-  //     type: "POST",
-  //     url: url, // Use the provided URL
-  //     data: JSON.stringify(answersList),
-  //     contentType: "application/json; charset=utf-8",
-  //     dataType: 'html', // Set dataType to 'html' to expect HTML content
-  //     success: function (response) {
-  //         window.location.href = resultUrl;
-  //     },
-  //     error: function (xhr, status, error) {
-  //         toastr.error(error.message);
-  //     }
-  // });
-}
+//   // // Send data using AJAX
+//   // $.ajax({
+//   //     type: "POST",
+//   //     url: url, // Use the provided URL
+//   //     data: JSON.stringify(answersList),
+//   //     contentType: "application/json; charset=utf-8",
+//   //     dataType: 'html', // Set dataType to 'html' to expect HTML content
+//   //     success: function (response) {
+//   //         window.location.href = resultUrl;
+//   //     },
+//   //     error: function (xhr, status, error) {
+//   //         toastr.error(error.message);
+//   //     }
+//   // });
+// }
 
