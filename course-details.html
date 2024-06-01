@@ -487,8 +487,7 @@
                   class="img-box position-relative"
                   id="image-introduce"
                   data-bs-toggle="modal"
-                  data-bs-target="#video-modal"
-                ></div>
+                  data-bs-target="#video-modal"></div>
                 <div class="price d-flex align-items-center mb-3">
                   <span class="price-old text-decoration-line-through"
                     >$111</span
@@ -720,6 +719,30 @@
         }
         return vars;
       }
+
+      function generateStarRating(rating) {
+        let strRating = '';
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 >= 0.5;
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+        // Add full stars
+        for (let i = 0; i < fullStars; i++) {
+          strRating += '<i class="fas fa-star"></i>';
+        }
+
+        // Add half star if needed
+        if (halfStar) {
+          strRating += '<i class="fas fa-star-half-alt"></i>';
+        }
+
+        // Add empty stars
+        for (let i = 0; i < emptyStars; i++) {
+          strRating += '<i class="far fa-star"></i>';
+        }
+
+        return strRating;
+      }
       const id = getUrlVars()["id"];
 
       $.ajax({
@@ -734,24 +757,18 @@
           let dateObj = new Date(updateAt);
           let options = { year: "numeric", month: "long", day: "numeric" };
           let formattedDate = dateObj.toLocaleString("en-US", options);
-
+          let strRating = generateStarRating(kq.rating);
           let strDetail =
             `<h2 class="text-capitalize">` +
             kq.title +
             `</h2>
             <div class="rating">
-              <span class="average-rating">(4.5)</span>
-              <span class="average-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                </span>
-                <span class="reviews">(23 Reviews)</span>
+              <span class="average-rating">(`+kq.rating+`)</span>
+              `+strRating+`
+                <span class="reviews">(`+kq.reviews+` Reviews)</span>
                 </div>
                 <ul>
-                  <li> enrolled students - <span>2200</span></li>
+                  <li> enrolled students - <span>`+kq.register+`</span></li>
                   <li> created by - <span><a href="teacher-info.html?id=` +
             kq.teacher._id +
             `">` +
