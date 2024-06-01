@@ -115,11 +115,11 @@
                             <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>UserName</th>
                                         <th>Email</th>
                                         <th>PhotoUrl</th>
                                         <th>Role</th>
+                                        <th>LockAt</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -297,25 +297,71 @@
                 const array = kq;
                 let str = '';
 
+                
                 for (let index = 0; index < array.length; index++) {
-                    const element = array[index];
+                  const element = array[index];
+                  // Format date lock at
+                  let lockAt = element.loackAt;
+                  let dateObj = new Date(lockAt);
+                  let options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                  let formattedDate = dateObj.toLocaleString('en-US', options);
                     str += '<tr>';
-                    str += '<td>' + element._id + '</td>';
                     str += '<td>' + element.username + '</td>';
                     str += '<td>' + element.email + '</td>';
                     str += '<td> <img src=" ' + element.photoUrl + '"alt="" width="50"> </td>';
                     str += '<td>' + element.roles + '</td>';
-                    str += `<td><a class="btn btn-theme" asp-action="Create"
-                        asp - route - id="@item.Id" href="add-video.html" > Lock</a >                       
+                    str += '<td>' + element.lockAt ?? formattedDate + '</td>';
+                    str += `<td><a class="btn btn-theme" href="javscript:void(0);" onclick="getId('` + element._id + `')" data-bs-toggle="modal" data-bs-target="#myModal"> Lock</a >                       
                         </td>`;
-
                 }
-
                 $("#example tbody").html(str)
-
             }
         });
+
+        function getId(id) {
+            $('#_getId').val(id)
+        }
+
+        function deleteRow() {
+            const id = $('#_getId').val()
+            console.log(id);
+            $.ajax({
+                url: "http://localhost:3000/users/lock/" + id,
+                headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                type: "DELETE",
+                success: function (kq) {
+                    location.reload();
+                }
+            })
+        }
     </script>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+          <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                  <h4 class="modal-title">Notification</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                  Are you sure to lock?
+                  <input type="hidden" id="_getId">
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                  <button type="button" onclick="deleteRow()" class="btn btn-danger"
+                      data-bs-dismiss="modal">Yes</button>
+              </div>
+
+          </div>
+      </div>
+  </div>
 
 
 </body>
