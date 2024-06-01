@@ -266,22 +266,15 @@
                     data: { category },
                     success: function (results) {
                         alert("Seccessfully!");
-                        // console.log(results);
+                        location.reload();
+                        console.log(results);
                     },
-                    // error: function (xhr, status, error) {
-                    //     alert("Error: " + xhr.responseText);
-                    // },
+                    error: function (xhr, status, error) {
+                        alert("Error: " + xhr.responseText);
+                    },
                 });
             });
         });
-        // $.ajax({
-        //     url: "http://localhost:3000/course_lessons",
-        //     type: "POST",
-        //     // headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-        //     success: function (results) {
-        //         console.log(results);
-        //     }
-        // });
     </script>
 
 

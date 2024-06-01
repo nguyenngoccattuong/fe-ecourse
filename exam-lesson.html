@@ -130,6 +130,12 @@
                                                         <span asp-validation-for="@Model.ExamLesson.Point"
                                                             class="text-danger"></span>
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label>ExamID</label>
+                                                        <input id="examId" type="text" class="form-control"
+                                                            placeholder="ExamID">
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
@@ -423,6 +429,7 @@
                 const hour = kq.hour;
                 const minute = kq.minute;
                 const second = kq.second;
+                const examId = kq.exam;
 
                 $('#lessonTitle').val(title)
                 $('#lessonSelection').val(selection)
@@ -430,6 +437,7 @@
                 $('#lessonHour').val(hour)
                 $('#lessonMinute').val(minute)
                 $('#lessonSecond').val(second)
+                $('#examId').val(examId)
             }
         });
 
@@ -443,6 +451,48 @@
                 data.append('file-' + i, file);
             });
             console.log($('#file')[0].files);
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#editLesson').on('submit', function (e) {
+                e.preventDefault();
+
+                const lessonTitle = $('#lessonTitle').val();
+                const lessonSelection = parseInt($('#lessonSelection').val(), 10);
+                const lessonPoint = parseInt($('#lessonPoint').val(), 10);
+                const lessonHour = parseInt($('#lessonHour').val(), 10);
+                const lessonMinute = parseInt($('#lessonMinute').val(), 10);
+                const lessonSecond = parseInt($('#lelessonSecondssonSelection').val(), 10);
+                const examId = $('#examId').val();
+
+                const jsonData = {
+                    "title": lessonTitle,
+                    "hour": lessonHour,
+                    "minute": lessonMinute,
+                    "second": lessonSecond,
+                    "selection": lessonSelection,
+                    "point": lessonPoint,
+                    "exam": examId
+                }
+                $.ajax({
+                    url: "http://localhost:3000/exam_lessons/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: JSON.stringify(jsonData),  // Stringify the JSON object
+                    contentType: "application/json",  // Ensure content type is application/json
+                    success: function (results) {
+                        alert('Successfully');
+                        console.log(results);
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
         })
     </script>
 
@@ -483,8 +533,8 @@
                     processData: false,
                     success: function (results) {
                         alert('Successfully');
+                        location.reload();
                         console.log(results);
-                        // location.reload();
                     },
                     error: function (xhr, status, error) {
                         alert('Error: ' + xhr.responseText);
@@ -523,7 +573,8 @@
                     str += '<td>' + element.question + '</td>';
                     str += '<td>' + element.answer + '</td>';
                     str += '<td>[' + element.options + ']</td>';
-                    str += '<td>' + element.imageUrl + '</td>';
+                    str += '<td> <img src=" ' + element.imageUrl + '"alt="" width="50"> </td>';
+
                     str += '<td>' + element.deleteAt ?? formattedDate + '</td>';
                     str += `<td>
                                     <a href="add-question.html?id=` + element._id + `"><i class="fa-solid fa-pen-to-square"></i></a> |

@@ -348,8 +348,6 @@
             url: "http://localhost:3000/course_lessons/" + id,
             type: "GET",
             headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-
-
             success: function (kq) {
                 console.log(kq);
                 const lessonTitle = kq.title;
@@ -377,7 +375,6 @@
                     "title": lessonTitle,
                     "selection": lessonSelection,
                     "course": lessonCourse
-
                 };
 
                 $.ajax({

@@ -149,20 +149,21 @@
                     <div class="col-md-6">
                         <div class="contact-form box">
                             <h2 class="form-title text-center">Leave a Message</h2>
-                            <form action="">
+                            <form id="formMessage">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input id="fullName" type="text" class="form-control" placeholder="Name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email">
+                                    <input id="mail" type="text" class="form-control" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone">
+                                    <input id="topic" type="text" class="form-control" placeholder="Topic">
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Message"></textarea>
+                                    <textarea id="text" class="form-control" placeholder="Message"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-block btn-theme btn-form">Send Message</button>
+                                <button id="submit" type="submit" class="btn btn-block btn-theme btn-form">Send
+                                    Message</button>
                             </form>
                         </div>
                     </div>
@@ -319,6 +320,45 @@
             $('#login').show();
             $('#account').hide();
         }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#formMessage").on("submit", function (e) {
+                e.preventDefault();
+
+                const fullName = $("#fullName").val();
+                const mail = $("#mail").val();
+                const topic = $("#topic").val();
+                const text = $("#text").val();
+
+                const jsonData = {
+                    "fullName": fullName,
+                    "mail": mail,
+                    "text": text,
+                    "topic": topic
+                }
+
+                $.ajax({
+                    url: "http://localhost:3000/contacts",
+                    type: "POST",
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                    data: JSON.stringify(jsonData),  // Stringify the JSON object
+                    contentType: "application/json",  // Ensure content type is application/json
+                    success: function (results) {
+                        alert("Seccessfully!");
+                        console.log(results);
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error: " + xhr.responseText);
+                    },
+                });
+            });
+        });
+
     </script>
 
 </body>
