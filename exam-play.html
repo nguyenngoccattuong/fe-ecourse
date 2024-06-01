@@ -182,7 +182,7 @@
               <button
                 id="finish"
                 class="btn btn-theme"
-                onclick="submitAnswers('/Exam/SubmitAnswers')"
+                onclick="submitAnswers()"
               >
                 Nộp bài
               </button>
@@ -196,73 +196,6 @@
       <div class="container">
         <div class="row">
           <div id="questionChoice" class="col-lg-8">
-            <div class="course-header box">
-              <h5 class="text-capitalize">@iQuestion. @item.Question</h5>
-              <div class="text-center">
-                <img class="m-4" src="@item.ImageUrl" alt width="450" />
-              </div>
-              <form class="exam_page" id="1">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="col-auto">
-                      <div class="form-check">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          id="radio1"
-                          name="answer"
-                          value="0"
-                          checked
-                        />
-                        <p>A. @item.Option[0]</p>
-                        <label class="form-check-label" for="radio1"></label>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <div class="form-check">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          id="radio2"
-                          name="answer"
-                          value="2"
-                        />
-                        <p>C. @item.Option[2]</p>
-                        <label class="form-check-label" for="radio2"></label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="col-auto">
-                      <div class="form-check">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          id="radio3"
-                          name="answer"
-                          value="1"
-                        />
-                        <p>B. @item.Option[1]</p>
-                        <label class="form-check-label" for="radio3"></label>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <div class="form-check">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          id="radio4"
-                          name="answer"
-                          value="3"
-                        />
-                        <p>D. @item.Option[3]</p>
-                        <label class="form-check-label" for="radio4"></label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
             <!-- quiz end -->
           </div>
           <div class="col-lg-4">
@@ -659,7 +592,7 @@
     </script>
 
     <script>
-      function submitAnswers(url) {
+      function submitAnswers() {
         var examSubmit = [];
 
         // Loop over all questions
@@ -691,8 +624,8 @@
 
         // Send data using AJAX
         $.ajax({
-          type: "POST",
           url: "http://localhost:3000/history/", 
+          type: "POST",
           data: JSON.stringify(data),
           contentType: "application/json; charset=utf-8",
           success: function (response) {
@@ -700,7 +633,7 @@
             window.location.href = "exam-result.html?id=" + response._id; 
           },
           error: function (xhr, status, error) {
-            toastr.error(error.message);
+            alert('Error: ' + xhr.responseText);
           },
         });
       }
@@ -725,7 +658,7 @@
 
         if (countdownTime < 0) {
           clearInterval(interval);
-          submitAnswers("/Exam/SubmitAnswers");
+          submitAnswers();
         }
       }
 

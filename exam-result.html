@@ -159,127 +159,39 @@
       </div>
       <!-- breadcrumb end -->
     </div>
-    <div class="container status mt-5 pd-2">
-      <div class="row">
-        <div class="col-md-2 btn-wrap">
-          <button type="button" class="btn btn-theme" href="exam-details.html">
-            Thoát
-          </button>
-        </div>
-        <div class="col-md-6 text-center pt-2">
-          <input
-            id="userId"
-            type="hidden"
-            class="form-control"
-            placeholder="Name"
-          />
-          <p id="username" class="fw-bold"></p>
-        </div>
-        <div class="col-md-4 btn-wrap">
-          <div class="row">
-            <div class="col-md-1 pt-2">
-              <i class="fa-solid fa-clock"></i>
-            </div>
-            <div class="col-md-5 pt-2">
-              <p class="fw-bold" id="countdown"></p>
-            </div>
-            <div class="col-md-6">
-              <button
-                id="finish"
-                class="btn btn-theme"
-                onclick="submitAnswers('/Exam/SubmitAnswers')"
-              >
-                Nộp bài
-              </button>
-            </div>
-          </div>
-        </div>
+    
+<div class="container status mt-5 pd-2">
+  <div class="row">
+      <div class="col-md-2 btn-wrap">
+          <a type="button" href="exams.html" class="btn btn-theme" >Thoát</a>
       </div>
-    </div>
-    <!--  course details section start -->
-    <section class="course-details section-padding">
-      <div class="container">
-        <div class="row">
+      <div class="col-md-5 text-center pt-2">
+          <input id="lessonId" type="hidden" class="form-control">
+          <p id="username" class="fw-bold"></p>
+      </div>
+      <div class="col-md-2 text-center pt-2">
+          <p id="historyScore" class ="fw-bold "></p>
+      </div>
+  </div>
+</div>
+<!--  course details section start -->
+<section class="course-details section-padding">
+  <div class="container">
+      <div class="row">
           <div id="questionChoice" class="col-lg-8">
-            <div class="course-header box">
-              <h5 class="text-capitalize">@iQuestion. @item.Question</h5>
-              <div class="text-center">
-                <img class="m-4" src="@item.ImageUrl" alt width="450" />
-              </div>
-              <form class="exam_page" id="1">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="col-auto">
-                      <div class="form-check">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          id="radio1"
-                          name="answer"
-                          value="0"
-                          checked
-                        />
-                        <p>A. @item.Option[0]</p>
-                        <label class="form-check-label" for="radio1"></label>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <div class="form-check">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          id="radio2"
-                          name="answer"
-                          value="2"
-                        />
-                        <p>C. @item.Option[2]</p>
-                        <label class="form-check-label" for="radio2"></label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="col-auto">
-                      <div class="form-check">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          id="radio3"
-                          name="answer"
-                          value="1"
-                        />
-                        <p>B. @item.Option[1]</p>
-                        <label class="form-check-label" for="radio3"></label>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <div class="form-check">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          id="radio4"
-                          name="answer"
-                          value="3"
-                        />
-                        <p>D. @item.Option[3]</p>
-                        <label class="form-check-label" for="radio4"></label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <!-- quiz end -->
           </div>
           <div class="col-lg-4">
-            <!-- course sidebar start -->
-            <div class="course-sidebar box">
-              <ul id="questionStatus" class="row"></ul>
-            </div>
-            <!-- course sidebar end -->
+              <!-- course sidebar start -->
+              <div class="course-sidebar box">
+                  <ul id="questionStatus" class="row">
+                  </ul>
+              </div>
+              <!-- course sidebar end -->
           </div>
-        </div>
       </div>
-    </section>
+  </div>
+</section>
+
     <!--  course details section end -->
     <!-- footer start -->
     <footer class="footer">
@@ -491,6 +403,21 @@
     </script>
 
     <script>
+      $.ajax({
+        url: "http://localhost:3000/users/current",
+        type: "GET",
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        success: function (results) {
+          const username = results.username;
+          $("#username").text("User: " + username);
+        },
+        error: function (xhr, status, error) {
+          alert("Error: " + xhr.responseText);
+        },
+      });
+    </script>
+
+    <script>
       function getUrlVars() {
         var vars = [],
           hash;
@@ -504,112 +431,97 @@
         }
         return vars;
       }
-      const lesson = getUrlVars()["id"];
-
+      const id = getUrlVars()["id"];
       $.ajax({
-        url: "http://localhost:3000/exam_lessons/questionsOf/" + lesson,
-        type: "GET",
-        success: function (kq) {
-          const array = kq;
-          let strQuestions = "";
-          let strStatus = "";
-          for (let index = 0; index < array.length; index++) {
+    url: "http://localhost:3000/history/" + id,
+    type: "GET",
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    success: function (kq) {
+        console.log(kq);
+        const lessonId = kq.lesson;
+        const point = kq.point;
+        $("#lessonId").text(lessonId);
+        $("#historyScore").text("Score: " + point);
+
+        // Show question
+        const array = kq.questions;
+        const examSubmit = kq.examSubmit;
+        let strQuestions = "";
+        let strStatus = "";
+        for (let index = 0; index < array.length; index++) {
             const element = array[index];
+            const userAnswer = examSubmit[index].answer;
+
             if (index === 0) {
-              strQuestions += `<div class="course-header box">
-                    <h5 class="text-capitalize">`;
+                strQuestions += `<div class="course-header box">`;
             } else {
-              strQuestions += `<div class="course-header box  mt-3">
-                    <h5 class="text-capitalize">`;
+                strQuestions += `<div class="course-header box mt-3">`;
             }
-            strQuestions +=
-              index +
-              `. ` +
-              element.question +
-              `</h5>
-                    <div class="text-center">
-                        <img class="m-4" src="` +
-              element.imageUrl +
-              `" alt="" width="450">
-                    </div>
-                    <form class="exam_page" id="` +
-              element._id +
-              `">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio1" name="answer"
-                                            value="0" checked>
-                                        <p>A. ` +
-              element.options[0] +
-              `</p>
-                                        <label class="form-check-label" for="radio1"></label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio2" name="answer"
-                                            value="2">
-                                        <p>C. ` +
-              element.options[2] +
-              `</p>
-                                        <label class="form-check-label" for="radio2"></label>
-                                    </div>
+            strQuestions += `
+                <h5 class="text-capitalize">${index + 1}. ${element.question}</h5>
+                <div class="text-center">
+                    <img class="m-4" src="${element.imageUrl}" alt="" width="450">
+                </div>
+                <form class="exam_page" id="${element._id}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="radio1-${index}" name="answer-${index}" value="0" ${userAnswer == 0 ? "checked" : ""} disabled>
+                                    <p>A. ${element.options[0]}</p>
+                                    <label class="form-check-label" for="radio1-${index}"></label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio3" name="answer"
-                                            value="1">
-                                        <p>B. ` +
-              element.options[1] +
-              `</p>
-                                        <label class="form-check-label" for="radio3"></label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio4" name="answer"
-                                            value="3">
-                                        <p>D. ` +
-              element.options[3] +
-              `</p>
-                                        <label class="form-check-label" for="radio4"></label>
-                                    </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="radio2-${index}" name="answer-${index}" value="2" ${userAnswer == 2 ? "checked" : ""} disabled>
+                                    <p>C. ${element.options[2]}</p>
+                                    <label class="form-check-label" for="radio2-${index}"></label>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>`;
+                        <div class="col-md-6">
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="radio3-${index}" name="answer-${index}" value="1" ${userAnswer == 1 ? "checked" : ""} disabled>
+                                    <p>B. ${element.options[1]}</p>
+                                    <label class="form-check-label" for="radio3-${index}"></label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="radio4-${index}" name="answer-${index}" value="3" ${userAnswer == 3 ? "checked" : ""} disabled>
+                                    <p>D. ${element.options[3]}</p>
+                                    <label class="form-check-label" for="radio4-${index}"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="col-auto">
+                                Đáp án đúng: ${['A', 'B', 'C', 'D'][element.answer]}
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>`;
 
-            strStatus +=
-              `<li class="col-md-2 col-lg-2 exam-choice" id="choice_` +
-              element._id +
-              `">` +
-              index +
-              `</li>`;
+            // show status
+            let isCorrect = kq.correct.some(correctItem => correctItem._id === array[index]._id);
+            let className = isCorrect ? 'bg-primary' : 'bg-danger';
+            strStatus += `
+                <li class="col-md-2 col-lg-2 exam-choice ${className}" id="choice_${index}">
+                    ${index + 1}
+                </li>`;
+        }
+
+        $("#questionChoice").html(strQuestions);
+        $("#questionStatus").html(strStatus);
+          },
+          error: function (xhr, status, error) {
+              alert("Error: " + xhr.responseText);
           }
-          $("#questionChoice").html(strQuestions);
-          $("#questionStatus").html(strStatus);
-
-          $("input[type='radio']").prop("checked", false);
-        },
       });
 
-      // Use event delegation to handle change event for dynamically added radio buttons
-      $(document).on("change", 'input[type="radio"]', function () {
-        var formId = $(this).closest("form").attr("id");
-        $("#choice_" + formId).addClass("active");
-      });
-
-      $(document).ready(function () {
-        // Uncheck all radio buttons when the page loads
-        $("input[name='answer']").prop("checked", false);
-      });
     </script>
-
-    <script></script>
   </body>
 </html>
