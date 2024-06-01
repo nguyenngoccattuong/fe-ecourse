@@ -288,16 +288,15 @@
                         // console.log(results);
                         // return
                         if (results === '') {
-
-                            alert('Đăng ký thành công');
+                            alert('Error: ' + results.error);
+                        } else {
+                            alert('Sign Up Success');
                             // tu dong chuyen trang
                             window.location.href = '/log-in.html';
-                        } else {
-                            alert('Đăng ký thất bại: ' + results.error);
                         }
                     },
                     error: function (xhr, status, error) {
-                        alert('Đã xảy ra lỗi trong quá trình đăng ký: ' + xhr.responseText);
+                        alert('Error: ' + xhr.responseText);
                     }
                 });
 
