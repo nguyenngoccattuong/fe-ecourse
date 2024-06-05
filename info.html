@@ -118,102 +118,57 @@
 
     </div>
     </div>
-    <!-- <div class="container status mt-5 pd-2">
-        <div class="row">
-            <div class="col-md-2 btn-wrap"><button type="button" class="btn btn-danger ">Thoát</button>
-            </div>
-            <div class="col-md-7 text-center pt-2">
-                <p>User: Ngô Văn Tiến Đạt</p>
-            </div>
-            <div class="col-md-3 btn-wrap">
-                <div class="row">
-                    <div class="col-md-6 pt-2">
-                        <p>00:41:43</p>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-theme">Nộp bài</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    
     <!--  course details section start -->
     <section class="course-details section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <nav class="course-tabs m-0">
-                        <nav class="course-tabs m-0">
-                            <div class="nav nav-tabs flex-column border-0" id="nav-tab" role="tablist">
-                                <button class="nav-link @ManageNavPages.IndexNavClass(ViewContext) border-0 p-2 m-2"
-                                    id="profile">
-                                    Profile
-                                </button>
-                                <button class="nav-link @ManageNavPages.EmailNavClass(ViewContext) border-0 p-2 m-2"
-                                    id="email">
-                                    Email
-                                </button>
-                                <button
-                                    class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext) border-0 p-2 m-2"
-                                    id="change-password">
-                                    Password
-                                </button>
-                                <button
-                                    class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) border-0 p-2 m-2"
-                                    id="two-factor">
-                                    Two-factor authentication
-                                </button>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-3">
+                  <nav class="course-tabs m-0">
+                      <div class="nav nav-tabs flex-column border-0" id="profile-nav-tab" role="tablist">
+                          <button class="nav-link border-0 p-2 m-2 active" id="profile-tab" data-toggle="tab" href="#profile-content">Profile</button>
+                          <button class="nav-link border-0 p-2 m-2" id="email-tab" data-toggle="tab" href="#email-content">Email</button>
+                          <button class="nav-link border-0 p-2 m-2" id="password-tab" data-toggle="tab" href="#password-content">Password</button>
+                      </div>
+                  </nav>
+              </div>
 
-                            </div>
-                        </nav>
-                    </nav>
-                </div>
-
-                <div class="col-lg-9">
-                    <!-- quiz start -->
-                    <div class="box">
-                        <div class="row pb-5 border-lign">
-                            <h2 class="text-center">Personal Information</h2>
-                            <div class="col-lg-5 text-center mt-3">
-                                <img src="img/instructor/1.png" alt="">
-                                <input type="file" asp-for="Input.ImageFile" class="form-control"
-                                    style="margin-top: 73px" />
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="login-form">
-                                    <form id="form-info" action="">
-                                        <input id="userId" type="hidden" class="form-control" placeholder="Name">
-                                        <div class="form-group">
-                                            <input id="username" type="text" class="form-control" placeholder="Name">
-                                        </div>
-                                        <div class="form-group">
-                                            <input id="userEmail" type="text" class="form-control" placeholder="Email">
-                                        </div>
-                                        <button type="submit" class="btn btn-theme btn-block btn-form">Save</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pt-5">
-                            <h3>Other Information</h3>
-
-                            <nav class="course-tabs justify-content-center">
-                                <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-                                    <button class="nav-link">Information about you</button>
-                                    <button class="nav-link">Change passwword</button>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-
-
-                    <!-- Add other quizzes here -->
-
-                </div>
-
-            </div>
-        </div>
-    </section>
+              <div class="col-lg-9">
+                  <div class="tab-content">
+                      <!-- Profile Content -->
+                      <div class="tab-pane fade show active" id="profile-content" role="tabpanel" aria-labelledby="profile-tab">
+                          <div class="box">
+                              <div class="pb-5 border-lign">
+                                  <h2 class="text-center">Personal Information</h2>
+                                  <div class="text-center mt-3">
+                                      <img id="imageUser" alt="avatar">
+                                      <input type="file" class="form-control" style="margin-top: 73px" id="imageInput" />
+                                      <button type="submit" class="btn btn-theme btn-block btn-form">Save</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Email Content -->
+                      <div class="tab-pane fade" id="email-content" role="tabpanel" aria-labelledby="email-tab">
+                          <div class="box">
+                              <h2 class="text-center">Email Settings</h2>
+                              <!-- Add your email settings content here -->
+                          </div>
+                      </div>
+                      <!-- Password Content -->
+                      <div class="tab-pane fade" id="password-content" role="tabpanel" aria-labelledby="password-tab">
+                          <div class="box">
+                              <h2 class="text-center">Change Password</h2>
+                              <!-- Add your password change content here -->
+                          </div>
+                      </div>
+                      <!-- Two-factor Content -->
+                  </div>
+                  <!-- Additional nav-tabs Section -->
+              </div>
+          </div>
+      </div>
+  </section>
     <!--  course details section end -->
 
     <!-- footer start -->
@@ -280,26 +235,6 @@
     <!-- footer end -->
 
     </div>
-    <!-- main wrapper end-->
-    <!-- course preview modal start -->
-    <div class="modal fade video-modal js-course-preview-modal" id="video-modal" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body p-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <div class="ratio ratio-16x9">
-                        <video controls class="js-course-preview-video">
-                            <source src="videos/course-preview.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- course preview modal end -->
 
     <!-- style switcher start -->
     <div class="style-switcher js-style-switcher">
@@ -424,20 +359,28 @@
             url: "http://localhost:3000/users/current",
             type: "GET",
             headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-            // data: formData,
-            // cache: false,
-            // contentType: false,
-            // processData: false,
             success: function (results) {
-                // alert('Successfully');
-                // console.log(results);
                 const id = results._id
-                console.log(id);
+                const avatarUrl = results.photoUrl;
                 $("#userId").val(id)
+                $("#imageUser").attr("src", avatarUrl);
             },
             error: function (xhr, status, error) {
                 alert('Error: ' + xhr.responseText);
             }
+        });
+
+        $(document).ready(function() {
+            $("#imageInput").on("change", function() {
+                var file = this.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $("#imageUser").attr("src", e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
         });
         // return false;
     </script>

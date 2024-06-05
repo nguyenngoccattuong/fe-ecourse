@@ -1591,3 +1591,10 @@ textarea {
 .show-search .search__form {
   transform: translateY(0);
 }
+
+#imageUser {
+  width: 150px; /* You can adjust the size as needed */
+  height: 150px; /* Ensure the height is equal to the width */
+  border-radius: 50%; /* This makes the image circular */
+  object-fit: cover; /* This ensures the image covers the entire area without distortion */
+}
