@@ -135,17 +135,20 @@
 
               <div class="col-lg-9">
                   <div class="tab-content">
+                    <input id="userId" type="hidden" class="form-control" placeholder="Name">
                       <!-- Profile Content -->
                       <div class="tab-pane fade show active" id="profile-content" role="tabpanel" aria-labelledby="profile-tab">
                           <div class="box">
+                            <form id="editAvatar" method="put">
                               <div class="pb-5 border-lign">
-                                  <h2 class="text-center">Personal Information</h2>
-                                  <div class="text-center mt-3">
-                                      <img id="imageUser" alt="avatar">
-                                      <input type="file" class="form-control" style="margin-top: 73px" id="imageInput" />
-                                      <button type="submit" class="btn btn-theme btn-block btn-form">Save</button>
-                                  </div>
+                                <h2 class="text-center">Personal Information</h2>
+                                <div class="text-center mt-3">
+                                    <img id="imageUser" alt="avatar">
+                                    <input name="file" type="file" class="form-control" style="margin-top: 73px" id="imageInput" />
+                                    <button type="submit" class="btn btn-theme btn-block btn-form">Save</button>
+                                </div>
                               </div>
+                            </form>
                           </div>
                       </div>
                       <!-- Email Content -->
@@ -322,19 +325,15 @@
 
     <script>
         $(document).ready(function () {
-            $('#form-info').on('submit', function (e) {
+            $('#editAvatar').on('submit', function (e) {
                 e.preventDefault();
 
-                const username = $('#username').val();
-                const email = $('#userEmail').val();
+                const id = $("#userId").val();
 
-                const formData = new FormData(document.getElementById('form-info'));
-
-                formData.append('username', username);
-                formData.append('email', email);
+                const formData = new FormData(document.getElementById('editAvatar'));
 
                 $.ajax({
-                    url: "http://localhost:3000/users/" + id,
+                    url: "http://localhost:3000/users/avatar/" + id,
                     type: "PUT",
                     headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
                     data: formData,
@@ -343,6 +342,7 @@
                     processData: false,
                     success: function (results) {
                         alert('Successfully');
+                        location.reload();
                         console.log(results);
                     },
                     error: function (xhr, status, error) {
