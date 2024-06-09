@@ -475,8 +475,118 @@
                     data: jsonData,
                     success: function (results) {
                         alert('Successfully');
-                        // location.reload();
+                        location.reload();
                         console.log(results);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
+
+    <script>
+        $.ajax({
+            url: "http://localhost:3000/users/current",
+            type: "GET",
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+            success: function (results) {
+                const id = results._id
+                const email = results.email;
+                $("#userId").val(id)
+                $("#email").val(email);
+            },
+            error: function (xhr, status, error) {
+                alert('Error: ' + xhr.responseText);
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#formEmail').on('submit', function (e) {
+                e.preventDefault();
+
+                const id = $("#userId").val();
+                const email = $("#email").val();
+
+                const jsonData = {
+                    "email": email,
+                }
+
+                $.ajax({
+                    url: "http://localhost:3000/users/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: jsonData,
+                    success: function (results) {
+                        alert('Successfully!!! You need to log in again!');
+                        // location.reload();
+                        // console.log(results);
+                        localStorage.removeItem('token');
+                        window.location.href = 'log-in.html';
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#formPassword').on('submit', function (e) {
+                e.preventDefault();
+
+                const id = $("#userId").val();
+                const password = $("#password").val();
+                const newPassword = $("#newPassword").val();
+
+                if (password == newPassword && password != '') {
+                    alert('Error: Password coincides or empty!')
+                    return false;
+                }
+
+                if (password.length < 8) {
+                    alert('Password > 8 characters')
+                    return false;
+                }
+
+                if (password.length > 30) {
+                    alert('Password < 30 characters')
+                    return false;
+                }
+
+                if (newPassword.length < 8) {
+                    alert('New Password > 8 characters')
+                    return false;
+                }
+
+                if (newPassword.length > 30) {
+                    alert('New Password < 30 characters')
+                    return false;
+                }
+
+                const jsonData = {
+                    "password": password,
+                    "newPassword": newPassword,
+                }
+
+                $.ajax({
+                    url: "http://localhost:3000/users/" + id,
+                    type: "PUT",
+                    headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
+                    data: jsonData,
+                    success: function (results) {
+                        alert('Successfully!!!');
+                        location.reload();
+                        console.log(results);
+                        // localStorage.removeItem('token');
+                        // window.location.href = 'log-in.html';
                     },
                     error: function (xhr, status, error) {
                         alert('Error: ' + xhr.responseText);
