@@ -32,7 +32,7 @@
 /* 28: =Blog */
 /* 29: =rating */
 /* 30: =search */
-/* 31: =login */
+/* 31: =info */
 /* ------------------------------------------------------------------------------------------------ */
 
 /* #menu_mobile,
@@ -1592,9 +1592,24 @@ textarea {
   transform: translateY(0);
 }
 
+/* 31: =info */
 #imageUser {
-  width: 150px; /* You can adjust the size as needed */
-  height: 150px; /* Ensure the height is equal to the width */
-  border-radius: 50%; /* This makes the image circular */
-  object-fit: cover; /* This ensures the image covers the entire area without distortion */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.small-input {
+  width: 50%;
+  padding: 5px;
+  margin: 10px auto;
+  display: block;
+}
+
+.small-button {
+  width: 50%;
+  padding: 5px;
+  margin: 10px auto;
+  display: block;
 }
