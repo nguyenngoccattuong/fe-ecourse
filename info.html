@@ -464,18 +464,15 @@
                 const id = $("#userId").val();
                 const username = $("#username").val();
 
-                const formData = new FormData(document.getElementById('formUsername'));
-
-                formData.append('username', username);
+                const jsonData = {
+                    "username": username,
+                }
 
                 $.ajax({
                     url: "http://localhost:3000/users/" + id,
                     type: "PUT",
                     headers: { "Authorization": 'Bearer ' + localStorage.getItem('token') },
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
+                    data: jsonData,
                     success: function (results) {
                         alert('Successfully');
                         // location.reload();
