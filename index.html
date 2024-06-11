@@ -501,12 +501,14 @@
                 data: {},
                 success: function (kq) {
                     const roles = kq.roles;
-                    // console.log(roles);
-                    // return
+                    if(kq.lockAt !== null){
+                      alert("Your account is locked!");
+                      localStorage.removeItem('token');
+                      window.location.href = 'index.html';
+                    }
                     if (roles.includes('ADMIN')) {
                         console.log(1);
                         $('#admin').show();
-
                     }
                     else {
                         $('#admin').hide();
