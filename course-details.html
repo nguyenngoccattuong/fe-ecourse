@@ -490,6 +490,9 @@
   <div id="listModal">
 
   </div>
+  <div class="modal fade video-modal js-course-preview-modal" id="video-modal" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+  </div>
 
   <!-- course preview modal end -->
 
@@ -674,22 +677,26 @@
         $("#course-instructor").html(courseInstructor);
 
         let modelVideo =
-          `<div class="modal fade video-modal js-course-preview-modal" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          `
             <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
+                  <div class="modal-content">
                     <div class="modal-body p-0">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <div class="ratio ratio-16x9">
-                            <video controls class="js-course-preview-video">
-                                <source src="` + kq.videoIntroduce + `" type="video/mp4">
-                            </video>
-                        </div>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                      <div class="ratio ratio-16x9">
+                        <video controls class="js-course-preview-video">
+                          <source src="`+ kq.videoIntroduce + `" type="video/mp4" />
+                        </video>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>`;
+                </div>`;
         $("#video-modal").html(modelVideo);
 
         let imageIntroduce =
@@ -726,7 +733,7 @@
                   <i class="fas fa-play-circle"></i>` + video.title + `<span>` + video.hour + "h:" + video.minute + "m" + `</span>
                 </li>`;
 
-            strModal += `
+            strModal += ` 
               <div
                 class="modal fade video-modal js-course-preview-modal" id="`+ video._id + `" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
