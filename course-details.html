@@ -385,24 +385,7 @@
             <div class="course-sidebar box">
               <div class="img-box position-relative" id="image-introduce" data-bs-toggle="modal"
                 data-bs-target="#video-modal"></div>
-              <div class="price d-flex align-items-center mb-3">
-                <span class="price-old text-decoration-line-through">$111</span>
-                <span class="price-new">$1</span>
-                <span class="price-discount">99% Off</span>
-              </div>
               <h3 class="mb-3">Course Features</h3>
-              <ul class="features-list">
-                <li>Total 15 lessons</li>
-                <li>Other features</li>
-                <li>Other features</li>
-                <li>Other features</li>
-                <li>Other features</li>
-              </ul>
-              <div class="btn-wrap">
-                <button type="button" class="btn btn-theme btn-block">
-                  enroll now
-                </button>
-              </div>
             </div>
             <!-- course sidebar end -->
           </div>
@@ -627,7 +610,7 @@
                 </div>
                 <ul>
                   <li> enrolled students - <span>`+ kq.register + `</span></li>
-                  <li> created by - <span><a href="teacher-info.html?id=` +
+                  <li> created by - <span><a` +
           kq.teacher._id +
           `">` +
           kq.teacher.username +
@@ -724,7 +707,8 @@
         for (let index = 0; index < array.length; index++) {
           const element = array[index];
           const videos = element.videos;
-          let strVideo = "";
+          if(videos.length != []){
+            let strVideo = "";
           for (let j = 0; j < videos.length; j++) {
             const video = videos[j];
             strVideo +=
@@ -771,6 +755,7 @@
                           </div>
                       </div>
                   </div>`;
+          }
         }
 
         $("#listModal").html(strModal);
